@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6851E60D-B999-4E82-9AD5-6DE96BE1745F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Quote Alert</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D53C1160-2BFE-4A48-AC1C-383D37BA4843</key>
+		<string>https://github.com/lizzy808/QuoteAlert.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Quote Alert.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D53C1160-2BFE-4A48-AC1C-383D37BA4843</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/lizzy808/QuoteAlert.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D53C1160-2BFE-4A48-AC1C-383D37BA4843</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D53C1160-2BFE-4A48-AC1C-383D37BA4843</string>
+			<key>IDESourceControlWCCName</key>
+			<string>QuoteAlert</string>
+		</dict>
+	</array>
+</dict>
+</plist>
