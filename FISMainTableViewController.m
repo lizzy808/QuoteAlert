@@ -1,43 +1,39 @@
 //
-//  FISTableViewController.m
+//  FISMainTableViewController.m
 //  Quote Alert
 //
-//  Created by Elizabeth Choy on 3/25/14.
+//  Created by Elizabeth Choy on 3/27/14.
 //  Copyright (c) 2014 Elizabeth Choy. All rights reserved.
 //
 
-#import "FISTableViewController.h"
+#import "FISMainTableViewController.h"
+#import <AFNetworking/AFNetworking.h>
 #import "FISDataStore.h"
+#import "Stock.h"
+
+@interface FISMainTableViewController () <NSFetchedResultsControllerDelegate>
 
 
-@interface FISTableViewController ()
+@property (weak, nonatomic) IBOutlet UISearchBar *addStockSearchOutlet;
+@property (nonatomic) FISDataStore *dataStore;
 
 @end
 
-@implementation FISTableViewController
+@implementation FISMainTableViewController
 
 
-static NSString *yahooSearchURLString = @"http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=%@&callback=YAHOO.Finance.SymbolSuggest.ssCallback";
-
-
-- (id)initWithStyle:(UITableViewStyle)style
+- (void)viewDidAppear:(BOOL)animated
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.dataStore = [FISDataStore sharedDataStore];
+    [FISDataStore sharedDataStore].fetchedResultsController.delegate = self;
+    [self.dataStore ]
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,14 +48,14 @@ static NSString *yahooSearchURLString = @"http://d.yimg.com/autoc.finance.yahoo.
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [];
 }
 
 /*

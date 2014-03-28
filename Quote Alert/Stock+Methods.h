@@ -10,4 +10,7 @@
 
 @interface Stock (Methods)
 
++ (instancetype)repoWithRepoDictionary:(NSDictionary *)repositoryDictionary Context:(NSManagedObjectContext *)context;
+
+
 @end

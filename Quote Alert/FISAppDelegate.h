@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AFNetworking.h>
+#import <AFNetworking/AFNetworking.h>
 
 @interface FISAppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow *window;
 
 
 @end

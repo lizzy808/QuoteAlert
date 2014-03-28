@@ -11,6 +11,9 @@
 
 @interface YahooAPIClient : NSObject
 
-+ (void)getReposForQuery:(NSString *)query Completion:(void(^)(NSArray *repoDictionaries))completionBlock;
+- (void)searchForStockWithName: (NSString *)name withCompletion:(void(^)(NSDictionary *stockDictionaries))completion;
+
+- (void)searchForStockDetails:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion;
+
 
 @end

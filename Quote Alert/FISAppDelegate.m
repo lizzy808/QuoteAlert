@@ -7,7 +7,9 @@
 //
 
 #import "FISAppDelegate.h"
-#import "FISTableViewController.h"
+#import "FISDataStore.h"
+#import "YahooAPIClient.h"
+ 
 
 @implementation FISAppDelegate
 
@@ -15,6 +17,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[YahooAPIClient new] searchForStockWithName:@"TSLA" withCompletion:^(NSDictionary *stockDictionaries) {
+    
+        NSLog(@"%@",stockDictionaries);
+    }];
+    
+    [[YahooAPIClient new] searchForStockDetails:@"MSFT" withCompletion:^(NSDictionary *detailsDictionary) {
+        NSLog(@"%@", detailsDictionary);
+    }];
+    
     [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
     
     return YES;
@@ -46,7 +57,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Saves changes in the application's managed object context before the application terminates.
-    [self saveContext];
 }
 
 

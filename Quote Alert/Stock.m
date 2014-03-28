@@ -11,18 +11,19 @@
 
 @implementation Stock
 
-@dynamic symbol;
-@dynamic openPrice;
+@dynamic averageVolume;
+@dynamic bidPrice;
+@dynamic change;
 @dynamic dayHigh;
 @dynamic dayLow;
-@dynamic volume;
-@dynamic peRatio;
 @dynamic mktCap;
-@dynamic yearLow;
+@dynamic openPrice;
+@dynamic peRatio;
+@dynamic symbol;
+@dynamic volume;
 @dynamic yearHigh;
-@dynamic averageVolume;
+@dynamic yearLow;
 @dynamic yield;
-@dynamic change;
-@dynamic bidPrice;
+@dynamic name;
 
 @end

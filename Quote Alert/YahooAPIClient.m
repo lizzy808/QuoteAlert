@@ -7,22 +7,72 @@
 //
 
 #import "YahooAPIClient.h"
+#import <AFNetworking/AFNetworking.h>
+
+@interface YahooAPIClient()
+
+@property (nonatomic) AFHTTPSessionManager *sessionManager;
+
+@end
 
 @implementation YahooAPIClient
 
-+ (void)getReposForQuery:(NSString *)query Completion:(void (^)(NSArray *))completionBlock
-{
-    static NSString *yahooSearchURLString = @"http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=%@&callback=YAHOO.Finance.SymbolSuggest.ssCallback";
-    
-    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
-    
-    [sessionManager GET:yahooSearchURLString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSDictionary *responseDictionary = responseObject;
-        NSArray *repositoriesDictionaries = responseDictionary[@"items"];
-        completionBlock(repositoriesDictionaries);
-    } failure:nil];
-    
 
+static NSString *yahooStockDetailsURLString = @"http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22%@%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
+
+static NSString *yahooSearchForStockURLString = @"http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=%@&callback=YAHOO.Finance.SymbolSuggest.ssCallback";
+
+
+- (AFHTTPSessionManager *)sessionManager
+{
+    if (!_sessionManager) {
+        _sessionManager = [AFHTTPSessionManager manager];
+        _sessionManager.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingMutableContainers];
+    }
+    return _sessionManager;
+}
+
+
+- (void)searchForStockWithName:(NSString *)name withCompletion:(void (^)(NSDictionary *))completion{
+    NSString *yahooURLString = [NSString stringWithFormat:@"http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=%@&callback=YAHOO.Finance.SymbolSuggest.ssCallback", name];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    [[session dataTaskWithURL:[NSURL URLWithString:yahooURLString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        NSLog(@"%@", data);
+        
+        NSString *newString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        NSString *cleanJSON = [newString substringFromIndex:39];
+        cleanJSON = [cleanJSON substringToIndex:[cleanJSON length]-1];
+        
+        NSData *parsedData = [cleanJSON dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *stockDictionary = [NSJSONSerialization JSONObjectWithData:parsedData options:NSJSONReadingAllowFragments error:nil];
+        
+        completion(stockDictionary);
+        
+    }] resume];
+    
+}
+
+- (void)searchForStockDetails:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion
+{
+    NSString *yahooDetailURLString = @"http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22";
+    yahooDetailURLString = [yahooDetailURLString stringByAppendingString:symbol];
+    yahooDetailURLString = [yahooDetailURLString stringByAppendingString:@"%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback="];
+       
+    NSURLSession *session = [NSURLSession sharedSession];
+    [[session dataTaskWithURL:[NSURL URLWithString:yahooDetailURLString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        NSLog(@"%@", data);
+        
+        NSString *newString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        
+        NSDictionary *stockDetailDictionary = [NSJSONSerialization JSONObjectWithData:[newString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+        
+        completion(stockDetailDictionary);
+        
+    }] resume];
+    
 }
 
 @end
