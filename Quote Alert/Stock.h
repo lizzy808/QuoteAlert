@@ -2,7 +2,7 @@
 //  Stock.h
 //  Quote Alert
 //
-//  Created by Elizabeth Choy on 3/26/14.
+//  Created by Elizabeth Choy on 3/30/14.
 //  Copyright (c) 2014 Elizabeth Choy. All rights reserved.
 //
 
@@ -26,5 +26,6 @@
 @property (nonatomic, retain) NSNumber * yearLow;
 @property (nonatomic, retain) NSNumber * yield;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * stockExchange;
 
 @end

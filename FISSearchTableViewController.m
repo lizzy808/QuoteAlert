@@ -1,39 +1,46 @@
 //
-//  FISMainTableViewController.m
+//  FISSearchTableViewController.m
 //  Quote Alert
 //
-//  Created by Elizabeth Choy on 3/27/14.
+//  Created by Elizabeth Choy on 3/30/14.
 //  Copyright (c) 2014 Elizabeth Choy. All rights reserved.
 //
 
-#import "FISMainTableViewController.h"
-#import <AFNetworking/AFNetworking.h>
+#import "FISSearchTableViewController.h"
 #import "FISDataStore.h"
 #import "Stock+Methods.h"
+#import "FISMainTableViewController.h"
+#import "Stock.h"
+#import "YahooAPIClient.h"
 
-@interface FISMainTableViewController () <NSFetchedResultsControllerDelegate>
+@interface FISSearchTableViewController () <NSFetchedResultsControllerDelegate>
+
 
 @property (nonatomic) NSArray *stocks;
 @property (nonatomic) FISDataStore *dataStore;
 
 @end
 
-@implementation FISMainTableViewController
+@implementation FISSearchTableViewController
 
-
-- (void)viewWillAppear:(BOOL)animated
+- (id)initWithStyle:(UITableViewStyle)style
 {
-    [super viewWillAppear:animated];
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
 }
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.dataStore = [FISDataStore sharedDataStore];
-    [FISDataStore sharedDataStore].fetchedResultsController.delegate = self;
+    self.dataStore.fetchedResultsController.delegate = self;
     [self.dataStore fetchStocksFromAPI];
+    
+    self.stockNameLabel.text = ;
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,23 +58,61 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.dataStore.fetchedResultsController.sections [section]numberOfObjects];
+    return [self.dataStore.fetchedResultsController.sections [section] numberOfObjects];
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell" forIndexPath:indexPath];
-
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell"];
+    
+    [self configureCell:cell atIndexPath:indexPath];
+    
+    return cell;
+    
+    
+    // Configure the cell...
+    if (cell == nil) {
+        cell = [[RecipeTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    // Display recipe in the table cell
+    Recipe *recipe = [recipes objectAtIndex:indexPath.row];
+    cell.nameLabel.text = recipe.name;
+    cell.thumbnailImageView.image = [UIImage imageNamed:recipe.image];
+    cell.prepTimeLabel.text = recipe.prepTime;
+    
     return cell;
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Stock *stock = [self.dataStore.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = stock.name;
+    
 }
 
+
+
+
+
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+    return 0;
+}
+
+/*
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    
+    // Configure the cell...
+    
+    return cell;
+}
+*/
 
 /*
 // Override to support conditional editing of the table view.

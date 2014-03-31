@@ -21,7 +21,8 @@
 - (NSURL *)applicationDocumentsDirectory;
 
 + (instancetype) sharedDataStore;
+
 - (void)fetchStocksFromAPI;
-- (void)deleteStockAtIndexPath:(NSIndexPath *)indexPath;
+//- (void)deleteStockAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

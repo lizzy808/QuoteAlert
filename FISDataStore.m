@@ -115,32 +115,31 @@
 
 - (void)fetchStocksFromAPI
 {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"name"];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Stock"];
     NSMutableArray *allStocks = [[NSMutableArray alloc] initWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:nil]];
     
     for (Stock *stock in allStocks) {
         [self.managedObjectContext deleteObject:stock];
     }
     
-    
-    ///make api call to get locations from internet
-    [YahooAPIClient getLocationsWithCompletion:^(NSArray *arrayOfLocations) {
-        for (NSDictionary *locationDict in arrayOfLocations) {
+    ///make api call to get stocks from internet
+    [YahooAPIClient searchForStockWithName:@"Symbol" withCompletion:^(NSDictionary *stockDictionaries) {
+        for (NSDictionary *stockDict in stockDictionaries) {
             //convert the api response into location managed objected
-            [Location locationWithDictionary:locationDict inContext:self.managedObjectContext];
+            [Stock  repoWithRepoDictionary:stockDict Context:self.managedObjectContext];
         }
     }];
 }
 
-
--(void)deleteLocationAtIndexPath:(NSIndexPath *)indexPath
-{
-    Location *location = [self.fetchedLocationResultsController objectAtIndexPath:indexPath];
-    [self.managedObjectContext deleteObject:location];
-    [FISAPIClient deleteLocation:location Completion:^(id result) {
-        NSLog(@"location was deleted");
-    }];
-}
+//
+//-(void)deleteLocationAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    Location *location = [self.fetchedLocationResultsController objectAtIndexPath:indexPath];
+//    [self.managedObjectContext deleteObject:location];
+//    [FISAPIClient deleteLocation:location Completion:^(id result) {
+//        NSLog(@"location was deleted");
+//    }];
+//}
 
 
 @end

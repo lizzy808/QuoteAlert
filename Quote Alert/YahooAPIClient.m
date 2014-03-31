@@ -18,10 +18,6 @@
 @implementation YahooAPIClient
 
 
-static NSString *yahooStockDetailsURLString = @"http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22%@%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
-
-static NSString *yahooSearchForStockURLString = @"http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=%@&callback=YAHOO.Finance.SymbolSuggest.ssCallback";
-
 
 - (AFHTTPSessionManager *)sessionManager
 {
@@ -33,7 +29,7 @@ static NSString *yahooSearchForStockURLString = @"http://d.yimg.com/autoc.financ
 }
 
 
-- (void)searchForStockWithName:(NSString *)name withCompletion:(void (^)(NSDictionary *))completion{
++ (void)searchForStockWithName:(NSString *)name withCompletion:(void (^)(NSDictionary *))completion{
     NSString *yahooURLString = [NSString stringWithFormat:@"http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=%@&callback=YAHOO.Finance.SymbolSuggest.ssCallback", name];
     
     NSURLSession *session = [NSURLSession sharedSession];
@@ -54,7 +50,7 @@ static NSString *yahooSearchForStockURLString = @"http://d.yimg.com/autoc.financ
     
 }
 
-- (void)searchForStockDetails:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion
++ (void)searchForStockDetails:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion
 {
     NSString *yahooDetailURLString = @"http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22";
     yahooDetailURLString = [yahooDetailURLString stringByAppendingString:symbol];
@@ -74,5 +70,20 @@ static NSString *yahooSearchForStockURLString = @"http://d.yimg.com/autoc.financ
     }] resume];
     
 }
+
+//+ (void)deleteStock:(Stock *)deleteStock Completion:(void (^)(id))completionBlock
+//{
+//    
+//    NSString *symbol = deleteStock.symbol;
+//    
+//    NSString *triviaURLString =[NSString stringWithFormat:@"http://locationtrivia.herokuapp.com/locations/%@/trivia/%@.json?key=%@", locationID, triviaID, key];
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    
+//    [manager DELETE:triviaURLString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSLog(@"%@",responseObject);
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        NSLog(@"Failure");
+//    }];
+//}
 
 @end

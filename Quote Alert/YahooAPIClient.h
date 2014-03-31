@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <AFNetworking.h>
+#import "Stock+Methods.h"
 
 @interface YahooAPIClient : NSObject
 
-- (void)searchForStockWithName: (NSString *)name withCompletion:(void(^)(NSDictionary *stockDictionaries))completion;
++ (void)searchForStockWithName: (NSString *)name withCompletion:(void(^)(NSDictionary *stockDictionaries))completion;
 
-- (void)searchForStockDetails:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion;
-
++ (void)searchForStockDetails:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion;
+//
+//+ (void)deleteStock:(Stock *)deleteStock Completion:(void (^)(id result))completionBlock;
 
 @end

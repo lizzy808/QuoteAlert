@@ -25,10 +25,11 @@
 		55912D1918E275180069FEEC /* YahooAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D1818E275180069FEEC /* YahooAPIClient.m */; };
 		55912D2018E3546D0069FEEC /* FISDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D1F18E3546D0069FEEC /* FISDataStore.m */; };
 		55912D2318E356A60069FEEC /* Stock+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D2218E356A60069FEEC /* Stock+Methods.m */; };
-		55912D3E18E381B00069FEEC /* Stock.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D3D18E381B00069FEEC /* Stock.m */; };
 		55912D4C18E4C9660069FEEC /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55912D4B18E4C9660069FEEC /* Storyboard.storyboard */; };
 		55912D5218E4D18A0069FEEC /* FISMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D5118E4D18A0069FEEC /* FISMainTableViewController.m */; };
 		55912D5518E5C01B0069FEEC /* FISStockDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D5418E5C01B0069FEEC /* FISStockDetailViewController.m */; };
+		55912D9F18E8F3C20069FEEC /* Stock.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D9E18E8F3C20069FEEC /* Stock.m */; };
+		55912DA218E9082B0069FEEC /* FISSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912DA118E9082B0069FEEC /* FISSearchTableViewController.m */; };
 		63DC8204C6874F38BD06C8F4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92968B8F8C494D1EAF8A35DD /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -67,13 +68,15 @@
 		55912D1F18E3546D0069FEEC /* FISDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISDataStore.m; path = ../FISDataStore.m; sourceTree = "<group>"; };
 		55912D2118E356A60069FEEC /* Stock+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Stock+Methods.h"; sourceTree = "<group>"; };
 		55912D2218E356A60069FEEC /* Stock+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Stock+Methods.m"; sourceTree = "<group>"; };
-		55912D3C18E381B00069FEEC /* Stock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stock.h; sourceTree = "<group>"; };
-		55912D3D18E381B00069FEEC /* Stock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stock.m; sourceTree = "<group>"; };
 		55912D4B18E4C9660069FEEC /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		55912D5018E4D18A0069FEEC /* FISMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISMainTableViewController.h; sourceTree = "<group>"; };
 		55912D5118E4D18A0069FEEC /* FISMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISMainTableViewController.m; sourceTree = "<group>"; };
 		55912D5318E5C01B0069FEEC /* FISStockDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISStockDetailViewController.h; sourceTree = "<group>"; };
 		55912D5418E5C01B0069FEEC /* FISStockDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISStockDetailViewController.m; sourceTree = "<group>"; };
+		55912D9D18E8F3C20069FEEC /* Stock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stock.h; sourceTree = "<group>"; };
+		55912D9E18E8F3C20069FEEC /* Stock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stock.m; sourceTree = "<group>"; };
+		55912DA018E9082B0069FEEC /* FISSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISSearchTableViewController.h; sourceTree = "<group>"; };
+		55912DA118E9082B0069FEEC /* FISSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISSearchTableViewController.m; sourceTree = "<group>"; };
 		92968B8F8C494D1EAF8A35DD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF22F24D1847480CA274EE0B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,9 +188,9 @@
 			children = (
 				55912D1718E275180069FEEC /* YahooAPIClient.h */,
 				55912D1818E275180069FEEC /* YahooAPIClient.m */,
-				55912D3C18E381B00069FEEC /* Stock.h */,
-				55912D3D18E381B00069FEEC /* Stock.m */,
 				5575C73418E0E6E100ABB124 /* Quote_Alert.xcdatamodeld */,
+				55912D9D18E8F3C20069FEEC /* Stock.h */,
+				55912D9E18E8F3C20069FEEC /* Stock.m */,
 				55912D2118E356A60069FEEC /* Stock+Methods.h */,
 				55912D2218E356A60069FEEC /* Stock+Methods.m */,
 				55912D1E18E3546D0069FEEC /* FISDataStore.h */,
@@ -204,6 +207,8 @@
 				55912D5118E4D18A0069FEEC /* FISMainTableViewController.m */,
 				55912D5318E5C01B0069FEEC /* FISStockDetailViewController.h */,
 				55912D5418E5C01B0069FEEC /* FISStockDetailViewController.m */,
+				55912DA018E9082B0069FEEC /* FISSearchTableViewController.h */,
+				55912DA118E9082B0069FEEC /* FISSearchTableViewController.m */,
 			);
 			name = Controllers;
 			path = ..;
@@ -348,14 +353,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55912DA218E9082B0069FEEC /* FISSearchTableViewController.m in Sources */,
 				55912D2018E3546D0069FEEC /* FISDataStore.m in Sources */,
 				55912D5518E5C01B0069FEEC /* FISStockDetailViewController.m in Sources */,
 				55912D1918E275180069FEEC /* YahooAPIClient.m in Sources */,
 				5575C73618E0E6E100ABB124 /* Quote_Alert.xcdatamodeld in Sources */,
 				55912D2318E356A60069FEEC /* Stock+Methods.m in Sources */,
 				5575C72F18E0E6E100ABB124 /* main.m in Sources */,
+				55912D9F18E8F3C20069FEEC /* Stock.m in Sources */,
 				55912D5218E4D18A0069FEEC /* FISMainTableViewController.m in Sources */,
-				55912D3E18E381B00069FEEC /* Stock.m in Sources */,
 				5575C73318E0E6E100ABB124 /* FISAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
