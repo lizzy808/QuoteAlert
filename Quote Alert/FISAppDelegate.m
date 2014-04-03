@@ -17,19 +17,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[YahooAPIClient new] searchForStockWithName:@"TSLA" withCompletion:^(NSDictionary *stockDictionaries) {
-    
-        NSLog(@"%@",stockDictionaries);
-    }];
-    
-    [[YahooAPIClient new] searchForStockDetails:@"MSFT" withCompletion:^(NSDictionary *detailsDictionary) {
-        NSLog(@"%@", detailsDictionary);
-    }];
-    
     [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+    
+    UILocalNotification *notification = [UILocalNotification new];
+    //notification.fireDate
+    notification.alertBody = @"%@",
+    
+    [application presentLocalNotificationNow:notification];
     
     return YES;
 }
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application

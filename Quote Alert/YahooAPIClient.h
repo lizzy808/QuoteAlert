@@ -12,7 +12,7 @@
 
 @interface YahooAPIClient : NSObject
 
-+ (void)searchForStockWithName: (NSString *)name withCompletion:(void(^)(NSDictionary *stockDictionaries))completion;
++ (void)searchForStockWithName: (NSString *)name withCompletion:(void(^)(NSArray *stockDictionaries))completion;
 
 + (void)searchForStockDetails:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion;
 //

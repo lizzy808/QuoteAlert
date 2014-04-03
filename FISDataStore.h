@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Stock+Methods.h"
 
 @interface FISDataStore : NSObject
 
@@ -18,11 +19,15 @@
 
 
 - (void)saveContext;
+
 - (NSURL *)applicationDocumentsDirectory;
 
 + (instancetype) sharedDataStore;
 
 - (void)fetchStocksFromAPI;
+
+- (void)addStock:(Stock *)stock;
+
 //- (void)deleteStockAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

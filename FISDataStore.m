@@ -10,11 +10,26 @@
 #import "YahooAPIClient.h"
 #import "Stock+Methods.h"
 
+@interface FISDataStore()
+
+@property (nonatomic) NSMutableArray *stocks;
+
+@end
+
 @implementation FISDataStore
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
+
+- (NSMutableArray *)stocks
+{
+    if (!_stocks) {
+        _stocks = [NSMutableArray new];
+    }
+    return _stocks;
+}
 
 + (instancetype)sharedDataStore {
     static FISDataStore *_sharedReposDataStore = nil;
@@ -123,12 +138,17 @@
     }
     
     ///make api call to get stocks from internet
-    [YahooAPIClient searchForStockWithName:@"Symbol" withCompletion:^(NSDictionary *stockDictionaries) {
+    [YahooAPIClient searchForStockWithName:@"Symbol" withCompletion:^(NSArray *stockDictionaries) {
         for (NSDictionary *stockDict in stockDictionaries) {
             //convert the api response into location managed objected
-            [Stock  repoWithRepoDictionary:stockDict Context:self.managedObjectContext];
+            [Stock  stockWithStockSearchDictionary:stockDict Context:self.managedObjectContext];
         }
     }];
+}
+
+- (void)addStock:(id)stock
+{
+    [self.stocks addObject:stock];
 }
 
 //

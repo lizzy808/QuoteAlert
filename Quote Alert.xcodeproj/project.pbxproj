@@ -30,6 +30,7 @@
 		55912D5518E5C01B0069FEEC /* FISStockDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D5418E5C01B0069FEEC /* FISStockDetailViewController.m */; };
 		55912D9F18E8F3C20069FEEC /* Stock.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D9E18E8F3C20069FEEC /* Stock.m */; };
 		55912DA218E9082B0069FEEC /* FISSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912DA118E9082B0069FEEC /* FISSearchTableViewController.m */; };
+		55912DA818EB63E20069FEEC /* FISSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912DA718EB63E20069FEEC /* FISSearchTableViewCell.m */; };
 		63DC8204C6874F38BD06C8F4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92968B8F8C494D1EAF8A35DD /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,8 @@
 		55912D9E18E8F3C20069FEEC /* Stock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stock.m; sourceTree = "<group>"; };
 		55912DA018E9082B0069FEEC /* FISSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISSearchTableViewController.h; sourceTree = "<group>"; };
 		55912DA118E9082B0069FEEC /* FISSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISSearchTableViewController.m; sourceTree = "<group>"; };
+		55912DA618EB63E10069FEEC /* FISSearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISSearchTableViewCell.h; sourceTree = "<group>"; };
+		55912DA718EB63E20069FEEC /* FISSearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISSearchTableViewCell.m; sourceTree = "<group>"; };
 		92968B8F8C494D1EAF8A35DD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF22F24D1847480CA274EE0B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -209,6 +212,8 @@
 				55912D5418E5C01B0069FEEC /* FISStockDetailViewController.m */,
 				55912DA018E9082B0069FEEC /* FISSearchTableViewController.h */,
 				55912DA118E9082B0069FEEC /* FISSearchTableViewController.m */,
+				55912DA618EB63E10069FEEC /* FISSearchTableViewCell.h */,
+				55912DA718EB63E20069FEEC /* FISSearchTableViewCell.m */,
 			);
 			name = Controllers;
 			path = ..;
@@ -353,6 +358,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55912DA818EB63E20069FEEC /* FISSearchTableViewCell.m in Sources */,
 				55912DA218E9082B0069FEEC /* FISSearchTableViewController.m in Sources */,
 				55912D2018E3546D0069FEEC /* FISDataStore.m in Sources */,
 				55912D5518E5C01B0069FEEC /* FISStockDetailViewController.m in Sources */,

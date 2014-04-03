@@ -10,8 +10,7 @@
 
 @interface FISSearchTableViewController : UITableViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *stockNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *companyNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *exchangeNameLabel;
+
+@property (weak, nonatomic) IBOutlet UISearchBar *stockSearchDisplay;
 
 @end

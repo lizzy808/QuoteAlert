@@ -102,7 +102,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="basicCell" rowHeight="54" id="9Ko-Jt-ZEP">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="basicCell" rowHeight="54" id="9Ko-Jt-ZEP" customClass="FISSearchTableViewCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="54"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Ko-Jt-ZEP" id="48b-fP-5RB">
@@ -131,6 +131,11 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="companyNameLabel" destination="s0C-ML-f2w" id="136-Ms-NGZ"/>
+                                            <outlet property="exchangeNameLabel" destination="9Cw-6q-FBA" id="8iS-yD-097"/>
+                                            <outlet property="stockNameLabel" destination="P1w-zk-OoG" id="Sbt-vY-vbs"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -138,10 +143,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="companyNameLabel" destination="s0C-ML-f2w" id="5e9-Bp-cCq"/>
-                        <outlet property="exchangeNameLabel" destination="9Cw-6q-FBA" id="aWa-uK-MPA"/>
                         <outlet property="searchDisplayController" destination="UYB-oj-bTC" id="Zmq-AJ-kNX"/>
-                        <outlet property="stockNameLabel" destination="P1w-zk-OoG" id="706-Bm-qqR"/>
+                        <outlet property="stockSearchDisplay" destination="pNm-xy-wGL" id="j56-P5-OWV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zdS-vj-51g" userLabel="First Responder" sceneMemberID="firstResponder"/>

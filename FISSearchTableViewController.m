@@ -8,15 +8,17 @@
 
 #import "FISSearchTableViewController.h"
 #import "FISDataStore.h"
-#import "Stock+Methods.h"
 #import "FISMainTableViewController.h"
-#import "Stock.h"
 #import "YahooAPIClient.h"
+#import "Stock.h"
+#import "Stock+Methods.h"
+#import "FISSearchTableViewCell.h"
 
-@interface FISSearchTableViewController () <NSFetchedResultsControllerDelegate>
+@interface FISSearchTableViewController () <NSFetchedResultsControllerDelegate, UISearchDisplayDelegate>
 
 
 @property (nonatomic) NSArray *stocks;
+@property (nonatomic) NSArray *searchResults;
 @property (nonatomic) FISDataStore *dataStore;
 
 @end
@@ -39,8 +41,6 @@
     self.dataStore = [FISDataStore sharedDataStore];
     self.dataStore.fetchedResultsController.delegate = self;
     [self.dataStore fetchStocksFromAPI];
-    
-    self.stockNameLabel.text = ;
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,49 +58,57 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.dataStore.fetchedResultsController.sections [section] numberOfObjects];
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [_searchResults count];
+    }
+    else{
+        return [self.stocks count]; 
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell"];
+    FISSearchTableViewCell *cell = (FISSearchTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"basicCell"];
     
     [self configureCell:cell atIndexPath:indexPath];
     
     return cell;
     
     
-    // Configure the cell...
-    if (cell == nil) {
-        cell = [[RecipeTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
-    // Display recipe in the table cell
-    Recipe *recipe = [recipes objectAtIndex:indexPath.row];
-    cell.nameLabel.text = recipe.name;
-    cell.thumbnailImageView.image = [UIImage imageNamed:recipe.image];
-    cell.prepTimeLabel.text = recipe.prepTime;
-    
-    return cell;
+//    // Configure the cell...
+//    if (cell == nil) {
+//        cell = [[RecipeTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//    }
+//    
+//    // Display recipe in the table cell
+//    Stock *stock = [recipes objectAtIndex:indexPath.row];
+//    cell.stock.text = recipe.name;
+//    cell.thumbnailImageView.image = [UIImage imageNamed:recipe.image];
+//    cell.prepTimeLabel.text = recipe.prepTime;
+//    
+//    return cell;
+//}
 }
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(FISSearchTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Stock *stock = [self.dataStore.fetchedResultsController objectAtIndexPath:indexPath];
-    
+    cell.exchangeNameLabel.text = stock.stockExchange;
+    cell.companyNameLabel.text = stock.name;
+    cell.stockNameLabel.text = stock.symbol;
 }
 
-
-
-
-
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"symbol contains[c] %@", searchText];
+    _searchResults = [self.stocks filteredArrayUsingPredicate:resultPredicate];
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                       objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    return YES;
 }
 
 /*

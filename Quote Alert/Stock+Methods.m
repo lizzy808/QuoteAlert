@@ -10,18 +10,18 @@
 
 @implementation Stock (Methods)
 
-- (NSString *)description
+- (NSString *)stockDetailDescription
 {
     return [NSString stringWithFormat:@"Symbol: %@ Name: %@ Bid Price: %@ Change: %@ Volume: %@ Day High: %@ Day Low: %@ P/E Ratio: %@ Open Price: %@ Market Cap: %@ Year High: %@ Year Low: %@ Yield: %@ Average Volume: %@ Stock Exchange: %@",self.symbol,self.name,self.bidPrice,self.change,self.volume,self.dayHigh,self.dayLow,self.peRatio,self.openPrice,self.mktCap,self.yearHigh,self.yearLow,self.yield,self.averageVolume,self.stockExchange];
 }
 
+///////////////// Need a new managed object for Stock Search?//////////////
 
-+ (instancetype)repoWithRepoDictionary:(NSDictionary *)repositoryDictionary Context:(NSManagedObjectContext *)context
-{
++ (instancetype)stockWithStockSearchDictionary:(NSDictionary *)stockSearchDictionary Context:(NSManagedObjectContext *)context{
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Stock"];
-    NSString *searchSymbol = [repositoryDictionary[@"Symbol"] stringValue];
+    NSString *searchSymbol = stockSearchDictionary[@"symbol"];
     
-    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"stockSymbol==%@",searchSymbol];
+    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"symbol==%@",searchSymbol];
     fetchRequest.predicate = searchPredicate;
     
     NSArray *repos = [context executeFetchRequest:fetchRequest error:nil];
@@ -29,43 +29,71 @@
     if ([repos count]==0) {
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Stock" inManagedObjectContext:context];
         Stock *repository = [[Stock alloc] initWithEntity:entity insertIntoManagedObjectContext:nil];
-        repository.symbol = repositoryDictionary[@"Symbol"];
-        repository.name = repositoryDictionary[@"Name"];
-        repository.bidPrice = repositoryDictionary[@"Bid"];
-        repository.change = repositoryDictionary[@"Change"];
-        repository.volume = repositoryDictionary[@"Volume"];
-        repository.dayHigh = repositoryDictionary[@"DaysHigh"];
-        repository.dayLow = repositoryDictionary[@"DaysLow"];
-        repository.peRatio = repositoryDictionary[@"PERatio"];
-        repository.openPrice = repositoryDictionary[@"Open"];
-        repository.mktCap = repositoryDictionary[@"MarketCapitalization"];
-        repository.yearHigh = repositoryDictionary[@"YearHigh"];
-        repository.yearLow = repositoryDictionary[@"YearLow"];
-        repository.yield = repositoryDictionary[@"DividendYield"];
-        repository.averageVolume = repositoryDictionary[@"AverageDailyVolume"];
-        repository.stockExchange = repositoryDictionary[@"StockExchange"];
+        repository.symbol = stockSearchDictionary[@"symbol"];
+        repository.name = stockSearchDictionary[@"name"];
+        repository.stockExchange = stockSearchDictionary[@"exchDisp"];
         
         
         return repository;
     } else
     {
         Stock *selectedRepo = [repos lastObject];
-        selectedRepo.name = repositoryDictionary[@"Name"];
-        selectedRepo.bidPrice = repositoryDictionary[@"Bid"];
-        selectedRepo.change = repositoryDictionary[@"Change"];
-        selectedRepo.volume = repositoryDictionary[@"Volume"];
-        selectedRepo.dayHigh = repositoryDictionary[@"DaysHigh"];
-        selectedRepo.dayLow = repositoryDictionary[@"DaysLow"];
-        selectedRepo.peRatio = repositoryDictionary[@"PERatio"];
-        selectedRepo.openPrice = repositoryDictionary[@"Open"];
-        selectedRepo.mktCap = repositoryDictionary[@"MarketCapitalization"];
-        selectedRepo.yearHigh = repositoryDictionary[@"YearHigh"];
-        selectedRepo.yearLow = repositoryDictionary[@"YearLow"];
-        selectedRepo.yield = repositoryDictionary[@"DividendYield"];
-        selectedRepo.averageVolume = repositoryDictionary[@"AverageDailyVolume"];
-        selectedRepo.stockExchange = repositoryDictionary[@"StockExchange"];
         
-
+        selectedRepo.symbol = stockSearchDictionary[@"symbol"];
+        selectedRepo.name = stockSearchDictionary[@"name"];
+        selectedRepo.stockExchange = stockSearchDictionary[@"exchDisp"];
+        return selectedRepo;
+    }
+}
++ (instancetype)stockWithStockDetailDictionary:(NSDictionary *)stockDetailDictionary Context:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Stock"];
+    NSString *searchSymbol = stockDetailDictionary[@"Symbol"];
+    
+    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"Symbol==%@",searchSymbol];
+    fetchRequest.predicate = searchPredicate;
+    
+    NSArray *repos = [context executeFetchRequest:fetchRequest error:nil];
+    
+    if ([repos count]==0) {
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Stock" inManagedObjectContext:context];
+        Stock *repository = [[Stock alloc] initWithEntity:entity insertIntoManagedObjectContext:nil];
+        repository.symbol = stockDetailDictionary[@"Symbol"];
+        repository.name = stockDetailDictionary[@"Name"];
+        repository.bidPrice = stockDetailDictionary[@"Bid"];
+        repository.change = stockDetailDictionary[@"Change"];
+        repository.volume = stockDetailDictionary[@"Volume"];
+        repository.dayHigh = stockDetailDictionary[@"DaysHigh"];
+        repository.dayLow = stockDetailDictionary[@"DaysLow"];
+        repository.peRatio = stockDetailDictionary[@"PERatio"];
+        repository.openPrice = stockDetailDictionary[@"Open"];
+        repository.mktCap = stockDetailDictionary[@"MarketCapitalization"];
+        repository.yearHigh = stockDetailDictionary[@"YearHigh"];
+        repository.yearLow = stockDetailDictionary[@"YearLow"];
+        repository.yield = stockDetailDictionary[@"DividendYield"];
+        repository.averageVolume = stockDetailDictionary[@"AverageDailyVolume"];
+        repository.stockExchange = stockDetailDictionary[@"StockExchange"];
+        
+        
+        return repository;
+    } else
+    {
+        Stock *selectedRepo = [repos lastObject];
+        selectedRepo.name = stockDetailDictionary[@"Name"];
+        selectedRepo.bidPrice = stockDetailDictionary[@"Bid"];
+        selectedRepo.change = stockDetailDictionary[@"Change"];
+        selectedRepo.volume = stockDetailDictionary[@"Volume"];
+        selectedRepo.dayHigh = stockDetailDictionary[@"DaysHigh"];
+        selectedRepo.dayLow = stockDetailDictionary[@"DaysLow"];
+        selectedRepo.peRatio = stockDetailDictionary[@"PERatio"];
+        selectedRepo.openPrice = stockDetailDictionary[@"Open"];
+        selectedRepo.mktCap = stockDetailDictionary[@"MarketCapitalization"];
+        selectedRepo.yearHigh = stockDetailDictionary[@"YearHigh"];
+        selectedRepo.yearLow = stockDetailDictionary[@"YearLow"];
+        selectedRepo.yield = stockDetailDictionary[@"DividendYield"];
+        selectedRepo.averageVolume = stockDetailDictionary[@"AverageDailyVolume"];
+        selectedRepo.stockExchange = stockDetailDictionary[@"StockExchange"];
+        
         return selectedRepo;
     }
 }
