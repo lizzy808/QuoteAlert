@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Stock.h"
 
 @interface FISSearchTableViewController : UITableViewController
 
-
-@property (weak, nonatomic) IBOutlet UISearchBar *stockSearchDisplay;
+@property (strong, nonatomic) Stock *stock;
 
 @end

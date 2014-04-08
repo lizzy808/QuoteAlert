@@ -151,15 +151,22 @@
     [self.stocks addObject:stock];
 }
 
-//
-//-(void)deleteLocationAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    Location *location = [self.fetchedLocationResultsController objectAtIndexPath:indexPath];
-//    [self.managedObjectContext deleteObject:location];
-//    [FISAPIClient deleteLocation:location Completion:^(id result) {
-//        NSLog(@"location was deleted");
-//    }];
-//}
+- (BOOL)removeStock:(Stock *)stock
+{
+    if ([self.stocks containsObject:stock]) {
+        [self.stocks removeObject:stock];
+        return YES;
+    }
+    return NO;
+}
+
+- (void)deleteStockAtIndexPay:(NSIndexPath *)indexPath
+{
+    Stock *stock = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self.managedObjectContext deleteObject:stock];
+}
+
+
 
 
 @end

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Stock.h"
 
 @interface FISStockDetailViewController : UIViewController
+
+@property (strong, nonatomic)Stock *stock;
 
 @end

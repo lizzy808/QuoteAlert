@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		550D3D4A18EE5879009A9406 /* UITableViewController+StyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 550D3D4918EE5879009A9406 /* UITableViewController+StyleSheet.m */; };
+		550D3D5718F1E19F009A9406 /* FISMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 550D3D5618F1E19F009A9406 /* FISMainTableViewCell.m */; };
+		550D3D5A18F1E3B6009A9406 /* FISMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 550D3D5918F1E3B6009A9406 /* FISMainViewController.m */; };
+		550D3D6018F1EB74009A9406 /* UIColorSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 550D3D5F18F1EB74009A9406 /* UIColorSheet.m */; };
 		5575C72118E0E6E100ABB124 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5575C72018E0E6E100ABB124 /* Foundation.framework */; };
 		5575C72318E0E6E100ABB124 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5575C72218E0E6E100ABB124 /* CoreGraphics.framework */; };
 		5575C72518E0E6E100ABB124 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5575C72418E0E6E100ABB124 /* UIKit.framework */; };
@@ -26,7 +30,6 @@
 		55912D2018E3546D0069FEEC /* FISDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D1F18E3546D0069FEEC /* FISDataStore.m */; };
 		55912D2318E356A60069FEEC /* Stock+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D2218E356A60069FEEC /* Stock+Methods.m */; };
 		55912D4C18E4C9660069FEEC /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55912D4B18E4C9660069FEEC /* Storyboard.storyboard */; };
-		55912D5218E4D18A0069FEEC /* FISMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D5118E4D18A0069FEEC /* FISMainTableViewController.m */; };
 		55912D5518E5C01B0069FEEC /* FISStockDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D5418E5C01B0069FEEC /* FISStockDetailViewController.m */; };
 		55912D9F18E8F3C20069FEEC /* Stock.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D9E18E8F3C20069FEEC /* Stock.m */; };
 		55912DA218E9082B0069FEEC /* FISSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912DA118E9082B0069FEEC /* FISSearchTableViewController.m */; };
@@ -45,6 +48,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		550D3D4818EE5879009A9406 /* UITableViewController+StyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewController+StyleSheet.h"; sourceTree = "<group>"; };
+		550D3D4918EE5879009A9406 /* UITableViewController+StyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+StyleSheet.m"; sourceTree = "<group>"; };
+		550D3D5518F1E19F009A9406 /* FISMainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISMainTableViewCell.h; sourceTree = "<group>"; };
+		550D3D5618F1E19F009A9406 /* FISMainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISMainTableViewCell.m; sourceTree = "<group>"; };
+		550D3D5818F1E3B6009A9406 /* FISMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISMainViewController.h; sourceTree = "<group>"; };
+		550D3D5918F1E3B6009A9406 /* FISMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISMainViewController.m; sourceTree = "<group>"; };
+		550D3D5E18F1EB74009A9406 /* UIColorSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColorSheet.h; sourceTree = "<group>"; };
+		550D3D5F18F1EB74009A9406 /* UIColorSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorSheet.m; sourceTree = "<group>"; };
 		5575C71D18E0E6E100ABB124 /* Quote Alert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quote Alert.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5575C72018E0E6E100ABB124 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5575C72218E0E6E100ABB124 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -70,16 +81,14 @@
 		55912D2118E356A60069FEEC /* Stock+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Stock+Methods.h"; sourceTree = "<group>"; };
 		55912D2218E356A60069FEEC /* Stock+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Stock+Methods.m"; sourceTree = "<group>"; };
 		55912D4B18E4C9660069FEEC /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
-		55912D5018E4D18A0069FEEC /* FISMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISMainTableViewController.h; sourceTree = "<group>"; };
-		55912D5118E4D18A0069FEEC /* FISMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISMainTableViewController.m; sourceTree = "<group>"; };
 		55912D5318E5C01B0069FEEC /* FISStockDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISStockDetailViewController.h; sourceTree = "<group>"; };
 		55912D5418E5C01B0069FEEC /* FISStockDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISStockDetailViewController.m; sourceTree = "<group>"; };
 		55912D9D18E8F3C20069FEEC /* Stock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stock.h; sourceTree = "<group>"; };
 		55912D9E18E8F3C20069FEEC /* Stock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stock.m; sourceTree = "<group>"; };
 		55912DA018E9082B0069FEEC /* FISSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISSearchTableViewController.h; sourceTree = "<group>"; };
 		55912DA118E9082B0069FEEC /* FISSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISSearchTableViewController.m; sourceTree = "<group>"; };
-		55912DA618EB63E10069FEEC /* FISSearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISSearchTableViewCell.h; sourceTree = "<group>"; };
-		55912DA718EB63E20069FEEC /* FISSearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISSearchTableViewCell.m; sourceTree = "<group>"; };
+		55912DA618EB63E10069FEEC /* FISSearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FISSearchTableViewCell.h; path = ../FISSearchTableViewCell.h; sourceTree = "<group>"; };
+		55912DA718EB63E20069FEEC /* FISSearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISSearchTableViewCell.m; path = ../FISSearchTableViewCell.m; sourceTree = "<group>"; };
 		92968B8F8C494D1EAF8A35DD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF22F24D1847480CA274EE0B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,6 +120,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		550D3D4718EE580B009A9406 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				55912DA618EB63E10069FEEC /* FISSearchTableViewCell.h */,
+				55912DA718EB63E20069FEEC /* FISSearchTableViewCell.m */,
+				550D3D5518F1E19F009A9406 /* FISMainTableViewCell.h */,
+				550D3D5618F1E19F009A9406 /* FISMainTableViewCell.m */,
+				550D3D5E18F1EB74009A9406 /* UIColorSheet.h */,
+				550D3D5F18F1EB74009A9406 /* UIColorSheet.m */,
+				55912D4B18E4C9660069FEEC /* Storyboard.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		5575C71418E0E6E100ABB124 = {
 			isa = PBXGroup;
 			children = (
@@ -149,8 +172,8 @@
 			children = (
 				5575C73118E0E6E100ABB124 /* FISAppDelegate.h */,
 				5575C73218E0E6E100ABB124 /* FISAppDelegate.m */,
-				55912D4B18E4C9660069FEEC /* Storyboard.storyboard */,
 				5575C75818E21E0900ABB124 /* Models */,
+				550D3D4718EE580B009A9406 /* Views */,
 				55912D1D18E353F10069FEEC /* Controllers */,
 				5575C72918E0E6E100ABB124 /* Supporting Files */,
 			);
@@ -206,14 +229,14 @@
 			isa = PBXGroup;
 			children = (
 				5575C73718E0E6E100ABB124 /* Images.xcassets */,
-				55912D5018E4D18A0069FEEC /* FISMainTableViewController.h */,
-				55912D5118E4D18A0069FEEC /* FISMainTableViewController.m */,
+				550D3D5818F1E3B6009A9406 /* FISMainViewController.h */,
+				550D3D5918F1E3B6009A9406 /* FISMainViewController.m */,
 				55912D5318E5C01B0069FEEC /* FISStockDetailViewController.h */,
 				55912D5418E5C01B0069FEEC /* FISStockDetailViewController.m */,
 				55912DA018E9082B0069FEEC /* FISSearchTableViewController.h */,
 				55912DA118E9082B0069FEEC /* FISSearchTableViewController.m */,
-				55912DA618EB63E10069FEEC /* FISSearchTableViewCell.h */,
-				55912DA718EB63E20069FEEC /* FISSearchTableViewCell.m */,
+				550D3D4818EE5879009A9406 /* UITableViewController+StyleSheet.h */,
+				550D3D4918EE5879009A9406 /* UITableViewController+StyleSheet.m */,
 			);
 			name = Controllers;
 			path = ..;
@@ -367,8 +390,11 @@
 				55912D2318E356A60069FEEC /* Stock+Methods.m in Sources */,
 				5575C72F18E0E6E100ABB124 /* main.m in Sources */,
 				55912D9F18E8F3C20069FEEC /* Stock.m in Sources */,
-				55912D5218E4D18A0069FEEC /* FISMainTableViewController.m in Sources */,
+				550D3D5A18F1E3B6009A9406 /* FISMainViewController.m in Sources */,
 				5575C73318E0E6E100ABB124 /* FISAppDelegate.m in Sources */,
+				550D3D5718F1E19F009A9406 /* FISMainTableViewCell.m in Sources */,
+				550D3D4A18EE5879009A9406 /* UITableViewController+StyleSheet.m in Sources */,
+				550D3D6018F1EB74009A9406 /* UIColorSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,7 +15,6 @@
 + (void)searchForStockWithName: (NSString *)name withCompletion:(void(^)(NSArray *stockDictionaries))completion;
 
 + (void)searchForStockDetails:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion;
-//
-//+ (void)deleteStock:(Stock *)deleteStock Completion:(void (^)(id result))completionBlock;
+
 
 @end

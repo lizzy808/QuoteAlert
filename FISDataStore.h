@@ -28,6 +28,8 @@
 
 - (void)addStock:(Stock *)stock;
 
-//- (void)deleteStockAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)removeStock:(Stock *)stock;
+
+- (void)deleteStockAtIndexPay:(NSIndexPath *)indexPath;
 
 @end

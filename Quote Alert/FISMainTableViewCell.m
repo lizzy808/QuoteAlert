@@ -1,15 +1,14 @@
 //
-//  FISSearchTableViewCell.m
+//  FISMainTableViewCell.m
 //  Quote Alert
 //
-//  Created by Elizabeth Choy on 4/1/14.
+//  Created by Elizabeth Choy on 4/6/14.
 //  Copyright (c) 2014 Elizabeth Choy. All rights reserved.
 //
 
-#import "FISSearchTableViewCell.h"
-#import "Stock+Methods.h"
+#import "FISMainTableViewCell.h"
 
-@implementation FISSearchTableViewCell
+@implementation FISMainTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -32,17 +31,7 @@
     // Configure the view for the selected state
 }
 
-+ (instancetype)cellConfiguredWithStock:(Stock *)stock
-{
-    FISSearchTableViewCell *cell = [FISSearchTableViewCell new];
-    [cell configuredWithStock:stock];
-    return cell;
-}
 
-- (instancetype)configuredWithStock:(Stock *)stock
-{
-    self.stock = stock;
-    self.stockNameLabel.
-}
+
 
 @end
