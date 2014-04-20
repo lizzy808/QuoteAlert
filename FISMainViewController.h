@@ -11,4 +11,9 @@
 
 @interface FISMainViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 
+@property (strong, nonatomic) NSManagedObject *managedObject;
+@property (weak, nonatomic) IBOutlet UITableView *stockTableView;
+
+
+
 @end

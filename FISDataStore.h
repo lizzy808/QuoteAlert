@@ -15,7 +15,7 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (readonly, strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedStockResultsController;
 
 
 - (void)saveContext;
@@ -24,7 +24,8 @@
 
 + (instancetype) sharedDataStore;
 
-- (void)fetchStocksFromAPI;
+//- (void)fetchStocksWithName:(NSString *)symbolName;
+- (void)addStockDetailsWithSymbol:(NSString *)symbolName;
 
 - (void)addStock:(Stock *)stock;
 

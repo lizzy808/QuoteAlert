@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <AFNetworking/AFNetworking.h>
+#import "Stock+Methods.h"
 
 @interface FISAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (strong,nonatomic) Stock *stock;
 
 @end

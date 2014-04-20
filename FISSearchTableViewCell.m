@@ -32,17 +32,30 @@
     // Configure the view for the selected state
 }
 
-+ (instancetype)cellConfiguredWithStock:(Stock *)stock
++ (instancetype)cellConfiguredWithSearchedStock:(FISStockSearch *)searchedStock
 {
     FISSearchTableViewCell *cell = [FISSearchTableViewCell new];
-    [cell configuredWithStock:stock];
+    [cell configuredWithSearchedStock:searchedStock];
     return cell;
 }
 
-- (instancetype)configuredWithStock:(Stock *)stock
+- (instancetype)configuredWithSearchedStock:(FISStockSearch *)searchedStock
 {
-    self.stock = stock;
-    self.stockNameLabel.
+    self.searchedStock = _searchedStock;
+    
+    self.stockNameLabel.text = self.searchedStock.symbol;
+    self.companyNameLabel.text = self.searchedStock.name;
+    self.exchangeNameLabel.text = self.searchedStock.stockExchange;
+    
+    self.stockNameLabel.font = [UIFont fontWithName:@"Arial" size:14];
+    self.stockNameLabel.textColor = [UIColor whiteColor];
+    self.companyNameLabel.font = [UIFont fontWithName:@"Arial" size:14];
+    self.companyNameLabel.textColor = [UIColor whiteColor];
+    self.exchangeNameLabel.font = [UIFont fontWithName:@"Arial" size:14];
+    self.exchangeNameLabel.textColor = [UIColor whiteColor];
+    
+    return self;
+    
 }
 
 @end

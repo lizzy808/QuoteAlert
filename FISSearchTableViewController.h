@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Stock.h"
+#import "Stock+Methods.h"
+#import "FISStockSearch.h"
 
-@interface FISSearchTableViewController : UITableViewController
+@interface FISSearchTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) Stock *stock;
+@property (strong, nonatomic) FISStockSearch *searchedStock;
+
 
 @end

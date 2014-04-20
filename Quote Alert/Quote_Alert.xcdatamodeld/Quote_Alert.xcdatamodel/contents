@@ -7,10 +7,8 @@
         <attribute name="dayHigh" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="dayLow" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="mktCap" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="openPrice" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="peRatio" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="stockExchange" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="symbol" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="volume" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="yearHigh" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -18,6 +16,6 @@
         <attribute name="yield" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Stock" positionX="-63" positionY="-18" width="128" height="270"/>
+        <element name="Stock" positionX="-63" positionY="-18" width="128" height="238"/>
     </elements>
 </model>

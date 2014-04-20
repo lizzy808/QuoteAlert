@@ -2,7 +2,7 @@
 //  Stock.m
 //  Quote Alert
 //
-//  Created by Elizabeth Choy on 3/30/14.
+//  Created by Elizabeth Choy on 4/9/14.
 //  Copyright (c) 2014 Elizabeth Choy. All rights reserved.
 //
 
@@ -24,7 +24,5 @@
 @dynamic yearHigh;
 @dynamic yearLow;
 @dynamic yield;
-@dynamic name;
-@dynamic stockExchange;
 
 @end

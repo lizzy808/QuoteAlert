@@ -17,7 +17,9 @@
 
 @property (nonatomic) NSArray *stocks;
 @property (nonatomic) NSArray *searchResults;
+@property (nonatomic) NSDictionary *detailResults;
 @property (nonatomic) FISDataStore *dataStore;
+@property (strong, nonatomic) NSMutableArray *selectedCells;
 
 @property (weak, nonatomic) IBOutlet UITableView *stockSearchTableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *stockSearchBar;
@@ -27,9 +29,9 @@
 
 @implementation FISSearchTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -40,9 +42,12 @@
 {
     [super viewDidLoad];
 
+    self.stockSearchTableView.dataSource = self;
+    self.stockSearchTableView.delegate = self;
+    [self setupNavBar];
+    
     self.dataStore = [FISDataStore sharedDataStore];
-    self.dataStore.fetchedResultsController.delegate = self;
-    [self.dataStore fetchStocksFromAPI];
+    self.dataStore.fetchedStockResultsController.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,7 +56,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+- (void) setupNavBar
+{
+    [self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
+    [self.navigationController.navigationBar setFrame:CGRectMake(0, 0, 320, 65)];
+
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -61,7 +71,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return [_searchResults count];
+        return [self.searchResults count];
     }
     else{
         return [self.stocks count]; 
@@ -70,6 +80,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        UITableViewCell *cell = [[UITableViewCell alloc]init];
+        NSDictionary *stock = self.searchResults [indexPath.row];
+        cell.textLabel.text = stock[@"name"];
+        return cell;
+    }
+    
     FISSearchTableViewCell *cell = (FISSearchTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"searchCell"];
     
     [self configureCell:cell atIndexPath:indexPath];
@@ -93,10 +110,10 @@
 }
 - (void)configureCell:(FISSearchTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    Stock *stock = [self.dataStore.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.exchangeNameLabel.text = stock.stockExchange;
-    cell.companyNameLabel.text = stock.name;
-    cell.stockNameLabel.text = stock.symbol;
+    Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
+//    cell.exchangeNameLabel.text = stock.stockExchange;
+//    cell.companyNameLabel.text = stock.name;
+    cell.stockNameLabel.text = self.searchedStock.symbol;
 }
 
 - (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope
@@ -113,11 +130,68 @@
     return YES;
 }
 
-
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    [self filterContentForSearchText:self.searchDisplayController.searchBar.text scope:
+    [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
+    
+    return YES;
+}
 
 - (IBAction)doneButtonTapped:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+        [YahooAPIClient searchForStockWithName:searchBar.text withCompletion:^(NSArray *stockDictionaries) {
+            NSLog(@"%@", stockDictionaries);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.searchResults = stockDictionaries;
+                [self.searchDisplayController.searchResultsTableView reloadData];
+            });
+        }];
+}
+
+- (void)initialize
+{
+    [self.stockSearchTableView registerNib:[UINib nibWithNibName:@"searchView" bundle:nil] forCellReuseIdentifier:@"basicCell"];
+    self.dataStore = [FISDataStore sharedDataStore];
+    self.stockSearchTableView.delegate = self;
+    self.stockSearchTableView.dataSource = self;
+    self.dataStore.fetchedStockResultsController.delegate = self;
+}
+
+//- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
+//{
+//    [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+//}
+
+//Handle selection on searchBar
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString *cellString = [NSString stringWithString:cell.textLabel.text];
+    
+    if ([self.selectedCells containsObject:@(indexPath.row)]) {
+        [YahooAPIClient searchForStockDetails:cellString withCompletion:^(NSDictionary *stockDictionary) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.detailResults = stockDictionary;
+                
+                NSLog(@"%@", stockDictionary);
+
+                
+                FISMainViewController *mainVC = [[self storyboard] instantiateViewControllerWithIdentifier:@"FISMainViewController"];
+                [self.navigationController pushViewController:mainVC animated:YES];
+            });
+        }];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [self.selectedCells removeObject:@(indexPath.row)];
+    }
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+//        [self performSegueWithIdentifier: @"UpdateData" sender: self];
+    }
+}
 
 @end

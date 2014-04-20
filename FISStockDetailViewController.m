@@ -26,25 +26,26 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-   
-    [YahooAPIClient searchForStockDetails:self.stock withCompletion:^(id newStock)
-    {
-        self.stock = [Stock stockWithStockDetailDictionary:newStock inContext:self.dataStore.managedObjectContext];
-        [self.tableView reloadData];
-    }];
 }
 
-+ (void)searchForStockDetails:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion
-
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+//    [YahooAPIClient searchForStockDetails:self.stock withCompletion:^(id newStock)
+//    {
+//        self.stock = [Stock stockWithStockDetailDictionary:newStock inContext:self.dataStore.managedObjectContext];
+//        [self.tableView reloadData];
+//    }];
+//}
+//
+//+ (void)searchForStockDetails:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion
+//
+//
+//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+//{
+//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+//    if (self) {
+//        // Custom initialization
+//    }
+//    return self;
+//}
 
 - (void)viewDidLoad
 {

@@ -9,10 +9,13 @@
 #import "FISDataStore.h"
 #import "YahooAPIClient.h"
 #import "Stock+Methods.h"
+#import <CoreData/CoreData.h>
 
 @interface FISDataStore()
 
 @property (nonatomic) NSMutableArray *stocks;
+@property (nonatomic) NSMutableArray *stockDetails;
+@property (strong,nonatomic) YahooAPIClient *yahooAPIClient;
 
 @end
 
@@ -21,7 +24,7 @@
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
-
+@synthesize fetchedStockResultsController = _fetchedStockResultsController;
 
 - (NSMutableArray *)stocks
 {
@@ -31,30 +34,41 @@
     return _stocks;
 }
 
+- (NSMutableArray *)stockDetails
+{
+    if (!_stockDetails) {
+        _stockDetails = [NSMutableArray new];
+    }
+    return _stockDetails;
+}
+
 + (instancetype)sharedDataStore {
     static FISDataStore *_sharedReposDataStore = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _sharedReposDataStore = [[FISDataStore alloc] init];
     });
-    
+    if (_sharedReposDataStore) {
+        _sharedReposDataStore.yahooAPIClient = [[YahooAPIClient alloc]init];
+    }
     return _sharedReposDataStore;
 }
 
-- (id)init
+
+- (NSFetchedResultsController *)fetchedStockResultsController
 {
-    self = [super init];
-    if (self) {
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Stock"];
-        fetchRequest.fetchBatchSize = 20;
-        NSSortDescriptor *fullnameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"symbol" ascending:YES];
-        fetchRequest.sortDescriptors = @[fullnameDescriptor];
+    if (!_fetchedStockResultsController)
+    {
+        NSFetchRequest *stockFetch = [[NSFetchRequest alloc]initWithEntityName:@"Stock"];
+        stockFetch.fetchBatchSize = 10;
         
-        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"fetchResultsCache"];
+        stockFetch.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"symbol" ascending:YES]];
         
-        [self.fetchedResultsController performFetch:nil];
+        _fetchedStockResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:stockFetch managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"fetchedResultsCache"];
+              
+        [_fetchedStockResultsController performFetch:nil];
     }
-    return self;
+    return _fetchedStockResultsController;
 }
 
 
@@ -128,20 +142,37 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-- (void)fetchStocksFromAPI
+//- (void)fetchStocksWithName:(NSString *)symbolName
+//{
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Stock"];
+//    NSMutableArray *allStocks = [[NSMutableArray alloc] initWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:nil]];
+//    
+//    for (Stock *stock in allStocks) {
+//        [self.managedObjectContext deleteObject:stock];
+//    }
+//    
+//    ///make api call to get stocks from internet
+//    [YahooAPIClient searchForStockWithName:symbolName withCompletion:^(NSArray *stockDictionaries) {
+//        for (NSDictionary *stockDict in stockDictionaries) {
+//            //convert the api response into location managed objected
+//            [Stock  stockWithStockSearchDictionary:stockDict Context:self.managedObjectContext];
+//        }
+//    }];
+//}
+
+- (void)addStockDetailsWithSymbol:(NSString *)symbolName
 {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Stock"];
-    NSMutableArray *allStocks = [[NSMutableArray alloc] initWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:nil]];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Stock"];
+    NSMutableArray *allStocks = [[NSMutableArray alloc]initWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:nil]];
     
     for (Stock *stock in allStocks) {
         [self.managedObjectContext deleteObject:stock];
     }
-    
-    ///make api call to get stocks from internet
-    [YahooAPIClient searchForStockWithName:@"Symbol" withCompletion:^(NSArray *stockDictionaries) {
-        for (NSDictionary *stockDict in stockDictionaries) {
-            //convert the api response into location managed objected
-            [Stock  stockWithStockSearchDictionary:stockDict Context:self.managedObjectContext];
+    [YahooAPIClient searchForStockDetails:symbolName withCompletion:^(NSDictionary *detailDictionaries) {
+        NSMutableArray *coreDataStocks = [NSMutableArray new];
+        for (NSDictionary *detailDict in detailDictionaries) {
+            [Stock stockWithStockDetailDictionary:detailDict Context:self.managedObjectContext];
+            [coreDataStocks addObject:[Stock stockWithStockDetailDictionary:detailDict Context:self.managedObjectContext]];
         }
     }];
 }
@@ -160,9 +191,10 @@
     return NO;
 }
 
+
 - (void)deleteStockAtIndexPay:(NSIndexPath *)indexPath
 {
-    Stock *stock = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    Stock *stock = [self.fetchedStockResultsController objectAtIndexPath:indexPath];
     [self.managedObjectContext deleteObject:stock];
 }
 

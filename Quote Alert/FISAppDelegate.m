@@ -9,7 +9,13 @@
 #import "FISAppDelegate.h"
 #import "FISDataStore.h"
 #import "YahooAPIClient.h"
- 
+#import "Stock+Methods.h"
+#import "FISDataStore.h"
+
+@interface FISAppDelegate ()
+@property (strong, nonatomic) FISDataStore *dataStore;
+
+@end
 
 @implementation FISAppDelegate
 
@@ -25,10 +31,16 @@
     
     [application presentLocalNotificationNow:notification];
     
+    [YahooAPIClient searchForStockDetails:@"TSLA" withCompletion:^(NSDictionary *stockDetailDictionary) {
+        NSLog(@"%@", stockDetailDictionary);
+    }];
+    
+    [YahooAPIClient searchForStockWithName:@"MSFT" withCompletion:^(NSArray *stockDictionaries) {
+        NSLog(@"%@", stockDictionaries);
+    }];
+    
     return YES;
 }
-
-
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -54,6 +66,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [self.dataStore saveContext];
     // Saves changes in the application's managed object context before the application terminates.
 }
 

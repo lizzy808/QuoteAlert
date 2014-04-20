@@ -14,14 +14,12 @@
 #import "FISStockDetailViewController.h"
 #import "FISSearchTableViewController.h"
 
-@interface FISMainViewController () <NSFetchedResultsControllerDelegate>
+@interface FISMainViewController ()
 
 @property (nonatomic) NSArray *stocks;
 @property (nonatomic) FISDataStore *dataStore;
+@property (strong, nonatomic) Stock *stock;
 
-@property (weak, nonatomic) IBOutlet UITableView *stockTableView;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *addStockButton;
-- (IBAction)addStockButtonTapped:(id)sender;
 
 @end
 
@@ -40,13 +38,29 @@
 {
     [super viewDidLoad];
     
+    [self initialize];
+    [self setupNavBar];
+    
+    [self.stockTableView registerNib:[UINib nibWithNibName:@"MainTVCell" bundle:nil] forCellReuseIdentifier:@"basicCell"];
     self.dataStore = [FISDataStore sharedDataStore];
     
     self.stockTableView.delegate = self;
     self.stockTableView.dataSource = self;
-    self.dataStore.fetchedResultsController.delegate = self;
-    [self.dataStore fetchStocksFromAPI];
+    self.dataStore.fetchedStockResultsController.delegate= self;
     
+//    UIImage *blueTechBackground = [UIImage imageNamed:@"blueTechBackground.png"];
+//    UIImageView *backgroundView = [[UIImageView alloc]initWithImage:blueTechBackground];
+//    
+//    UIBarButtonItem *addStockButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    
+}
+
+- (void) setupNavBar
+{
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"QAnavBar.png"] forBarMetrics:UIBarMetricsDefault];
+
+    [self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,6 +68,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 150;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -61,46 +81,58 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-    return [self.dataStore.fetchedResultsController.sections[section] numberOfObjects];
-    
+    return [self.dataStore.fetchedStockResultsController.sections[0] numberOfObjects];
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (FISMainTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"stockCell"];
-    [self configureCell:cell atIndexPath:indexPath];
+    FISMainTableViewCell *cell = (FISMainTableViewCell *)[self configureCellForMainTableViewWithIndexPath:indexPath];
+
     return cell;
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (FISMainTableViewCell *)configureCellForMainTableViewWithIndexPath:(NSIndexPath *)indexPath
 {
-    Stock *stock = [self.dataStore.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = stock.symbol;
+    FISMainTableViewCell *cell = [self.stockTableView dequeueReusableCellWithIdentifier:@"basicCell"];
+    Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
+    [cell configureWithStock:stock];
+    
+    cell.backgroundColor = [UIColor darkGrayColor];
+    
+    return cell;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)detailSegue sender:(id)sender
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([detailSegue.identifier isEqualToString:@"stockDetailSegue"])
+    [self performSegueWithIdentifier:@"stockDetailSegue" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"stockDetailSegue"])
+    {
+//        NSIndexPath *index = [self.stockTableView indexPathForSelectedRow];
+        
+        FISStockDetailViewController *stockDetailTVC = segue.destinationViewController;
+        FISMainTableViewCell *cell = (FISMainTableViewCell *)[self.stockTableView cellForRowAtIndexPath:[self.stockTableView indexPathForSelectedRow]];
+        
+        stockDetailTVC.stock = cell.stock;
+        
+        [self.stockTableView deselectRowAtIndexPath:[self.stockTableView indexPathForSelectedRow] animated:YES];
+        
+//        stockDetailTVC.stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:index];
+    }
+    else if ([segue.identifier isEqualToString:@"addStockSegue"])
     {
         NSIndexPath *index = [self.stockTableView indexPathForSelectedRow];
-        
-        FISStockDetailViewController *stockDetailTVC = (FISStockDetailViewController *)detailSegue.destinationViewController;
-        
-        stockDetailTVC.stock = [self.dataStore.fetchedResultsController objectAtIndexPath:index];
+        FISSearchTableViewController *searchTVC = (FISSearchTableViewController *)segue.destinationViewController;
+        searchTVC.stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:index];
     }
 }
 
-//- (void)prepareForSegue:(UIStoryboardSegue *)addStockSegue sender:(id)sender
-//{
-//    if ([addStockSegue.identifier isEqualToString:@"addStockSegue"])
-//    {
-//        NSIndexPath *index = [self.stockTableView indexPathForSelectedRow];
-//        FISSearchTableViewController *searchTVC = (FISSearchTableViewController *)addStockSegue.destinationViewController;
-//        searchTVC.stock = [self.dataStore.fetchedResultsController objectAtIndexPath:index];
-//    }
-//}
+//UIImage *techBackgroundImage = [UIImage imageNamed:@"techBackgroundImage320x568"];
+//UIImageView *techView = [[UIImageView alloc]initWithImage:techBackgroundImage];
 
 #pragma mark - NSFetchedResultsControllerDelegate Methods
 
@@ -109,12 +141,10 @@
     [self.stockTableView beginUpdates];
 }
 
-
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.stockTableView endUpdates];
 }
-
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
            atIndex:(NSUInteger)sectionIndex
@@ -150,10 +180,10 @@
                              withRowAnimation:UITableViewRowAnimationFade];
             break;
             
-        case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath]
-                    atIndexPath:indexPath];
-            break;
+//        case NSFetchedResultsChangeUpdate:
+//            [self configureCell:[tableView cellForRowAtIndexPath:indexPath]
+//                    atIndexPath:indexPath];
+//            break;
             
         case NSFetchedResultsChangeMove:
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
@@ -191,9 +221,15 @@
     return NO;
 }
 
-- (IBAction)addStockButtonTapped:(id)sender {
-    [self.dataStore fetchStocksFromAPI];
+- (void)initialize
+{
+    [self.stockTableView registerNib:[UINib nibWithNibName:@"MainTVCell" bundle:nil] forCellReuseIdentifier:@"searchCell"];
+    self.stockTableView.delegate = self;
+    self.stockTableView.dataSource = self;
+    self.dataStore.fetchedStockResultsController.delegate = self;
 }
+
+
 
 
 @end

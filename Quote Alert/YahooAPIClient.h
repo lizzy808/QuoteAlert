@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AFNetworking.h>
 #import "Stock+Methods.h"
+#import "FISStockSearch.h"
 
 @interface YahooAPIClient : NSObject
 
@@ -16,5 +17,6 @@
 
 + (void)searchForStockDetails:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion;
 
+//+ (void)getStockSearchResults:(FISStockSearch *)searchResults withCompletion:(void (^)(NSArray *stockSearchResults))completionBlock;
 
 @end
