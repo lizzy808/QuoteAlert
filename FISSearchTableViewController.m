@@ -12,6 +12,7 @@
 #import "YahooAPIClient.h"
 #import "FISSearchTableViewCell.h"
 
+
 @interface FISSearchTableViewController () <NSFetchedResultsControllerDelegate, UISearchDisplayDelegate>
 
 
@@ -44,6 +45,7 @@
 
     self.stockSearchTableView.dataSource = self;
     self.stockSearchTableView.delegate = self;
+    [self initialize];
     [self setupNavBar];
     
     self.dataStore = [FISDataStore sharedDataStore];
@@ -58,9 +60,9 @@
 
 - (void) setupNavBar
 {
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBar2.png"] forBarMetrics:UIBarMetricsDefault];
+    
     [self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
-    [self.navigationController.navigationBar setFrame:CGRectMake(0, 0, 320, 65)];
-
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -78,12 +80,21 @@
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (FISSearchTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        UITableViewCell *cell = [[UITableViewCell alloc]init];
-        NSDictionary *stock = self.searchResults [indexPath.row];
-        cell.textLabel.text = stock[@"name"];
+        
+        FISSearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchCell"];
+        if (cell == nil) {
+           cell = [[[NSBundle mainBundle]loadNibNamed:@"searchView" owner:self options:nil] firstObject];
+            
+        NSDictionary *searchResult = self.searchResults [indexPath.row];
+            
+            cell.exchangeNameLabel.text = searchResult[@"exchDisp"];
+            cell.companyNameLabel.text = searchResult[@"name"];
+            cell.stockNameLabel.text = searchResult[@"symbol"];
+            
+        }
         return cell;
     }
     
@@ -93,33 +104,27 @@
     
     return cell;
     
-    
-//    // Configure the cell...
-//    if (cell == nil) {
-//        cell = [[RecipeTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//    }
-//    
-//    // Display recipe in the table cell
-//    Stock *stock = [recipes objectAtIndex:indexPath.row];
-//    cell.stock.text = recipe.name;
-//    cell.thumbnailImageView.image = [UIImage imageNamed:recipe.image];
-//    cell.prepTimeLabel.text = recipe.prepTime;
-//    
-//    return cell;
-//}
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80;
+}
+
 - (void)configureCell:(FISSearchTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
-//    cell.exchangeNameLabel.text = stock.stockExchange;
-//    cell.companyNameLabel.text = stock.name;
+//    Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
+    
+    cell.exchangeNameLabel.text = self.searchedStock.stockExchange;
+    cell.companyNameLabel.text = self.searchedStock.name;
     cell.stockNameLabel.text = self.searchedStock.symbol;
 }
+
 
 - (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope
 {
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"symbol contains[c] %@", searchText];
-    _searchResults = [self.stocks filteredArrayUsingPredicate:resultPredicate];
+    self.searchResults = [self.stocks filteredArrayUsingPredicate:resultPredicate];
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
@@ -152,13 +157,15 @@
         }];
 }
 
+
 - (void)initialize
 {
-    [self.stockSearchTableView registerNib:[UINib nibWithNibName:@"searchView" bundle:nil] forCellReuseIdentifier:@"basicCell"];
+    [self.stockSearchTableView registerNib:[UINib nibWithNibName:@"searchView" bundle:nil] forCellReuseIdentifier:@"searchViewCell"];
     self.dataStore = [FISDataStore sharedDataStore];
     self.stockSearchTableView.delegate = self;
     self.stockSearchTableView.dataSource = self;
     self.dataStore.fetchedStockResultsController.delegate = self;
+    NSLog(@"%@",self.searchedStock);
 }
 
 //- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
@@ -169,9 +176,10 @@
 //Handle selection on searchBar
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    FISSearchTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     NSString *cellString = [NSString stringWithString:cell.textLabel.text];
     
+////////////// attempt to pass stock symbol into Detail API call////
     if ([self.selectedCells containsObject:@(indexPath.row)]) {
         [YahooAPIClient searchForStockDetails:cellString withCompletion:^(NSDictionary *stockDictionary) {
             dispatch_async(dispatch_get_main_queue(), ^{

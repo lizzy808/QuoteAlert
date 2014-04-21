@@ -20,10 +20,10 @@
     return self;
 }
 
-- (void)awakeFromNib
-{
-    // Initialization code
-}
+//- (void)awakeFromNib
+//{
+//    // Initialization code
+//}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
@@ -39,13 +39,15 @@
     return cell;
 }
 
+
 - (instancetype)configuredWithSearchedStock:(FISStockSearch *)searchedStock
 {
-    self.searchedStock = _searchedStock;
-    
-    self.stockNameLabel.text = self.searchedStock.symbol;
-    self.companyNameLabel.text = self.searchedStock.name;
-    self.exchangeNameLabel.text = self.searchedStock.stockExchange;
+    NSLog(@"HI!!!");
+    self.searchedStock = searchedStock;
+  
+    self.stockNameLabel.text  = @"GOOG";
+    self.companyNameLabel.text = @"Google";
+    self.exchangeNameLabel.text = @"GOOG";
     
     self.stockNameLabel.font = [UIFont fontWithName:@"Arial" size:14];
     self.stockNameLabel.textColor = [UIColor whiteColor];

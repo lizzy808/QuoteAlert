@@ -13,12 +13,14 @@
 #import "FISMainTableViewCell.h"
 #import "FISStockDetailViewController.h"
 #import "FISSearchTableViewController.h"
+#import "YahooAPIClient.h"
 
 @interface FISMainViewController ()
 
 @property (nonatomic) NSArray *stocks;
 @property (nonatomic) FISDataStore *dataStore;
 @property (strong, nonatomic) Stock *stock;
+@property (strong, nonatomic) NSDictionary *stockDict;
 
 
 @end
@@ -34,12 +36,16 @@
     return self;
 }
 
+
+/////////////////////xib failing to load in TVC cells//////////////
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     [self initialize];
     [self setupNavBar];
+    [self dummyFetch];
     
     [self.stockTableView registerNib:[UINib nibWithNibName:@"MainTVCell" bundle:nil] forCellReuseIdentifier:@"basicCell"];
     self.dataStore = [FISDataStore sharedDataStore];
@@ -47,11 +53,6 @@
     self.stockTableView.delegate = self;
     self.stockTableView.dataSource = self;
     self.dataStore.fetchedStockResultsController.delegate= self;
-    
-//    UIImage *blueTechBackground = [UIImage imageNamed:@"blueTechBackground.png"];
-//    UIImageView *backgroundView = [[UIImageView alloc]initWithImage:blueTechBackground];
-//    
-//    UIBarButtonItem *addStockButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
     
 }
 
@@ -92,16 +93,40 @@
     return cell;
 }
 
+////////////// Attempting to pass in dummy data /////////////////
+
 - (FISMainTableViewCell *)configureCellForMainTableViewWithIndexPath:(NSIndexPath *)indexPath
 {
     FISMainTableViewCell *cell = [self.stockTableView dequeueReusableCellWithIdentifier:@"basicCell"];
     Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
     [cell configureWithStock:stock];
     
+//    [YahooAPIClient searchForStockDetails:@"YHOO" withCompletion:^(NSDictionary *stockDictionary) {
+//        NSLog(@"%@", stockDictionary);
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            self.stockDict = stockDictionary;
+//            [self.stockTableView reloadData];
+//        });
+//    }];
+    
     cell.backgroundColor = [UIColor darkGrayColor];
     
     return cell;
 }
+
+
+///////////// not showing on TVC///////////
+
+- (void)dummyFetch{
+    [YahooAPIClient searchForStockDetails:@"YHOO" withCompletion:^(NSDictionary *stockDictionary) {
+        NSLog(@"%@", stockDictionary);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.stockDict = stockDictionary;
+            [self.stockTableView reloadData];
+        });
+    }];
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -131,8 +156,6 @@
     }
 }
 
-//UIImage *techBackgroundImage = [UIImage imageNamed:@"techBackgroundImage320x568"];
-//UIImageView *techView = [[UIImageView alloc]initWithImage:techBackgroundImage];
 
 #pragma mark - NSFetchedResultsControllerDelegate Methods
 

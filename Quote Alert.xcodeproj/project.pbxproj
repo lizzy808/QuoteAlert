@@ -40,6 +40,7 @@
 		55CA532B19005609000E2A1E /* blueTech.png in Resources */ = {isa = PBXBuildFile; fileRef = 55CA532A19005609000E2A1E /* blueTech.png */; };
 		55CA532D19005615000E2A1E /* blueTechBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 55CA532C19005615000E2A1E /* blueTechBackground.png */; };
 		55CA536F1901B8C2000E2A1E /* searchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55CA536E1901B8C2000E2A1E /* searchView.xib */; };
+		55CA537619041CD0000E2A1E /* navBar2.png in Resources */ = {isa = PBXBuildFile; fileRef = 55CA537519041CD0000E2A1E /* navBar2.png */; };
 		63DC8204C6874F38BD06C8F4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92968B8F8C494D1EAF8A35DD /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +103,7 @@
 		55CA532A19005609000E2A1E /* blueTech.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueTech.png; sourceTree = "<group>"; };
 		55CA532C19005615000E2A1E /* blueTechBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueTechBackground.png; sourceTree = "<group>"; };
 		55CA536E1901B8C2000E2A1E /* searchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = searchView.xib; sourceTree = "<group>"; };
+		55CA537519041CD0000E2A1E /* navBar2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navBar2.png; sourceTree = "<group>"; };
 		92968B8F8C494D1EAF8A35DD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF22F24D1847480CA274EE0B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,6 +145,7 @@
 				550D3D5E18F1EB74009A9406 /* UIColorSheet.h */,
 				550D3D5F18F1EB74009A9406 /* UIColorSheet.m */,
 				55912D4B18E4C9660069FEEC /* Storyboard.storyboard */,
+				55CA537519041CD0000E2A1E /* navBar2.png */,
 				556F70F918FB0FD300430D84 /* QAnavbar.png */,
 				55CA532A19005609000E2A1E /* blueTech.png */,
 				55CA532C19005615000E2A1E /* blueTechBackground.png */,
@@ -349,6 +352,7 @@
 			files = (
 				55CA536F1901B8C2000E2A1E /* searchView.xib in Resources */,
 				5575C72D18E0E6E100ABB124 /* InfoPlist.strings in Resources */,
+				55CA537619041CD0000E2A1E /* navBar2.png in Resources */,
 				55CA532D19005615000E2A1E /* blueTechBackground.png in Resources */,
 				5575C73818E0E6E100ABB124 /* Images.xcassets in Resources */,
 				550D3D7E18F8230A009A9406 /* MainTVCell.xib in Resources */,

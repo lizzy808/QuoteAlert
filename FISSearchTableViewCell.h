@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FISStockSearch.h"
 
-@class Stock;
+@class FISStockSearch;
 
 @interface FISSearchTableViewCell : UITableViewCell
 
@@ -17,12 +17,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *stockNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *exchangeNameLabel;
 
-//@property (strong,nonatomic) Stock *stock;
 @property (strong, nonatomic) FISSearchTableViewCell *cell;
 @property (strong, nonatomic) FISStockSearch *searchedStock;
-//
-//+ (instancetype)cellConfiguredWithStock: (Stock *)stock;
-//- (instancetype)configuredWithStock: (Stock *)stock;
+
+
 + (instancetype)cellConfiguredWithSearchedStock: (FISStockSearch *)searchedStock;
 - (instancetype)configuredWithSearchedStock: (FISStockSearch *)searchedStock;
 

@@ -31,13 +31,13 @@
     
     [application presentLocalNotificationNow:notification];
     
-    [YahooAPIClient searchForStockDetails:@"TSLA" withCompletion:^(NSDictionary *stockDetailDictionary) {
-        NSLog(@"%@", stockDetailDictionary);
-    }];
-    
-    [YahooAPIClient searchForStockWithName:@"MSFT" withCompletion:^(NSArray *stockDictionaries) {
-        NSLog(@"%@", stockDictionaries);
-    }];
+//    [YahooAPIClient searchForStockDetails:@"TSLA" withCompletion:^(NSDictionary *stockDetailDictionary) {
+//        NSLog(@"%@", stockDetailDictionary);
+//    }];
+//    
+//    [YahooAPIClient searchForStockWithName:@"MSFT" withCompletion:^(NSArray *stockDictionaries) {
+//        NSLog(@"%@", stockDictionaries);
+//    }];
     
     return YES;
 }
