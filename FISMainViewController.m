@@ -150,14 +150,14 @@
     cell.bidPriceLabel.text = stock.bidPrice;
     cell.dayChangeLabel.text = stock.change;
     
-    [cell.symbolLabel setFont:[UIFont fontWithName:@"Ubuntu" size:20]];
+    [cell.symbolLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:23]];
     [cell.symbolLabel setTextColor:[UIColor yellowColor]];
 
     [cell.bidPriceLabel setFont:[UIFont fontWithName:@"Ubuntu" size:15]];
-    [cell.bidPriceLabel setTextColor:[UIColor yellowColor]];
+    [cell.bidPriceLabel setTextColor:[UIColor orangeColor]];
     
     [cell.dayChangeLabel setFont:[UIFont fontWithName:@"Ubuntu" size:15]];
-    [cell.dayChangeLabel setTextColor:[UIColor yellowColor]];
+    [cell.dayChangeLabel setTextColor:[UIColor orangeColor]];
     
     return cell;
 }

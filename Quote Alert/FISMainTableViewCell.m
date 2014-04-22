@@ -44,12 +44,13 @@
     self.alertPriceHighLabel.text = self.stock.userAlertPriceHigh;
     self.alertPriceLowLabel.text = self.stock.userAlertPriceLow;
     
-    self.symbolLabel.font = [UIFont fontWithName:@"Arial" size:14];
+    self.symbolLabel.font = [UIFont fontWithName:@"Ubuntu" size:16];
     self.symbolLabel.textColor = [UIColor whiteColor];
-    self.bidPriceLabel.font = [UIFont fontWithName:@"Arial" size:14];
+    self.bidPriceLabel.font = [UIFont fontWithName:@"Ubuntu" size:14];
     self.bidPriceLabel.textColor = [UIColor whiteColor];
-    self.dayChangeLabel.font = [UIFont fontWithName:@"Arial" size:14];
+    self.dayChangeLabel.font = [UIFont fontWithName:@"Ubuntu" size:14];
     self.dayChangeLabel.textColor = [UIColor whiteColor];
+    
     
     return self;
 }

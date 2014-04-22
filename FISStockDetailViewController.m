@@ -23,6 +23,9 @@
 - (IBAction)backBarButtonTapped:(id)sender;
 - (IBAction)saveQuotesButtonTapped:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dayChangeLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *symbolLabel;
 @property (weak, nonatomic) IBOutlet UILabel *openPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dayHighLabel;
@@ -77,7 +80,10 @@
 
 - (void)viewStockDetail
 {
-    [self.symbolLabel setText:self.stock.symbol];
+    [self.symbolLabel setText:self.stock.companyName];
+    
+    self.priceLabel.text = self.stock.bidPrice;
+    self.dayChangeLabel.text = self.stock.change;
     self.openPriceLabel.text = self.stock.openPrice;
     self.dayHighLabel.text = self.stock.dayHigh;
     self.dayLowLabel.text = self.stock.dayLow;
@@ -88,28 +94,32 @@
     self.yearLowLabel.text = self.stock.yearLow;
     self.avgVolumeLabel.text = self.stock.averageVolume;
     self.yieldLabel.text = self.stock.yield;
-    
-    [self.symbolLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+
+    [self.priceLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
+    [self.priceLabel setTextColor:[UIColor yellowColor]];
+    [self.dayChangeLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
+    [self.dayChangeLabel setTextColor:[UIColor yellowColor]];
+    [self.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:18]];
     [self.symbolLabel setTextColor:[UIColor yellowColor]];
-    [self.openPriceLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+    [self.openPriceLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [self.openPriceLabel setTextColor:[UIColor yellowColor]];
-    [self.dayHighLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+    [self.dayHighLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [self.dayHighLabel setTextColor:[UIColor yellowColor]];
-    [self.dayLowLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+    [self.dayLowLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [self.dayLowLabel setTextColor:[UIColor yellowColor]];
-    [self.volumeLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+    [self.volumeLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [self.volumeLabel setTextColor:[UIColor yellowColor]];
-    [self.peRatioLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+    [self.peRatioLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [self.peRatioLabel setTextColor:[UIColor yellowColor]];
-    [self.mktCapLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+    [self.mktCapLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [self.mktCapLabel setTextColor:[UIColor yellowColor]];
-    [self.yearLowLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+    [self.yearLowLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [self.yearLowLabel setTextColor:[UIColor yellowColor]];
-    [self.yearHighLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+    [self.yearHighLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [self.yearHighLabel setTextColor:[UIColor yellowColor]];
-    [self.avgVolumeLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+    [self.avgVolumeLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [self.avgVolumeLabel setTextColor:[UIColor yellowColor]];
-    [self.yieldLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+    [self.yieldLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [self.yieldLabel setTextColor:[UIColor yellowColor]];
 }
 
@@ -130,8 +140,8 @@
 
 - (IBAction)saveQuotesButtonTapped:(id)sender
 {
-    self.qaHighTextField.text = self.stock.userAlertPriceHigh;
-    self.qaLowTextField.text = self.stock.userAlertPriceLow;
+     self.stock.userAlertPriceHigh = self.qaHighTextField.text;
+     self.stock.userAlertPriceLow = self.qaLowTextField.text;
     
     [self.dataStore saveContext];
 }

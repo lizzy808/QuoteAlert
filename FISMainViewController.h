@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Stock.h"
+#import "UIColorSheet.h"
 
 @interface FISMainViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 
