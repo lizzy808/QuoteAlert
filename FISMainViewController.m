@@ -45,28 +45,29 @@
     
     [self initialize];
     [self setupNavBar];
-    [self dummyFetch];
-    
-    [self.stockTableView registerNib:[UINib nibWithNibName:@"MainTVCell" bundle:nil] forCellReuseIdentifier:@"basicCell"];
+
     self.dataStore = [FISDataStore sharedDataStore];
     
     self.stockTableView.delegate = self;
     self.stockTableView.dataSource = self;
     self.dataStore.fetchedStockResultsController.delegate= self;
-    
+     
 }
 
 - (void)initialize
 {
-    [self.stockTableView registerNib:[UINib nibWithNibName:@"MainTVCell" bundle:nil] forCellReuseIdentifier:@"searchCell"];
     self.stockTableView.delegate = self;
     self.stockTableView.dataSource = self;
     self.dataStore.fetchedStockResultsController.delegate = self;
 }
 
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self.dataStore.fetchedStockResultsController performFetch:nil];
+    
+    [self.stockTableView reloadData];
 //
 //    [self.dataStore saveSearchedStockSymbol:self.dataStore.searchSymbol];
 //    UITableViewCell *cell = [self.stockTableView cellForRowAtIndexPath:self.indexPath];
@@ -78,7 +79,7 @@
 //   
 //        [self.stockTableView reloadData];
 //    }
-//}
+}
 
 - (void) setupNavBar
 {
@@ -97,7 +98,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 150;
+    return 110;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -107,7 +108,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.dataStore.fetchedStockResultsController.sections[0] numberOfObjects];
+    return [[self.dataStore.fetchedStockResultsController fetchedObjects]count];
 }
 
 
@@ -121,61 +122,69 @@
 
 ////////////// Attempting to pass in dummy data /////////////////
 
-- (FISMainTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.stockTableView) {
-        
-        [self dummyFetch];
-        
-        FISMainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell"];
-        if (cell == nil) {
-            cell = [[[NSBundle mainBundle]loadNibNamed:@"MainTVCell" owner:self options:nil] firstObject];
-            
-            NSDictionary *stocksDictionary = self.stocks [indexPath.row];
-            
-            cell.symbolLabel.text = stocksDictionary[@"Symbol"];
-            cell.bidPriceLabel.text = stocksDictionary[@"Bid"];
-            cell.dayChangeLabel.text = stocksDictionary[@"Change"];
-            
+//    
+//            cell = [[[NSBundle mainBundle]loadNibNamed:@"MainTVCell" owner:self options:nil] firstObject];
+//            
+//            NSDictionary *stocksDictionary = self.stocks [indexPath.row];
+//            cell.symbolLabel.text = stocksDictionary[@"Symbol"];
+//            cell.bidPriceLabel.text = stocksDictionary[@"Bid"];
+//            cell.dayChangeLabel.text = stocksDictionary[@"Change"];
+//            
 //            cell.alertPriceHighLabel.text = stocksDictionary[@"exchDisp"];
 //            cell.alertPriceLowLabel.text = stocksDictionary[@"name"];
-            
-            [self dummyFetch];
-            [self.stockTableView reloadData];
-        }
-        
-        
-        return cell;
-    }
+//            [self.stockTableView reloadData];
+//       [self configureCell:cell atIndexPath:indexPath];
     
-    FISMainTableViewCell *cell = (FISMainTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"basicCell"];
-    [self configureCell:cell atIndexPath:indexPath];
-    
-    return cell;
+    return [self configureStockCellAtIndexPath:indexPath];
 
 }
 
-- (void)configureCell:(FISMainTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (FISMainTableViewCell *)configureStockCellAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    FISMainTableViewCell *cell = [self.stockTableView dequeueReusableCellWithIdentifier:@"basicCell"];
+    
     Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
     
-    cell.symbolLabel.text = self.stock.symbol;
-    cell.bidPriceLabel.text = self.stock.bidPrice;
-    cell.dayChangeLabel.text = self.stock.change;
+    cell.symbolLabel.text = stock.symbol;
+    cell.bidPriceLabel.text = [stock.bidPrice stringValue];
+    cell.dayChangeLabel.text = [stock.change stringValue];
+    
+    [cell.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:20]];
+    [cell.symbolLabel setTextColor:[UIColor yellowColor]];
+
+    [cell.bidPriceLabel setFont:[UIFont fontWithName:@"Arial" size:15]];
+    [cell.bidPriceLabel setTextColor:[UIColor yellowColor]];
+    
+    [cell.dayChangeLabel setFont:[UIFont fontWithName:@"Arial" size:15]];
+    [cell.dayChangeLabel setTextColor:[UIColor yellowColor]];
+    
+    return cell;
 }
+
+//- (UITableViewCell *)configureSimpleStockCellAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    UITableViewCell *cell = [self.stockTableView dequeueReusableCellWithIdentifier:@"basicCell"];
+//    
+//    Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
+//    
+//    cell.textLabel.text = self.stock.symbol;
+//    
+//    return cell;
+//}
 
 ///////////// not showing on TVC///////////
 
-- (void)dummyFetch{
-    [YahooAPIClient searchForStockDetails:@"YHOO" withCompletion:^(NSDictionary *stockDictionary) {
-        NSLog(@"%@", stockDictionary);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.stockDict = stockDictionary;
-            [self.stockTableView reloadData];
-        });
-    }];
-}
+//- (void)dummyFetch{
+//    [YahooAPIClient searchForStockDetails:@"YHOO" withCompletion:^(NSDictionary *stockDictionary) {
+//        NSLog(@"%@", stockDictionary);
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            self.stockDict = stockDictionary;
+//            [self.stockTableView reloadData];
+//        });
+//    }];
+//}
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -253,10 +262,9 @@
                              withRowAnimation:UITableViewRowAnimationFade];
             break;
             
-//        case NSFetchedResultsChangeUpdate:
-//            [self configureCell:[tableView cellForRowAtIndexPath:indexPath]
-//                    atIndexPath:indexPath];
-//            break;
+        case NSFetchedResultsChangeUpdate:
+            [self configureStockCellAtIndexPath:indexPath];
+            break;
             
         case NSFetchedResultsChangeMove:
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]

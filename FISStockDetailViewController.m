@@ -18,6 +18,23 @@
 @property (strong,nonatomic) UIView *stockDetailView;
 - (IBAction)backBarButtonTapped:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *symbolLabel;
+@property (weak, nonatomic) IBOutlet UILabel *openPriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dayHighLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dayLowLabel;
+@property (weak, nonatomic) IBOutlet UILabel *volumeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *peRatioLabel;
+@property (weak, nonatomic) IBOutlet UILabel *mktCapLabel;
+@property (weak, nonatomic) IBOutlet UILabel *yearHighLabel;
+@property (weak, nonatomic) IBOutlet UILabel *yearLowLabel;
+@property (weak, nonatomic) IBOutlet UILabel *avgVolumeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *yieldLabel;
+
+@property (weak, nonatomic) IBOutlet UITextField *qaHighTextField;
+@property (weak, nonatomic) IBOutlet UITextField *qaLowTextField;
+
+
+
 @end
 
 @implementation FISStockDetailViewController
@@ -76,7 +93,7 @@
 */
 
 - (IBAction)backBarButtonTapped:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

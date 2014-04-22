@@ -27,8 +27,10 @@
     NSArray *repos = [context executeFetchRequest:fetchRequest error:nil];
     
     if ([repos count]==0) {
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Stock" inManagedObjectContext:context];
-        Stock *repository = [[Stock alloc] initWithEntity:entity insertIntoManagedObjectContext:nil];
+//        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Stock" inManagedObjectContext:context];
+//        Stock *repository = [[Stock alloc] initWithEntity:entity insertIntoManagedObjectContext:nil];
+
+        Stock *repository = [NSEntityDescription insertNewObjectForEntityForName:@"Stock" inManagedObjectContext:context];
         
         repository.symbol = [self nullCheckWithObject:stockDetailDictionary[@"Symbol"]];
         
@@ -56,6 +58,7 @@
         
         repository.averageVolume = @([[self nullCheckWithObject:stockDetailDictionary[@"AverageDailyVolume"]]floatValue]);;
         
+        [context save:nil];
         
         return repository;
         
@@ -74,6 +77,8 @@
         selectedRepo.yearLow = stockDetailDictionary[@"YearLow"];
         selectedRepo.yield = stockDetailDictionary[@"DividendYield"];
         selectedRepo.averageVolume = stockDetailDictionary[@"AverageDailyVolume"];
+        
+        [context save:nil];
         
         return selectedRepo;
     }

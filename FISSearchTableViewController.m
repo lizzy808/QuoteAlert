@@ -199,6 +199,7 @@
         [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
         [self.dataStore saveContext];
         
+        
         [self dismissViewControllerAnimated:YES completion:nil];
 
     }];

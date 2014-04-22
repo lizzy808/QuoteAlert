@@ -74,7 +74,7 @@
         
         stockFetch.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"symbol" ascending:YES]];
         
-        _fetchedStockResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:stockFetch managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"fetchedResultsCache"];
+        _fetchedStockResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:stockFetch managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
               
         [_fetchedStockResultsController performFetch:nil];
     }
