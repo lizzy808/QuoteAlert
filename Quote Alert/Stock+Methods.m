@@ -12,7 +12,7 @@
 
 - (NSString *)stockDetailDescription
 {
-    return [NSString stringWithFormat:@"Symbol: %@ Bid Price: %@ Change: %@ Volume: %@ Day High: %@ Day Low: %@ P/E Ratio: %@ Open Price: %@ Market Cap: %@ Year High: %@ Year Low: %@ Yield: %@ Average Volume: %@",self.symbol,self.bidPrice,self.change,self.volume,self.dayHigh,self.dayLow,self.peRatio,self.openPrice,self.mktCap,self.yearHigh,self.yearLow,self.yield,self.averageVolume];
+    return [NSString stringWithFormat:@"Symbol: %@ Bid Price: %@ Change: %@ Volume: %@ Day High: %@ Day Low: %@ P/E Ratio: %@ Open Price: %@ Market Cap: %@ Year High: %@ Year Low: %@ Yield: %@ Average Volume: %@ Company:%@ User Alert Price High:%@ User Alert Price Low:%@",self.symbol,self.bidPrice,self.change,self.volume,self.dayHigh,self.dayLow,self.peRatio,self.openPrice,self.mktCap,self.yearHigh,self.yearLow,self.yield,self.averageVolume,self.companyName,self.userAlertPriceHigh,self.userAlertPriceLow];
 }
 
 
@@ -58,6 +58,8 @@
         
         repository.averageVolume = [self nullCheckWithObject:stockDetailDictionary[@"AverageDailyVolume"]];
         
+        repository.companyName = [self nullCheckWithObject:stockDetailDictionary[@"Name"]];
+        
         [context save:nil];
         
         return repository;
@@ -77,6 +79,8 @@
         selectedRepo.yearLow = [self nullCheckWithObject:stockDetailDictionary[@"YearLow"]];
         selectedRepo.yield = [self nullCheckWithObject:stockDetailDictionary[@"DividendYield"]];
         selectedRepo.averageVolume = [self nullCheckWithObject:stockDetailDictionary[@"AverageDailyVolume"]];
+        selectedRepo.companyName = [self nullCheckWithObject:stockDetailDictionary[@"Name"]];
+
         
         [context save:nil];
         

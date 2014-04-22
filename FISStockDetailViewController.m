@@ -21,6 +21,7 @@
 @property (strong, nonatomic) NSDictionary *stockDict;
 
 - (IBAction)backBarButtonTapped:(id)sender;
+- (IBAction)saveQuotesButtonTapped:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UILabel *symbolLabel;
 @property (weak, nonatomic) IBOutlet UILabel *openPriceLabel;
@@ -53,6 +54,7 @@
     [super viewDidLoad];
     
     [self viewStockDetail];
+//    [self saveQuoteAlerts];
 
     self.dataStore = [FISDataStore sharedDataStore];
     // Do any additional setup after loading the view.
@@ -64,6 +66,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+//- (void)saveQuoteAlerts
+//{
+//    self.qaHighTextField.text = self.stock.userAlertPriceHigh;
+//    self.qaLowTextField.text = self.stock.userAlertPriceLow;
+//    
+//    [self.dataStore saveContext];
+//}
 
 - (void)viewStockDetail
 {
@@ -78,6 +88,29 @@
     self.yearLowLabel.text = self.stock.yearLow;
     self.avgVolumeLabel.text = self.stock.averageVolume;
     self.yieldLabel.text = self.stock.yield;
+    
+    [self.symbolLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+    [self.symbolLabel setTextColor:[UIColor yellowColor]];
+    [self.openPriceLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+    [self.openPriceLabel setTextColor:[UIColor yellowColor]];
+    [self.dayHighLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+    [self.dayHighLabel setTextColor:[UIColor yellowColor]];
+    [self.dayLowLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+    [self.dayLowLabel setTextColor:[UIColor yellowColor]];
+    [self.volumeLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+    [self.volumeLabel setTextColor:[UIColor yellowColor]];
+    [self.peRatioLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+    [self.peRatioLabel setTextColor:[UIColor yellowColor]];
+    [self.mktCapLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+    [self.mktCapLabel setTextColor:[UIColor yellowColor]];
+    [self.yearLowLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+    [self.yearLowLabel setTextColor:[UIColor yellowColor]];
+    [self.yearHighLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+    [self.yearHighLabel setTextColor:[UIColor yellowColor]];
+    [self.avgVolumeLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+    [self.avgVolumeLabel setTextColor:[UIColor yellowColor]];
+    [self.yieldLabel setFont:[UIFont fontWithName:@"Ubuntu" size:14]];
+    [self.yieldLabel setTextColor:[UIColor yellowColor]];
 }
 
 /*
@@ -93,6 +126,14 @@
 
 - (IBAction)backBarButtonTapped:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)saveQuotesButtonTapped:(id)sender
+{
+    self.qaHighTextField.text = self.stock.userAlertPriceHigh;
+    self.qaLowTextField.text = self.stock.userAlertPriceLow;
+    
+    [self.dataStore saveContext];
 }
 
 @end

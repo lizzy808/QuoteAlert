@@ -24,5 +24,8 @@
 @dynamic yearHigh;
 @dynamic yearLow;
 @dynamic yield;
+@dynamic userAlertPriceHigh;
+@dynamic userAlertPriceLow;
+@dynamic companyName;
 
 @end

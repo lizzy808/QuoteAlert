@@ -40,7 +40,7 @@
 		55CA536F1901B8C2000E2A1E /* searchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55CA536E1901B8C2000E2A1E /* searchView.xib */; };
 		55CA537619041CD0000E2A1E /* navBar2.png in Resources */ = {isa = PBXBuildFile; fileRef = 55CA537519041CD0000E2A1E /* navBar2.png */; };
 		55CA538019059AA9000E2A1E /* metal_grill_darkened.png in Resources */ = {isa = PBXBuildFile; fileRef = 55CA537F19059AA9000E2A1E /* metal_grill_darkened.png */; };
-		55CA53831906EAA8000E2A1E /* Stock.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CA53821906EAA8000E2A1E /* Stock.m */; };
+		55F66ED4190710BF000EFD3B /* Stock.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F66ED3190710BF000EFD3B /* Stock.m */; };
 		63DC8204C6874F38BD06C8F4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92968B8F8C494D1EAF8A35DD /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -102,8 +102,8 @@
 		55CA536E1901B8C2000E2A1E /* searchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = searchView.xib; sourceTree = "<group>"; };
 		55CA537519041CD0000E2A1E /* navBar2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navBar2.png; sourceTree = "<group>"; };
 		55CA537F19059AA9000E2A1E /* metal_grill_darkened.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metal_grill_darkened.png; sourceTree = "<group>"; };
-		55CA53811906EAA8000E2A1E /* Stock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stock.h; sourceTree = "<group>"; };
-		55CA53821906EAA8000E2A1E /* Stock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stock.m; sourceTree = "<group>"; };
+		55F66ED2190710BF000EFD3B /* Stock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stock.h; sourceTree = "<group>"; };
+		55F66ED3190710BF000EFD3B /* Stock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stock.m; sourceTree = "<group>"; };
 		92968B8F8C494D1EAF8A35DD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF22F24D1847480CA274EE0B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -236,8 +236,8 @@
 				55912D1718E275180069FEEC /* YahooAPIClient.h */,
 				55912D1818E275180069FEEC /* YahooAPIClient.m */,
 				5575C73418E0E6E100ABB124 /* Quote_Alert.xcdatamodeld */,
-				55CA53811906EAA8000E2A1E /* Stock.h */,
-				55CA53821906EAA8000E2A1E /* Stock.m */,
+				55F66ED2190710BF000EFD3B /* Stock.h */,
+				55F66ED3190710BF000EFD3B /* Stock.m */,
 				55912D2118E356A60069FEEC /* Stock+Methods.h */,
 				55912D2218E356A60069FEEC /* Stock+Methods.m */,
 				550D3D7418F5A7BF009A9406 /* FISStockSearch.h */,
@@ -419,7 +419,7 @@
 				55912D2318E356A60069FEEC /* Stock+Methods.m in Sources */,
 				5575C72F18E0E6E100ABB124 /* main.m in Sources */,
 				550D3D5A18F1E3B6009A9406 /* FISMainViewController.m in Sources */,
-				55CA53831906EAA8000E2A1E /* Stock.m in Sources */,
+				55F66ED4190710BF000EFD3B /* Stock.m in Sources */,
 				5575C73318E0E6E100ABB124 /* FISAppDelegate.m in Sources */,
 				550D3D7618F5A7BF009A9406 /* FISStockSearch.m in Sources */,
 				550D3D5718F1E19F009A9406 /* FISMainTableViewCell.m in Sources */,

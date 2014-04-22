@@ -25,5 +25,8 @@
 @property (nonatomic, retain) NSString * yearHigh;
 @property (nonatomic, retain) NSString * yearLow;
 @property (nonatomic, retain) NSString * yield;
+@property (nonatomic, retain) NSString * userAlertPriceHigh;
+@property (nonatomic, retain) NSString * userAlertPriceLow;
+@property (nonatomic, retain) NSString * companyName;
 
 @end
