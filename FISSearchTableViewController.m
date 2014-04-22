@@ -11,6 +11,7 @@
 #import "FISMainViewController.h"
 #import "YahooAPIClient.h"
 #import "FISSearchTableViewCell.h"
+#import "FISSearchTableViewCell.h"
 
 
 @interface FISSearchTableViewController () <NSFetchedResultsControllerDelegate, UISearchDisplayDelegate>
@@ -21,6 +22,10 @@
 @property (nonatomic) NSDictionary *detailResults;
 @property (nonatomic) FISDataStore *dataStore;
 @property (strong, nonatomic) NSMutableArray *selectedCells;
+@property (strong, nonatomic) FISSearchTableViewCell *cell;
+
+@property (strong, nonatomic) NSString *searchSymbol;
+///////////send symbol to datastore from SearchVC, in MainVC viewdidLoad/Appear if symbol is non-nil, do details api call
 
 @property (weak, nonatomic) IBOutlet UITableView *stockSearchTableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *stockSearchBar;
@@ -60,10 +65,9 @@
 
 - (void) setupNavBar
 {
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBar2.png"] forBarMetrics:UIBarMetricsDefault];
-    
-    [self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBar2"] forBarMetrics:UIBarMetricsDefault];
 }
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -80,20 +84,26 @@
     }
 }
 
+
+
 - (FISSearchTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.searchDisplayController.searchResultsTableView setTintColor:[UIColor blackColor]];
+    
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         
         FISSearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchCell"];
         if (cell == nil) {
            cell = [[[NSBundle mainBundle]loadNibNamed:@"searchView" owner:self options:nil] firstObject];
             
-        NSDictionary *searchResult = self.searchResults [indexPath.row];
+       self.searchResult = self.searchResults [indexPath.row];
             
-            cell.exchangeNameLabel.text = searchResult[@"exchDisp"];
-            cell.companyNameLabel.text = searchResult[@"name"];
-            cell.stockNameLabel.text = searchResult[@"symbol"];
+            cell.exchangeNameLabel.text = self.searchResult[@"exchDisp"];
+            cell.companyNameLabel.text = self.searchResult[@"name"];
+            cell.stockNameLabel.text = self.searchResult[@"symbol"];
             
+//            NSString *searchedSymbol = self.searchResult[@"symbol"];
+//            [self.dataStore saveSearchedStockSymbol:searchedSymbol];
         }
         return cell;
     }
@@ -152,9 +162,11 @@
             NSLog(@"%@", stockDictionaries);
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.searchResults = stockDictionaries;
+                [self.stockSearchTableView reloadData];
                 [self.searchDisplayController.searchResultsTableView reloadData];
             });
         }];
+    
 }
 
 
@@ -174,32 +186,61 @@
 //}
 
 //Handle selection on searchBar
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FISSearchTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSString *cellString = [NSString stringWithString:cell.textLabel.text];
+    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+
+//    [NSDictionary *searchResult = self.searchResults [indexPath.row]];
+    NSString *searchSymbol = self.searchResult[@"symbol"];
+    
+    [YahooAPIClient searchForStockDetails:searchSymbol withCompletion:^(NSDictionary *stockDictionary) {
+        [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
+        [self.dataStore saveContext];
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+
+    }];
+
+//    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+//    [self.dataStore saveSearchedStockSymbol:searchSymbol];
+
+    
+//cell.exchangeNameLabel.text = searchResult[@"exchDisp"];
+//cell.companyNameLabel.text = searchResult[@"name"];
+//cell.stockNameLabel.text = searchResult[@"symbol"];
+//
+//NSString *searchedSymbol = searchResult[@"symbol"];
+//[self.dataStore saveSearchedStockSymbol:searchedSymbol];
+
+//    NSString *cellString = [NSString stringWithString:cell.textLabel.text];
     
 ////////////// attempt to pass stock symbol into Detail API call////
-    if ([self.selectedCells containsObject:@(indexPath.row)]) {
-        [YahooAPIClient searchForStockDetails:cellString withCompletion:^(NSDictionary *stockDictionary) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.detailResults = stockDictionary;
-                
-                NSLog(@"%@", stockDictionary);
-
-                
-                FISMainViewController *mainVC = [[self storyboard] instantiateViewControllerWithIdentifier:@"FISMainViewController"];
-                [self.navigationController pushViewController:mainVC animated:YES];
-            });
-        }];
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [self.selectedCells removeObject:@(indexPath.row)];
-    }
+//    if ([self.selectedCells containsObject:@(indexPath.row)]) {
+//        [YahooAPIClient searchForStockDetails:cellString withCompletion:^(NSDictionary *stockDictionary) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                self.detailResults = stockDictionary;
+//                
+//                NSLog(@"%@", stockDictionary);
+//
+//                
+//                FISMainViewController *mainVC = [[self storyboard] instantiateViewControllerWithIdentifier:@"FISMainViewController"];
+//                [self.navigationController pushViewController:mainVC animated:YES];
+//            });
+//        }];
+//        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//        [self.selectedCells removeObject:@(indexPath.row)];
+//    }
     
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+//    if (tableView == self.searchDisplayController.searchResultsTableView) {
+//        [self dismissViewControllerAnimated:YES completion:nil];
 //        [self performSegueWithIdentifier: @"UpdateData" sender: self];
-    }
-}
+    
+//    [self dismissViewControllerAnimated:YES completion:nil];
+
+//    }
+
 
 @end

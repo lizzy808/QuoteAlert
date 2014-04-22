@@ -56,8 +56,33 @@
     
 }
 
+- (void)initialize
+{
+    [self.stockTableView registerNib:[UINib nibWithNibName:@"MainTVCell" bundle:nil] forCellReuseIdentifier:@"searchCell"];
+    self.stockTableView.delegate = self;
+    self.stockTableView.dataSource = self;
+    self.dataStore.fetchedStockResultsController.delegate = self;
+}
+
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    [super viewDidAppear:animated];
+//
+//    [self.dataStore saveSearchedStockSymbol:self.dataStore.searchSymbol];
+//    UITableViewCell *cell = [self.stockTableView cellForRowAtIndexPath:self.indexPath];
+//
+//    if (![[self.stockTableView cellForRowAtIndexPath:self.indexPath] isEqual:nil])
+//    {
+//        [self.dataStore addStockDetailsWithSymbol:self.dataStore.searchSymbol];
+//        NSLog(@"%@", self.dataStore.searchSymbol);
+//   
+//        [self.stockTableView reloadData];
+//    }
+//}
+
 - (void) setupNavBar
 {
+
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"QAnavBar.png"] forBarMetrics:UIBarMetricsDefault];
 
     [self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
@@ -86,34 +111,59 @@
 }
 
 
-- (FISMainTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    FISMainTableViewCell *cell = (FISMainTableViewCell *)[self configureCellForMainTableViewWithIndexPath:indexPath];
+//- (FISMainTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    FISMainTableViewCell *cell = (FISMainTableViewCell *)[self configureCellForMainTableViewWithIndexPath:indexPath];
+//
+//    return cell;
+//}
 
-    return cell;
-}
 
 ////////////// Attempting to pass in dummy data /////////////////
 
-- (FISMainTableViewCell *)configureCellForMainTableViewWithIndexPath:(NSIndexPath *)indexPath
+- (FISMainTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FISMainTableViewCell *cell = [self.stockTableView dequeueReusableCellWithIdentifier:@"basicCell"];
-    Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
-    [cell configureWithStock:stock];
+    if (tableView == self.stockTableView) {
+        
+        [self dummyFetch];
+        
+        FISMainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell"];
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"MainTVCell" owner:self options:nil] firstObject];
+            
+            NSDictionary *stocksDictionary = self.stocks [indexPath.row];
+            
+            cell.symbolLabel.text = stocksDictionary[@"Symbol"];
+            cell.bidPriceLabel.text = stocksDictionary[@"Bid"];
+            cell.dayChangeLabel.text = stocksDictionary[@"Change"];
+            
+//            cell.alertPriceHighLabel.text = stocksDictionary[@"exchDisp"];
+//            cell.alertPriceLowLabel.text = stocksDictionary[@"name"];
+            
+            [self dummyFetch];
+            [self.stockTableView reloadData];
+        }
+        
+        
+        return cell;
+    }
     
-//    [YahooAPIClient searchForStockDetails:@"YHOO" withCompletion:^(NSDictionary *stockDictionary) {
-//        NSLog(@"%@", stockDictionary);
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            self.stockDict = stockDictionary;
-//            [self.stockTableView reloadData];
-//        });
-//    }];
-    
-    cell.backgroundColor = [UIColor darkGrayColor];
+    FISMainTableViewCell *cell = (FISMainTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"basicCell"];
+    [self configureCell:cell atIndexPath:indexPath];
     
     return cell;
+
 }
 
+- (void)configureCell:(FISMainTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+
+    Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
+    
+    cell.symbolLabel.text = self.stock.symbol;
+    cell.bidPriceLabel.text = self.stock.bidPrice;
+    cell.dayChangeLabel.text = self.stock.change;
+}
 
 ///////////// not showing on TVC///////////
 
@@ -148,7 +198,7 @@
         
 //        stockDetailTVC.stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:index];
     }
-    else if ([segue.identifier isEqualToString:@"addStockSegue"])
+    else if ([segue.identifier isEqualToString:@"mainToSearchSegue"])
     {
         NSIndexPath *index = [self.stockTableView indexPathForSelectedRow];
         FISSearchTableViewController *searchTVC = (FISSearchTableViewController *)segue.destinationViewController;
@@ -244,13 +294,7 @@
     return NO;
 }
 
-- (void)initialize
-{
-    [self.stockTableView registerNib:[UINib nibWithNibName:@"MainTVCell" bundle:nil] forCellReuseIdentifier:@"searchCell"];
-    self.stockTableView.delegate = self;
-    self.stockTableView.dataSource = self;
-    self.dataStore.fetchedStockResultsController.delegate = self;
-}
+
 
 
 

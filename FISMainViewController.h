@@ -13,7 +13,8 @@
 
 @property (strong, nonatomic) NSManagedObject *managedObject;
 @property (weak, nonatomic) IBOutlet UITableView *stockTableView;
-
+@property (strong, nonatomic) NSString *searchSymbol;
+@property (strong, nonatomic) NSIndexPath *indexPath;
 
 
 @end

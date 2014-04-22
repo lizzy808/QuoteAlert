@@ -17,6 +17,10 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedStockResultsController;
 
+@property (strong, nonatomic) NSString *searchSymbol;
+
+
+- (void)saveSearchedStockSymbol:(NSString *)searchSymbol;
 
 - (void)saveContext;
 
@@ -32,5 +36,8 @@
 - (BOOL)removeStock:(Stock *)stock;
 
 - (void)deleteStockAtIndexPay:(NSIndexPath *)indexPath;
+
+//- (void)createInitialData;
+
 
 @end

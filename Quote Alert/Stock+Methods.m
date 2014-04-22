@@ -21,7 +21,7 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Stock"];
     NSString *searchSymbol = stockDetailDictionary[@"Symbol"];
     
-    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"Symbol==%@",searchSymbol];
+    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"symbol==%@",searchSymbol];
     fetchRequest.predicate = searchPredicate;
     
     NSArray *repos = [context executeFetchRequest:fetchRequest error:nil];
@@ -29,22 +29,36 @@
     if ([repos count]==0) {
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Stock" inManagedObjectContext:context];
         Stock *repository = [[Stock alloc] initWithEntity:entity insertIntoManagedObjectContext:nil];
-        repository.symbol = stockDetailDictionary[@"Symbol"];
-        repository.bidPrice = stockDetailDictionary[@"Bid"];
-        repository.change = stockDetailDictionary[@"Change"];
-        repository.volume = stockDetailDictionary[@"Volume"];
-        repository.dayHigh = stockDetailDictionary[@"DaysHigh"];
-        repository.dayLow = stockDetailDictionary[@"DaysLow"];
-        repository.peRatio = stockDetailDictionary[@"PERatio"];
-        repository.openPrice = stockDetailDictionary[@"Open"];
-        repository.mktCap = stockDetailDictionary[@"MarketCapitalization"];
-        repository.yearHigh = stockDetailDictionary[@"YearHigh"];
-        repository.yearLow = stockDetailDictionary[@"YearLow"];
-        repository.yield = stockDetailDictionary[@"DividendYield"];
-        repository.averageVolume = stockDetailDictionary[@"AverageDailyVolume"];
+        
+        repository.symbol = [self nullCheckWithObject:stockDetailDictionary[@"Symbol"]];
+        
+        repository.bidPrice = @([[self nullCheckWithObject:stockDetailDictionary [@"Bid"]]floatValue]);
+        
+        repository.change = @([[self nullCheckWithObject:stockDetailDictionary[@"Change"]]floatValue]);
+        
+        repository.volume = @([[self nullCheckWithObject:stockDetailDictionary[@"Volume"]]floatValue]);
+        
+        repository.dayHigh = @([[self nullCheckWithObject:stockDetailDictionary[@"DaysHigh"]]floatValue]);
+        
+        repository.dayLow = @([[self nullCheckWithObject:stockDetailDictionary[@"DaysLow"]]floatValue]);
+
+        repository.peRatio = @([[self nullCheckWithObject:stockDetailDictionary[@"PERatio"]]floatValue]);
+
+        repository.openPrice = @([[self nullCheckWithObject:stockDetailDictionary[@"Open"]]floatValue]);
+        
+        repository.mktCap = @([[self nullCheckWithObject:stockDetailDictionary[@"MarketCapitalization"]]floatValue]);
+        
+        repository.yearHigh = @([[self nullCheckWithObject:stockDetailDictionary[@"YearHigh"]]floatValue]);
+        
+        repository.yearLow = @([[self nullCheckWithObject:stockDetailDictionary[@"YearLow"]]floatValue]);
+        
+        repository.yield = @([[self nullCheckWithObject:stockDetailDictionary[@"DividendYield"]]floatValue]);
+        
+        repository.averageVolume = @([[self nullCheckWithObject:stockDetailDictionary[@"AverageDailyVolume"]]floatValue]);;
         
         
         return repository;
+        
     } else
     {
         Stock *selectedRepo = [repos lastObject];
@@ -63,6 +77,14 @@
         
         return selectedRepo;
     }
+}
+
++ (id)nullCheckWithObject:(id)object
+{
+    if (object != [NSNull null]) {
+        return object;
+    }
+    return nil;
 }
 
 @end

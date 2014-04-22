@@ -16,6 +16,8 @@
 @property (nonatomic) NSMutableArray *stocks;
 @property (nonatomic) NSMutableArray *stockDetails;
 @property (strong,nonatomic) YahooAPIClient *yahooAPIClient;
+@property (strong, nonatomic) NSDictionary *stockDict;
+
 
 @end
 
@@ -40,6 +42,14 @@
         _stockDetails = [NSMutableArray new];
     }
     return _stockDetails;
+}
+
+- (NSString *)searchSymbol
+{
+    if (!_searchSymbol) {
+        _searchSymbol = [NSString new];
+    }
+    return _searchSymbol;
 }
 
 + (instancetype)sharedDataStore {
@@ -160,6 +170,12 @@
 //    }];
 //}
 
+//- (void)saveSearchedStockSymbol:(NSString *)searchSymbol
+//{
+//    NSLog(@"%@", searchSymbol);
+//    
+//}
+
 - (void)addStockDetailsWithSymbol:(NSString *)symbolName
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Stock"];
@@ -168,7 +184,7 @@
     for (Stock *stock in allStocks) {
         [self.managedObjectContext deleteObject:stock];
     }
-    [YahooAPIClient searchForStockDetails:symbolName withCompletion:^(NSDictionary *detailDictionaries) {
+    [YahooAPIClient searchForStockDetails:self.searchSymbol withCompletion:^(NSDictionary *detailDictionaries) {
         NSMutableArray *coreDataStocks = [NSMutableArray new];
         for (NSDictionary *detailDict in detailDictionaries) {
             [Stock stockWithStockDetailDictionary:detailDict Context:self.managedObjectContext];
@@ -176,6 +192,8 @@
         }
     }];
 }
+
+
 
 - (void)addStock:(id)stock
 {
@@ -198,7 +216,21 @@
     [self.managedObjectContext deleteObject:stock];
 }
 
-
+//- (void)createInitialData
+//{
+//    NSFetchRequest *sectionFetch = [NSFetchRequest fetchRequestWithEntityName:@"Section"];
+//    
+//    if ([[self.managedObjectContext executeFetchRequest:sectionFetch error:nil] count] == 0)
+//    {
+//            [YahooAPIClient searchForStockDetails:@"YHOO" withCompletion:^(NSDictionary *stockDictionary) {
+//                NSLog(@"%@", stockDictionary);
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    self.stockDict = stockDictionary;
+//                });
+//            }];
+//        [self saveContext];
+//        }
+//}
 
 
 @end

@@ -14,6 +14,8 @@
 
 @property (strong, nonatomic) Stock *stock;
 @property (strong, nonatomic) FISStockSearch *searchedStock;
+@property (strong, nonatomic) NSDictionary *searchResult;
+
 
 
 @end
