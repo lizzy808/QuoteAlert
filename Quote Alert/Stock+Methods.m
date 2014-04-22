@@ -34,29 +34,29 @@
         
         repository.symbol = [self nullCheckWithObject:stockDetailDictionary[@"Symbol"]];
         
-        repository.bidPrice = @([[self nullCheckWithObject:stockDetailDictionary [@"Bid"]]floatValue]);
+        repository.bidPrice = [self nullCheckWithObject:stockDetailDictionary [@"Bid"]];
         
-        repository.change = @([[self nullCheckWithObject:stockDetailDictionary[@"Change"]]floatValue]);
+        repository.change = [self nullCheckWithObject:stockDetailDictionary[@"Change"]];
         
-        repository.volume = @([[self nullCheckWithObject:stockDetailDictionary[@"Volume"]]floatValue]);
+        repository.volume = [self nullCheckWithObject:stockDetailDictionary[@"Volume"]];
         
-        repository.dayHigh = @([[self nullCheckWithObject:stockDetailDictionary[@"DaysHigh"]]floatValue]);
+        repository.dayHigh = [self nullCheckWithObject:stockDetailDictionary[@"DaysHigh"]];
         
-        repository.dayLow = @([[self nullCheckWithObject:stockDetailDictionary[@"DaysLow"]]floatValue]);
+        repository.dayLow = [self nullCheckWithObject:stockDetailDictionary[@"DaysLow"]];
 
-        repository.peRatio = @([[self nullCheckWithObject:stockDetailDictionary[@"PERatio"]]floatValue]);
+        repository.peRatio = [self nullCheckWithObject:stockDetailDictionary[@"PERatio"]];
 
-        repository.openPrice = @([[self nullCheckWithObject:stockDetailDictionary[@"Open"]]floatValue]);
+        repository.openPrice = [self nullCheckWithObject:stockDetailDictionary[@"Open"]];
         
-        repository.mktCap = @([[self nullCheckWithObject:stockDetailDictionary[@"MarketCapitalization"]]floatValue]);
+        repository.mktCap = [self nullCheckWithObject:stockDetailDictionary[@"MarketCapitalization"]];
         
-        repository.yearHigh = @([[self nullCheckWithObject:stockDetailDictionary[@"YearHigh"]]floatValue]);
+        repository.yearHigh = [self nullCheckWithObject:stockDetailDictionary[@"YearHigh"]];
         
-        repository.yearLow = @([[self nullCheckWithObject:stockDetailDictionary[@"YearLow"]]floatValue]);
+        repository.yearLow = [self nullCheckWithObject:stockDetailDictionary[@"YearLow"]];
         
-        repository.yield = @([[self nullCheckWithObject:stockDetailDictionary[@"DividendYield"]]floatValue]);
+        repository.yield = [self nullCheckWithObject:stockDetailDictionary[@"DividendYield"]];
         
-        repository.averageVolume = @([[self nullCheckWithObject:stockDetailDictionary[@"AverageDailyVolume"]]floatValue]);;
+        repository.averageVolume = [self nullCheckWithObject:stockDetailDictionary[@"AverageDailyVolume"]];
         
         [context save:nil];
         
@@ -65,18 +65,18 @@
     } else
     {
         Stock *selectedRepo = [repos lastObject];
-        selectedRepo.bidPrice = stockDetailDictionary[@"Bid"];
-        selectedRepo.change = stockDetailDictionary[@"Change"];
-        selectedRepo.volume = stockDetailDictionary[@"Volume"];
-        selectedRepo.dayHigh = stockDetailDictionary[@"DaysHigh"];
-        selectedRepo.dayLow = stockDetailDictionary[@"DaysLow"];
-        selectedRepo.peRatio = stockDetailDictionary[@"PERatio"];
-        selectedRepo.openPrice = stockDetailDictionary[@"Open"];
-        selectedRepo.mktCap = stockDetailDictionary[@"MarketCapitalization"];
-        selectedRepo.yearHigh = stockDetailDictionary[@"YearHigh"];
-        selectedRepo.yearLow = stockDetailDictionary[@"YearLow"];
-        selectedRepo.yield = stockDetailDictionary[@"DividendYield"];
-        selectedRepo.averageVolume = stockDetailDictionary[@"AverageDailyVolume"];
+        selectedRepo.bidPrice = [self nullCheckWithObject:stockDetailDictionary[@"Bid"]];
+        selectedRepo.change = [self nullCheckWithObject:stockDetailDictionary[@"Change"]];
+        selectedRepo.volume = [self nullCheckWithObject:stockDetailDictionary[@"Volume"]];
+        selectedRepo.dayHigh = [self nullCheckWithObject:stockDetailDictionary[@"DaysHigh"]];
+        selectedRepo.dayLow = [self nullCheckWithObject:stockDetailDictionary[@"DaysLow"]];
+        selectedRepo.peRatio = [self nullCheckWithObject:stockDetailDictionary[@"PERatio"]];
+        selectedRepo.openPrice = [self nullCheckWithObject:stockDetailDictionary[@"Open"]];
+        selectedRepo.mktCap = [self nullCheckWithObject:stockDetailDictionary[@"MarketCapitalization"]];
+        selectedRepo.yearHigh = [self nullCheckWithObject:stockDetailDictionary[@"YearHigh"]];
+        selectedRepo.yearLow = [self nullCheckWithObject:stockDetailDictionary[@"YearLow"]];
+        selectedRepo.yield = [self nullCheckWithObject:stockDetailDictionary[@"DividendYield"]];
+        selectedRepo.averageVolume = [self nullCheckWithObject:stockDetailDictionary[@"AverageDailyVolume"]];
         
         [context save:nil];
         

@@ -95,15 +95,13 @@
         FISSearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchCell"];
         if (cell == nil) {
            cell = [[[NSBundle mainBundle]loadNibNamed:@"searchView" owner:self options:nil] firstObject];
+
+            NSDictionary *searchResultDetails = self.searchResults [indexPath.row];
             
-       self.searchResult = self.searchResults [indexPath.row];
-            
-            cell.exchangeNameLabel.text = self.searchResult[@"exchDisp"];
-            cell.companyNameLabel.text = self.searchResult[@"name"];
-            cell.stockNameLabel.text = self.searchResult[@"symbol"];
-            
-//            NSString *searchedSymbol = self.searchResult[@"symbol"];
-//            [self.dataStore saveSearchedStockSymbol:searchedSymbol];
+            cell.exchangeNameLabel.text = searchResultDetails[@"exchDisp"];
+            cell.companyNameLabel.text = searchResultDetails[@"name"];
+            cell.stockNameLabel.text = searchResultDetails[@"symbol"];
+
         }
         return cell;
     }
@@ -118,7 +116,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 90;
 }
 
 - (void)configureCell:(FISSearchTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
@@ -190,15 +188,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-
+//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 //    [NSDictionary *searchResult = self.searchResults [indexPath.row]];
-    NSString *searchSymbol = self.searchResult[@"symbol"];
+    
+    NSString *searchSymbol = self.searchResults[indexPath.row][@"symbol"];
     
     [YahooAPIClient searchForStockDetails:searchSymbol withCompletion:^(NSDictionary *stockDictionary) {
         [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
         [self.dataStore saveContext];
-        
         
         [self dismissViewControllerAnimated:YES completion:nil];
 

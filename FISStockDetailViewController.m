@@ -7,15 +7,19 @@
 //
 
 #import "FISStockDetailViewController.h"
-#import "FISDataStore.h"
 #import <AFNetworking/AFNetworking.h>
+#import "FISDataStore.h"
 #import "Stock+Methods.h"
+#import "FISMainTableViewCell.h"
+#import "FISSearchTableViewController.h"
 #import "YahooAPIClient.h"
 
 @interface FISStockDetailViewController ()
 
 @property (strong,nonatomic) FISDataStore *dataStore;
-@property (strong,nonatomic) UIView *stockDetailView;
+@property (nonatomic) NSArray *stocks;
+@property (strong, nonatomic) NSDictionary *stockDict;
+
 - (IBAction)backBarButtonTapped:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UILabel *symbolLabel;
@@ -34,7 +38,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *qaLowTextField;
 
 
-
 @end
 
 @implementation FISStockDetailViewController
@@ -45,30 +48,15 @@
     [super viewWillAppear:animated];
 }
 
-//    [YahooAPIClient searchForStockDetails:self.stock withCompletion:^(id newStock)
-//    {
-//        self.stock = [Stock stockWithStockDetailDictionary:newStock inContext:self.dataStore.managedObjectContext];
-//        [self.tableView reloadData];
-//    }];
-//}
-//
-//+ (void)searchForStockDetails:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion
-//
-//
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self viewStockDetail];
+
     self.dataStore = [FISDataStore sharedDataStore];
     // Do any additional setup after loading the view.
+    self.dataStore.fetchedStockResultsController.delegate= self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,9 +64,20 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (void)viewStockDetail
 {
-    
+    [self.symbolLabel setText:self.stock.symbol];
+    self.openPriceLabel.text = self.stock.openPrice;
+    self.dayHighLabel.text = self.stock.dayHigh;
+    self.dayLowLabel.text = self.stock.dayLow;
+    self.volumeLabel.text = self.stock.volume;
+    self.peRatioLabel.text = self.stock.peRatio;
+    self.mktCapLabel.text = self.stock.mktCap;
+    self.yearHighLabel.text = self.stock.yearHigh;
+    self.yearLowLabel.text = self.stock.yearLow;
+    self.avgVolumeLabel.text = self.stock.averageVolume;
+    self.yieldLabel.text = self.stock.yield;
 }
 
 /*

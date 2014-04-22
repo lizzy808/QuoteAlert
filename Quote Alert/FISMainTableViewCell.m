@@ -39,8 +39,8 @@
 {
     self.stock = stock;
     self.symbolLabel.text = self.stock.symbol;
-    self.bidPriceLabel.text = [self.stock.bidPrice stringValue];
-    self.dayChangeLabel.text = [self.stock.change stringValue];
+    self.bidPriceLabel.text = self.stock.bidPrice;
+    self.dayChangeLabel.text = self.stock.change;
 //    self.alertPriceHighLabel.text = self.stock.symbol;
 //    self.alertPriceLowLabel.text = self.stock.symbol;
     

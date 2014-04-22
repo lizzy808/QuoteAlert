@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Stock.h"
 
-@interface FISStockDetailViewController : UIViewController
+@interface FISStockDetailViewController : UIViewController <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic)Stock *stock;
+@property (strong, nonatomic) NSManagedObject *managedObject;
 
 @end

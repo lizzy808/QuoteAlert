@@ -20,8 +20,6 @@
 @property (strong, nonatomic) NSString *searchSymbol;
 
 
-- (void)saveSearchedStockSymbol:(NSString *)searchSymbol;
-
 - (void)saveContext;
 
 - (NSURL *)applicationDocumentsDirectory;
@@ -30,6 +28,8 @@
 
 //- (void)fetchStocksWithName:(NSString *)symbolName;
 - (void)addStockDetailsWithSymbol:(NSString *)symbolName;
+
+//- (void)saveStock:(Stock *)stock AtIndexPath:(NSIndexPath *)indexPath;
 
 - (void)addStock:(Stock *)stock;
 

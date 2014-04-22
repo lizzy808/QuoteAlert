@@ -2,7 +2,7 @@
 //  Stock.m
 //  Quote Alert
 //
-//  Created by Elizabeth Choy on 4/9/14.
+//  Created by Elizabeth Choy on 4/22/14.
 //  Copyright (c) 2014 Elizabeth Choy. All rights reserved.
 //
 

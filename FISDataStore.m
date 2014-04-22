@@ -74,8 +74,9 @@
         
         stockFetch.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"symbol" ascending:YES]];
         
-        _fetchedStockResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:stockFetch managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
-              
+        _fetchedStockResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:stockFetch managedObjectContext:[self managedObjectContext] sectionNameKeyPath:nil cacheName:nil];
+        
+        
         [_fetchedStockResultsController performFetch:nil];
     }
     return _fetchedStockResultsController;
@@ -152,29 +153,6 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-//- (void)fetchStocksWithName:(NSString *)symbolName
-//{
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Stock"];
-//    NSMutableArray *allStocks = [[NSMutableArray alloc] initWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:nil]];
-//    
-//    for (Stock *stock in allStocks) {
-//        [self.managedObjectContext deleteObject:stock];
-//    }
-//    
-//    ///make api call to get stocks from internet
-//    [YahooAPIClient searchForStockWithName:symbolName withCompletion:^(NSArray *stockDictionaries) {
-//        for (NSDictionary *stockDict in stockDictionaries) {
-//            //convert the api response into location managed objected
-//            [Stock  stockWithStockSearchDictionary:stockDict Context:self.managedObjectContext];
-//        }
-//    }];
-//}
-
-//- (void)saveSearchedStockSymbol:(NSString *)searchSymbol
-//{
-//    NSLog(@"%@", searchSymbol);
-//    
-//}
 
 - (void)addStockDetailsWithSymbol:(NSString *)symbolName
 {
@@ -193,6 +171,11 @@
     }];
 }
 
+//- (void)saveStock:(Stock *)stock AtIndexPath:(NSIndexPath *)indexPath
+//{
+//    stock = [self.fetchedStockResultsController objectAtIndexPath:indexPath];
+//    [self.stocks addObject:stock];
+//}
 
 
 - (void)addStock:(id)stock

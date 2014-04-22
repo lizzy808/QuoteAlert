@@ -23,6 +23,7 @@
 @property (strong, nonatomic) NSDictionary *stockDict;
 
 
+
 @end
 
 @implementation FISMainViewController
@@ -83,11 +84,8 @@
 
 - (void) setupNavBar
 {
-
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"QAnavBar.png"] forBarMetrics:UIBarMetricsDefault];
-
     [self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -98,7 +96,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 110;
+    return 90;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -147,17 +145,18 @@
     
     Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
     
+    cell.stock = stock;
     cell.symbolLabel.text = stock.symbol;
-    cell.bidPriceLabel.text = [stock.bidPrice stringValue];
-    cell.dayChangeLabel.text = [stock.change stringValue];
+    cell.bidPriceLabel.text = stock.bidPrice;
+    cell.dayChangeLabel.text = stock.change;
     
-    [cell.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:20]];
+    [cell.symbolLabel setFont:[UIFont fontWithName:@"Ubuntu" size:20]];
     [cell.symbolLabel setTextColor:[UIColor yellowColor]];
 
-    [cell.bidPriceLabel setFont:[UIFont fontWithName:@"Arial" size:15]];
+    [cell.bidPriceLabel setFont:[UIFont fontWithName:@"Ubuntu" size:15]];
     [cell.bidPriceLabel setTextColor:[UIColor yellowColor]];
     
-    [cell.dayChangeLabel setFont:[UIFont fontWithName:@"Arial" size:15]];
+    [cell.dayChangeLabel setFont:[UIFont fontWithName:@"Ubuntu" size:15]];
     [cell.dayChangeLabel setTextColor:[UIColor yellowColor]];
     
     return cell;
@@ -190,23 +189,27 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self performSegueWithIdentifier:@"stockDetailSegue" sender:self];
+    
+    Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
+//    [self.dataStore saveStock:stock AtIndexPath:indexPath];
 }
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"stockDetailSegue"])
     {
-//        NSIndexPath *index = [self.stockTableView indexPathForSelectedRow];
-        
         FISStockDetailViewController *stockDetailTVC = segue.destinationViewController;
         FISMainTableViewCell *cell = (FISMainTableViewCell *)[self.stockTableView cellForRowAtIndexPath:[self.stockTableView indexPathForSelectedRow]];
         
         stockDetailTVC.stock = cell.stock;
         
+        
+//        [self.dataStore saveStock:cell.stock AtIndexPath:[self.stockTableView indexPathForSelectedRow]];
         [self.stockTableView deselectRowAtIndexPath:[self.stockTableView indexPathForSelectedRow] animated:YES];
         
-//        stockDetailTVC.stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:index];
     }
+    
     else if ([segue.identifier isEqualToString:@"mainToSearchSegue"])
     {
         NSIndexPath *index = [self.stockTableView indexPathForSelectedRow];
@@ -214,6 +217,7 @@
         searchTVC.stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:index];
     }
 }
+
 
 
 #pragma mark - NSFetchedResultsControllerDelegate Methods
