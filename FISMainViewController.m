@@ -96,7 +96,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90;
+    return 80;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -149,15 +149,23 @@
     cell.symbolLabel.text = stock.symbol;
     cell.bidPriceLabel.text = stock.bidPrice;
     cell.dayChangeLabel.text = stock.change;
+    cell.alertPriceHighLabel.text = stock.userAlertPriceHigh;
+    cell.alertPriceLowLabel.text = stock.userAlertPriceLow;
     
-    [cell.symbolLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:23]];
-    [cell.symbolLabel setTextColor:[UIColor yellowColor]];
+    [cell.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:18]];
+    [cell.symbolLabel setTextColor:[UIColor whiteColor]];
 
-    [cell.bidPriceLabel setFont:[UIFont fontWithName:@"Ubuntu" size:15]];
-    [cell.bidPriceLabel setTextColor:[UIColor orangeColor]];
+    [cell.bidPriceLabel setFont:[UIFont fontWithName:@"Arial" size:16]];
+    [cell.bidPriceLabel setTextColor:[UIColor whiteColor]];
     
-    [cell.dayChangeLabel setFont:[UIFont fontWithName:@"Ubuntu" size:15]];
-    [cell.dayChangeLabel setTextColor:[UIColor orangeColor]];
+    [cell.dayChangeLabel setFont:[UIFont fontWithName:@"Arial" size:16]];
+    [cell.dayChangeLabel setTextColor:[UIColor whiteColor]];
+    
+    [cell.alertPriceHighLabel setFont:[UIFont fontWithName:@"Arial" size:16]];
+    [cell.alertPriceHighLabel setTextColor:[UIColor whiteColor]];
+    
+    [cell.alertPriceLowLabel setFont:[UIFont fontWithName:@"Arial" size:16]];
+    [cell.alertPriceLowLabel setTextColor:[UIColor whiteColor]];
     
     return cell;
 }

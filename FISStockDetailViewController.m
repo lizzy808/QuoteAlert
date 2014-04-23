@@ -144,6 +144,8 @@
      self.stock.userAlertPriceLow = self.qaLowTextField.text;
     
     [self.dataStore saveContext];
+    [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 @end

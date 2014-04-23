@@ -59,7 +59,6 @@
 //                                                completionHandler(UIBackgroundFetchResultNoData);
 //                                            };
 //                                        }];
-//    
 //    // Start the task
 //    [task resume];
 //}
