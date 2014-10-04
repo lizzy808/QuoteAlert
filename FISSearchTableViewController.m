@@ -157,7 +157,7 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
         [YahooAPIClient searchForStockWithName:searchBar.text withCompletion:^(NSArray *stockDictionaries) {
-            NSLog(@"%@", stockDictionaries);
+            NSLog(@"stock dictionaries = %@", stockDictionaries);
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.searchResults = stockDictionaries;
                 [self.stockSearchTableView reloadData];

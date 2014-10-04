@@ -17,6 +17,7 @@
 
 + (void)searchForStockDetails:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion;
 
++ (void)fetchUserStocks:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion;
 //+ (void)getStockSearchResults:(FISStockSearch *)searchResults withCompletion:(void (^)(NSArray *stockSearchResults))completionBlock;
 
 @end

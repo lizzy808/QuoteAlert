@@ -91,7 +91,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -110,34 +109,11 @@
 }
 
 
-//- (FISMainTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    FISMainTableViewCell *cell = (FISMainTableViewCell *)[self configureCellForMainTableViewWithIndexPath:indexPath];
-//
-//    return cell;
-//}
-
-
-////////////// Attempting to pass in dummy data /////////////////
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    
-//            cell = [[[NSBundle mainBundle]loadNibNamed:@"MainTVCell" owner:self options:nil] firstObject];
-//            
-//            NSDictionary *stocksDictionary = self.stocks [indexPath.row];
-//            cell.symbolLabel.text = stocksDictionary[@"Symbol"];
-//            cell.bidPriceLabel.text = stocksDictionary[@"Bid"];
-//            cell.dayChangeLabel.text = stocksDictionary[@"Change"];
-//            
-//            cell.alertPriceHighLabel.text = stocksDictionary[@"exchDisp"];
-//            cell.alertPriceLowLabel.text = stocksDictionary[@"name"];
-//            [self.stockTableView reloadData];
-//       [self configureCell:cell atIndexPath:indexPath];
-    
     return [self configureStockCellAtIndexPath:indexPath];
-
 }
+
 
 - (FISMainTableViewCell *)configureStockCellAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -181,25 +157,12 @@
 //    return cell;
 //}
 
-///////////// not showing on TVC///////////
-
-//- (void)dummyFetch{
-//    [YahooAPIClient searchForStockDetails:@"YHOO" withCompletion:^(NSDictionary *stockDictionary) {
-//        NSLog(@"%@", stockDictionary);
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            self.stockDict = stockDictionary;
-//            [self.stockTableView reloadData];
-//        });
-//    }];
-//}
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self performSegueWithIdentifier:@"stockDetailSegue" sender:self];
     
     Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
-//    [self.dataStore saveStock:stock AtIndexPath:indexPath];
 }
 
 
@@ -212,10 +175,7 @@
         
         stockDetailTVC.stock = cell.stock;
         
-        
-//        [self.dataStore saveStock:cell.stock AtIndexPath:[self.stockTableView indexPathForSelectedRow]];
         [self.stockTableView deselectRowAtIndexPath:[self.stockTableView indexPathForSelectedRow] animated:YES];
-        
     }
     
     else if ([segue.identifier isEqualToString:@"mainToSearchSegue"])
@@ -225,7 +185,6 @@
         searchTVC.stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:index];
     }
 }
-
 
 
 #pragma mark - NSFetchedResultsControllerDelegate Methods
@@ -287,34 +246,27 @@
     }
 }
 
-// Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
     return YES;
 }
 
-// Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
         [self.dataStore deleteStockAtIndexPay:indexPath];
-        //        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+    } else if (editingStyle == UITableViewCellEditingStyleInsert)
+    {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
 }
 
 
-// Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the item to be re-orderable.
     return NO;
 }
-
-
 
 
 
