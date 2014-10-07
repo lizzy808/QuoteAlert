@@ -12,12 +12,10 @@
 @interface FISDataStore : NSObject
 
 @property (strong, nonatomic) UIWindow *window;
-
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedStockResultsController;
-
 @property (strong, nonatomic) NSString *searchSymbol;
 
 
@@ -27,10 +25,7 @@
 
 + (instancetype) sharedDataStore;
 
-//- (void)fetchStocksWithName:(NSString *)symbolName;
 - (void)addStockDetailsWithSymbol:(NSString *)symbolName;
-
-//- (void)saveStock:(Stock *)stock AtIndexPath:(NSIndexPath *)indexPath;
 
 - (void)addStock:(Stock *)stock;
 
@@ -38,7 +33,6 @@
 
 - (void)deleteStockAtIndexPay:(NSIndexPath *)indexPath;
 
-//- (void)createInitialData;
 
 
 @end

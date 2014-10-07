@@ -10,15 +10,6 @@
 
 @implementation UITableViewController (StyleSheet)
 
-//+ (void)setupNavigationBar:(UINavigationBar *)navBar WithFont:(NSString *)fontString WithFontSize:(NSInteger)fontSize WithVerticalPosition:(CGFloat)verticalPostion
-//{
-//    NSDictionary *navBarAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-//                                      [UIFont fontWithName:fontString
-//                                                      size:fontSize],
-//                                      NSFontAttributeName,nil];
-//    [navBar setTitleTextAttributes:navBarAttributes];
-//    [navBar setTitleVerticalPositionAdjustment:verticalPostion forBarMetrics:UIBarMetricsDefault];
-//}
 
 + (void)setBackgroundImage:(UIImage *)bgImage ForView:(UIView *)view
 {

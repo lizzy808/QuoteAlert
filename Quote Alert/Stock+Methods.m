@@ -27,8 +27,6 @@
     NSArray *repos = [context executeFetchRequest:fetchRequest error:nil];
     
     if ([repos count]==0) {
-//        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Stock" inManagedObjectContext:context];
-//        Stock *repository = [[Stock alloc] initWithEntity:entity insertIntoManagedObjectContext:nil];
 
         Stock *repository = [NSEntityDescription insertNewObjectForEntityForName:@"Stock" inManagedObjectContext:context];
         

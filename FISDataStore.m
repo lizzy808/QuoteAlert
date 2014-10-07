@@ -76,7 +76,6 @@
         
         _fetchedStockResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:stockFetch managedObjectContext:[self managedObjectContext] sectionNameKeyPath:nil cacheName:nil];
         
-        
         [_fetchedStockResultsController performFetch:nil];
     }
     return _fetchedStockResultsController;
@@ -171,17 +170,12 @@
     }];
 }
 
-//- (void)saveStock:(Stock *)stock AtIndexPath:(NSIndexPath *)indexPath
-//{
-//    stock = [self.fetchedStockResultsController objectAtIndexPath:indexPath];
-//    [self.stocks addObject:stock];
-//}
-
 
 - (void)addStock:(id)stock
 {
     [self.stocks addObject:stock];
 }
+
 
 - (BOOL)removeStock:(Stock *)stock
 {
@@ -199,21 +193,7 @@
     [self.managedObjectContext deleteObject:stock];
 }
 
-//- (void)createInitialData
-//{
-//    NSFetchRequest *sectionFetch = [NSFetchRequest fetchRequestWithEntityName:@"Section"];
-//    
-//    if ([[self.managedObjectContext executeFetchRequest:sectionFetch error:nil] count] == 0)
-//    {
-//            [YahooAPIClient searchForStockDetails:@"YHOO" withCompletion:^(NSDictionary *stockDictionary) {
-//                NSLog(@"%@", stockDictionary);
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    self.stockDict = stockDictionary;
-//                });
-//            }];
-//        [self saveContext];
-//        }
-//}
+
 
 
 @end

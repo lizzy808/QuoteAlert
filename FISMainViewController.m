@@ -17,11 +17,10 @@
 
 @interface FISMainViewController ()
 
-@property (nonatomic) NSArray *stocks;
+@property (nonatomic) NSMutableArray *stocks;
 @property (nonatomic) FISDataStore *dataStore;
 @property (strong, nonatomic) Stock *stock;
 @property (strong, nonatomic) NSDictionary *stockDict;
-
 
 
 @end
@@ -52,8 +51,8 @@
     self.stockTableView.delegate = self;
     self.stockTableView.dataSource = self;
     self.dataStore.fetchedStockResultsController.delegate= self;
-     
 }
+
 
 - (void)initialize
 {
@@ -62,6 +61,7 @@
     self.dataStore.fetchedStockResultsController.delegate = self;
 }
 
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -69,18 +69,8 @@
     [self.dataStore.fetchedStockResultsController performFetch:nil];
     
     [self.stockTableView reloadData];
-//
-//    [self.dataStore saveSearchedStockSymbol:self.dataStore.searchSymbol];
-//    UITableViewCell *cell = [self.stockTableView cellForRowAtIndexPath:self.indexPath];
-//
-//    if (![[self.stockTableView cellForRowAtIndexPath:self.indexPath] isEqual:nil])
-//    {
-//        [self.dataStore addStockDetailsWithSymbol:self.dataStore.searchSymbol];
-//        NSLog(@"%@", self.dataStore.searchSymbol);
-//   
-//        [self.stockTableView reloadData];
-//    }
 }
+
 
 - (void) setupNavBar
 {
@@ -88,20 +78,24 @@
     [self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
 }
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 80;
 }
 
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -146,23 +140,12 @@
     return cell;
 }
 
-//- (UITableViewCell *)configureSimpleStockCellAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    UITableViewCell *cell = [self.stockTableView dequeueReusableCellWithIdentifier:@"basicCell"];
-//    
-//    Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
-//    
-//    cell.textLabel.text = self.stock.symbol;
-//    
-//    return cell;
-//}
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self performSegueWithIdentifier:@"stockDetailSegue" sender:self];
     
-    Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
+//    Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
 }
 
 
@@ -256,6 +239,9 @@
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         [self.dataStore deleteStockAtIndexPay:indexPath];
+        [self.stocks removeObjectAtIndex:indexPath.row];
+        [tableView reloadData];
+        
     } else if (editingStyle == UITableViewCellEditingStyleInsert)
     {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view

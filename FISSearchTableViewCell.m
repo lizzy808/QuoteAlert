@@ -49,11 +49,11 @@
     self.companyNameLabel.text = @"Google";
     self.exchangeNameLabel.text = @"GOOG";
     
-    self.stockNameLabel.font = [UIFont fontWithName:@"Arial" size:14];
+    self.stockNameLabel.font = [UIFont fontWithName:@"Arial" size:20];
     self.stockNameLabel.textColor = [UIColor whiteColor];
     self.companyNameLabel.font = [UIFont fontWithName:@"Arial" size:14];
     self.companyNameLabel.textColor = [UIColor whiteColor];
-    self.exchangeNameLabel.font = [UIFont fontWithName:@"Arial" size:14];
+    self.exchangeNameLabel.font = [UIFont fontWithName:@"Arial" size:20];
     self.exchangeNameLabel.textColor = [UIColor whiteColor];
     
     return self;

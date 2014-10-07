@@ -55,28 +55,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self viewStockDetail];
-//    [self saveQuoteAlerts];
 
     self.dataStore = [FISDataStore sharedDataStore];
-    // Do any additional setup after loading the view.
     self.dataStore.fetchedStockResultsController.delegate= self;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-//- (void)saveQuoteAlerts
-//{
-//    self.qaHighTextField.text = self.stock.userAlertPriceHigh;
-//    self.qaLowTextField.text = self.stock.userAlertPriceLow;
-//    
-//    [self.dataStore saveContext];
-//}
 
 - (void)viewStockDetail
 {
@@ -123,16 +112,6 @@
     [self.yieldLabel setTextColor:[UIColor yellowColor]];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)backBarButtonTapped:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -147,5 +126,6 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 
 }
+
 
 @end

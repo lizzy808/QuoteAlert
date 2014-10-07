@@ -29,11 +29,14 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *stockSearchTableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *stockSearchBar;
-- (IBAction)doneButtonTapped:(id)sender;
+- (IBAction)cancelButtonTapped:(id)sender;
 
 @end
 
 @implementation FISSearchTableViewController
+
+
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -74,6 +77,7 @@
     return 1;
 }
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
@@ -83,7 +87,6 @@
         return [self.stocks count]; 
     }
 }
-
 
 
 - (FISSearchTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -101,28 +104,24 @@
             cell.exchangeNameLabel.text = searchResultDetails[@"exchDisp"];
             cell.companyNameLabel.text = searchResultDetails[@"name"];
             cell.stockNameLabel.text = searchResultDetails[@"symbol"];
-
         }
         return cell;
     }
-    
     FISSearchTableViewCell *cell = (FISSearchTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"searchCell"];
     
     [self configureCell:cell atIndexPath:indexPath];
-    
     return cell;
-    
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 90;
 }
 
+
 - (void)configureCell:(FISSearchTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-//    Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
-    
     cell.exchangeNameLabel.text = self.searchedStock.stockExchange;
     cell.companyNameLabel.text = self.searchedStock.name;
     cell.stockNameLabel.text = self.searchedStock.symbol;
@@ -135,6 +134,7 @@
     self.searchResults = [self.stocks filteredArrayUsingPredicate:resultPredicate];
 }
 
+
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
     [self filterContentForSearchText:searchString
@@ -142,6 +142,7 @@
                        objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
     return YES;
 }
+
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
 {
@@ -151,9 +152,6 @@
     return YES;
 }
 
-- (IBAction)doneButtonTapped:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
         [YahooAPIClient searchForStockWithName:searchBar.text withCompletion:^(NSArray *stockDictionaries) {
@@ -164,7 +162,6 @@
                 [self.searchDisplayController.searchResultsTableView reloadData];
             });
         }];
-    
 }
 
 
@@ -178,19 +175,9 @@
     NSLog(@"%@",self.searchedStock);
 }
 
-//- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
-//{
-//    [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-//}
-
-//Handle selection on searchBar
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    [NSDictionary *searchResult = self.searchResults [indexPath.row]];
-    
     NSString *searchSymbol = self.searchResults[indexPath.row][@"symbol"];
     
     [YahooAPIClient searchForStockDetails:searchSymbol withCompletion:^(NSDictionary *stockDictionary) {
@@ -200,45 +187,13 @@
         [self dismissViewControllerAnimated:YES completion:nil];
 
     }];
-
-//    [self.navigationController popToRootViewControllerAnimated:YES];
 }
-//    [self.dataStore saveSearchedStockSymbol:searchSymbol];
 
-    
-//cell.exchangeNameLabel.text = searchResult[@"exchDisp"];
-//cell.companyNameLabel.text = searchResult[@"name"];
-//cell.stockNameLabel.text = searchResult[@"symbol"];
-//
-//NSString *searchedSymbol = searchResult[@"symbol"];
-//[self.dataStore saveSearchedStockSymbol:searchedSymbol];
 
-//    NSString *cellString = [NSString stringWithString:cell.textLabel.text];
-    
-////////////// attempt to pass stock symbol into Detail API call////
-//    if ([self.selectedCells containsObject:@(indexPath.row)]) {
-//        [YahooAPIClient searchForStockDetails:cellString withCompletion:^(NSDictionary *stockDictionary) {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                self.detailResults = stockDictionary;
-//                
-//                NSLog(@"%@", stockDictionary);
-//
-//                
-//                FISMainViewController *mainVC = [[self storyboard] instantiateViewControllerWithIdentifier:@"FISMainViewController"];
-//                [self.navigationController pushViewController:mainVC animated:YES];
-//            });
-//        }];
-//        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//        [self.selectedCells removeObject:@(indexPath.row)];
-//    }
-    
-//    if (tableView == self.searchDisplayController.searchResultsTableView) {
-//        [self dismissViewControllerAnimated:YES completion:nil];
-//        [self performSegueWithIdentifier: @"UpdateData" sender: self];
-    
-//    [self dismissViewControllerAnimated:YES completion:nil];
+- (IBAction)cancelButtonTapped:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
-//    }
 
 
 @end

@@ -55,13 +55,7 @@
     return self;
 }
 
-//- (void)layoutSubviews
-//{
-//    UIView *blackView = [UIView new];
-//    blackView.backgroundColor = [UIColor blackColor];
-//    self.cell.backgroundView = blackView;
-//    [self.cell.contentView setTintColor:[UIColor darkGrayColor]];
-//}
+
 
 
 

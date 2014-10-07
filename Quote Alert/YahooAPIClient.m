@@ -41,8 +41,6 @@
         
         if (response)
         {
-            //NSLog(@"response = %@", response);
-            
             NSString *newString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
             NSString *cleanJSON = [newString substringFromIndex:39];
             cleanJSON = [cleanJSON substringToIndex:[cleanJSON length]-1];
@@ -60,41 +58,6 @@
     }] resume];
 }
 
-//
-//+ (void)searchForStockWithName:(NSString *)name withCompletion:(void (^)(NSArray *stockDictionaries))completion
-//{
-//
-//    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
-//    NSString *yahooURLString = [NSString stringWithFormat:@"http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=%@&callback=YAHOO.Finance.SymbolSuggest.ssCallback", name];
-//
-//    NSLog(@"URL = %@", yahooURLString);
-//    
-//    [sessionManager GET:yahooURLString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//        NSLog(@"searchForStockWithName %@",responseObject);
-//        //Completion ((NSArray *)responseObject);
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        NSLog(@"%@",error);
-//    }];
-//
-//}
-//
-/*
-+(void)getStockSearchResults:(FISStockSearch *)searchResults withCompletion:(void (^)(NSArray *))completionBlock
-{
-    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
-    
-    NSString *symbol =searchResults.symbol;
-    NSString *yahooURLString = [NSString stringWithFormat:@"http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=%@&callback=YAHOO.Finance.SymbolSuggest.ssCallback", symbol];
-    NSLog(@"%@", yahooURLString);
-
-        [sessionManager GET:yahooURLString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSLog(@"getStockSearchResults %@",responseObject);
-            Completion ((NSArray *)responseObject);
-          } failure:^(NSURLSessionDataTask *task, NSError *error) {
-              NSLog(@"%@",error);
-          }];
-}
-*/
 
 + (void)searchForStockDetails:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion
 {
@@ -108,20 +71,15 @@
     NSURLSession *session = [NSURLSession sharedSession];
     [[session dataTaskWithURL:[NSURL URLWithString:yahooDetailURLString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
-        //NSLog(@"searchForStockDetails data=%@", data);
-        
         NSString *newString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
         
         NSLog(@"searchForStockDetails %@", newString);
-
         
         NSDictionary *stockDetailDictionary = [NSJSONSerialization JSONObjectWithData:[newString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *stockQuoteDictionary = stockDetailDictionary [@"query"][@"results"][@"quote"];
         
         completion(stockQuoteDictionary);
-        
     }] resume];
-    
 }
 
 
