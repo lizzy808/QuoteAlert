@@ -38,12 +38,26 @@
 //////////////UIBackgroundFetch/////////////////
 
 
-//- (void)                application:(UIApplication *)application
-//  performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
-//{
-//    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
-//    
+- (void)                application:(UIApplication *)application
+  performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
+    
+    NSLog(@"Perfoming fetch");
+    
+    [YahooAPIClient searchForStockDetails:@"TSLA" withCompletion:^(NSDictionary *stockDictionary)
+    
+    {
+//        [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
+//        [self.dataStore saveContext];
+        
+//        [self dismissViewControllerAnimated:YES completion:nil];
+        
+    }];
+
+    
+    
 //    NSURL *url = [[NSURL alloc] initWithString:@"http://yourserver.com/data.json"];
 //    NSURLSessionDataTask *task = [session dataTaskWithURL:url
 //                                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -61,10 +75,10 @@
 //                                                completionHandler(UIBackgroundFetchResultNoData);
 //                                            };
 //                                        }];
-//    
-//    // Start the task
+    
+    // Start the task
 //    [task resume];
-//}
+}
 
 
 /*

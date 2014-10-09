@@ -32,7 +32,9 @@
         
         repository.symbol = [self nullCheckWithObject:stockDetailDictionary[@"Symbol"]];
         
-        repository.bidPrice = [self nullCheckWithObject:stockDetailDictionary [@"Bid"]];
+//        repository.bidPrice = [self nullCheckWithObject:stockDetailDictionary [@"Bid"]];
+
+        repository.bidPrice = [self nullCheckWithObject:stockDetailDictionary [@"LastTradePriceOnly"]];
         
         repository.change = [self nullCheckWithObject:stockDetailDictionary[@"Change"]];
         
@@ -65,7 +67,8 @@
     } else
     {
         Stock *selectedRepo = [repos lastObject];
-        selectedRepo.bidPrice = [self nullCheckWithObject:stockDetailDictionary[@"Bid"]];
+        selectedRepo.bidPrice = [self nullCheckWithObject:stockDetailDictionary[@"LastTradePriceOnly"]];
+//        selectedRepo.bidPrice = [self nullCheckWithObject:stockDetailDictionary[@"Bid"]];
         selectedRepo.change = [self nullCheckWithObject:stockDetailDictionary[@"Change"]];
         selectedRepo.volume = [self nullCheckWithObject:stockDetailDictionary[@"Volume"]];
         selectedRepo.dayHigh = [self nullCheckWithObject:stockDetailDictionary[@"DaysHigh"]];

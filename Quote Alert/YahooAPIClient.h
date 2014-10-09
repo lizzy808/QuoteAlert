@@ -13,11 +13,13 @@
 
 @interface YahooAPIClient : NSObject
 
+
+
 + (void)searchForStockWithName: (NSString *)name withCompletion:(void(^)(NSArray *stockDictionaries))completion;
 
 + (void)searchForStockDetails:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion;
 
-+ (void)fetchUserStocks:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion;
+- (void)fetchAllUserStocksWithCompletion:(void (^)(NSDictionary *))completion;
 
 
 @end

@@ -125,6 +125,7 @@
     [self.dataStore saveContext];
     [self dismissViewControllerAnimated:YES completion:nil];
 
+    NSLog(@"High price limit:%@, Low Price Limit: %@", self.qaHighTextField, self.qaLowTextField);
 }
 
 

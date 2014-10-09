@@ -80,11 +80,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Quote Alert/Stock+Methods.m"
-            timestampString = "434402457.445491"
+            timestampString = "434483237.02415"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "+stockWithStockDetailDictionary:Context:"
             landmarkType = "5">
          </BreakpointContent>
@@ -96,11 +96,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Quote Alert/Stock+Methods.m"
-            timestampString = "434402457.445491"
+            timestampString = "434483237.02415"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107">
+            startingLineNumber = "110"
+            endingLineNumber = "110">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -110,11 +110,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Quote Alert/Stock+Methods.m"
-            timestampString = "434402457.445491"
+            timestampString = "434483237.02415"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126">
+            startingLineNumber = "129"
+            endingLineNumber = "129">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -204,11 +204,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FISSearchTableViewController.m"
-            timestampString = "434401423.362977"
+            timestampString = "434511625.939447"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "-searchBarSearchButtonClicked:"
             landmarkType = "5">
          </BreakpointContent>
@@ -252,11 +252,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FISSearchTableViewController.m"
-            timestampString = "434401423.362977"
+            timestampString = "434511625.939447"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -268,11 +268,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Quote Alert/Stock+Methods.m"
-            timestampString = "434402457.445491"
+            timestampString = "434483237.02415"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "+stockWithStockDetailDictionary:Context:"
             landmarkType = "5">
          </BreakpointContent>
@@ -380,11 +380,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Quote Alert/Stock+Methods.m"
-            timestampString = "434402457.445491"
+            timestampString = "434483237.02415"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "+stockWithStockDetailDictionary:Context:"
             landmarkType = "5">
          </BreakpointContent>
@@ -396,11 +396,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Quote Alert/Stock+Methods.m"
-            timestampString = "434402457.445491"
+            timestampString = "434483237.02415"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "+stockWithStockDetailDictionary:Context:"
             landmarkType = "5">
          </BreakpointContent>
@@ -476,11 +476,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FISSearchTableViewController.m"
-            timestampString = "434401423.362977"
+            timestampString = "434511625.939447"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "-searchBarSearchButtonClicked:"
             landmarkType = "5">
             <Locations>

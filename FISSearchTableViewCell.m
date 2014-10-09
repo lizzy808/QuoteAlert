@@ -42,7 +42,7 @@
 
 - (instancetype)configuredWithSearchedStock:(FISStockSearch *)searchedStock
 {
-    NSLog(@"HI!!!");
+    NSLog(@"HI!!!"); 
     self.searchedStock = searchedStock;
   
     self.stockNameLabel.text  = @"GOOG";

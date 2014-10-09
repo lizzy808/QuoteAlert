@@ -60,11 +60,13 @@
     self.dataStore.fetchedStockResultsController.delegate = self;
 }
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 - (void) setupNavBar
 {
@@ -172,7 +174,7 @@
     self.stockSearchTableView.delegate = self;
     self.stockSearchTableView.dataSource = self;
     self.dataStore.fetchedStockResultsController.delegate = self;
-    NSLog(@"%@",self.searchedStock);
+    NSLog(@"searched stock = %@",self.searchedStock);
 }
 
 
