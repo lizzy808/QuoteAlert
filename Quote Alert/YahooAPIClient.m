@@ -87,14 +87,14 @@
 }
 
 
--(void)fetchAllUserStocksWithCompletion:(void (^)(NSDictionary *))completion
-{
+//-(void)fetchAllUserStocksWithCompletion:(void (^)(NSDictionary *))completion
+//{
+//
+//    for (Stock *stock in [_dataStore.fetchedStockResultsController.fetchedObjects])
+//    {
+//        NSLog(@"Stock %@", stock.symbol);
+//    }
 
-    for (Stock *stock in [_dataStore.fetchedStockResultsController.fetchedObjects])
-    {
-        NSLog(@"Stock %@", stock.symbol);
-    }
-    
 //    
 //    Stock *stock = [_dataStore.fetchedStockResultsController objectAtIndexPath:]
 //    _dataStore
@@ -117,7 +117,7 @@
 //        
 //    }] resume];
 //    
-}
+//}
 
 
 @end

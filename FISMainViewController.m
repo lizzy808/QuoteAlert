@@ -51,6 +51,21 @@
     self.stockTableView.delegate = self;
     self.stockTableView.dataSource = self;
     self.dataStore.fetchedStockResultsController.delegate= self;
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    [self.stockTableView addSubview:refreshControl];
+}
+
+
+- (void)refresh:(UIRefreshControl *)refreshControl {
+    [self.dataStore.fetchedStockResultsController performFetch:nil];
+    
+    [self.stockTableView reloadData];
+    
+    NSLog(@"Refreshing data!");
+    
+    [refreshControl endRefreshing];
 }
 
 

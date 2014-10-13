@@ -316,7 +316,7 @@
 				ORGANIZATIONNAME = "Elizabeth Choy";
 				TargetAttributes = {
 					5575C71C18E0E6E100ABB124 = {
-						DevelopmentTeam = KXY9EDFTF5;
+						DevelopmentTeam = N6UNXACD7P;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
