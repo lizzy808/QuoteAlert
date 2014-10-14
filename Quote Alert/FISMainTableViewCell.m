@@ -44,6 +44,8 @@
     self.alertPriceHighLabel.text = self.stock.userAlertPriceHigh;
     self.alertPriceLowLabel.text = self.stock.userAlertPriceLow;
     
+    
+    
     self.symbolLabel.font = [UIFont fontWithName:@"Ubuntu" size:16];
     self.symbolLabel.textColor = [UIColor greenColor];
     self.bidPriceLabel.font = [UIFont fontWithName:@"Ubuntu" size:14];

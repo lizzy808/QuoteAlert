@@ -14,6 +14,7 @@
 #import "FISStockDetailViewController.h"
 #import "FISSearchTableViewController.h"
 #import "YahooAPIClient.h"
+#import "UIColorSheet.h"
 
 @interface FISMainViewController ()
 
@@ -136,6 +137,15 @@
     cell.dayChangeLabel.text = stock.change;
     cell.alertPriceHighLabel.text = stock.userAlertPriceHigh;
     cell.alertPriceLowLabel.text = stock.userAlertPriceLow;
+    
+    int stockChangeFloat = [stock.change intValue];
+    
+    if (stockChangeFloat >= 0.00) {
+        [cell.dayChangeColorButton setBackgroundColor:[UIColor greenColor]];
+    }
+    else{
+        [cell.dayChangeColorButton setBackgroundColor:[UIColor redColor]];
+    }
     
     [cell.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:18]];
     [cell.symbolLabel setTextColor:[UIColor whiteColor]];
