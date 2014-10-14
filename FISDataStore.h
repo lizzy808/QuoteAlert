@@ -29,6 +29,8 @@
 
 - (void)addStock:(Stock *)stock;
 
+- (void)refreshUserStocks:(NSMutableArray *)symbols;
+
 - (BOOL)removeStock:(Stock *)stock;
 
 - (void)deleteStockAtIndexPay:(NSIndexPath *)indexPath;

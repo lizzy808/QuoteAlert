@@ -86,6 +86,33 @@
     }] resume];
 }
 
+//- (void)fetchAllUserStocksUpdates:(NSString *)symbols withCompletion:(void (^)(NSDictionary *))completion
+//{
+
+//    for (NSString *symbol in [_dataStore.stocks]) {
+//    
+//        NSString *yahooDetailURLString = @"http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22";
+//        yahooDetailURLString = [yahooDetailURLString stringByAppendingString:symbol];
+//        yahooDetailURLString = [yahooDetailURLString stringByAppendingString:@"%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback="];
+//    
+//        NSLog(@"SearchForStockDetails URL = %@",yahooDetailURLString );
+//    
+//        NSURLSession *session = [NSURLSession sharedSession];
+//        [[session dataTaskWithURL:[NSURL URLWithString:yahooDetailURLString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//        
+//        NSString *newString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+//        
+//        NSLog(@"searchForStockDetails %@", newString);
+//        
+//        NSDictionary *stockDetailDictionary = [NSJSONSerialization JSONObjectWithData:[newString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+//        NSDictionary *stockQuoteDictionary = stockDetailDictionary [@"query"][@"results"][@"quote"];
+//        
+//        completion(stockQuoteDictionary);
+//            
+//    }] resume];
+//}
+    
+    
 
 //-(void)fetchAllUserStocksWithCompletion:(void (^)(NSDictionary *))completion
 //{
@@ -121,3 +148,4 @@
 
 
 @end
+

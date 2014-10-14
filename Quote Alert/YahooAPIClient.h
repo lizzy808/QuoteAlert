@@ -19,7 +19,7 @@
 
 + (void)searchForStockDetails:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion;
 
-- (void)fetchAllUserStocksWithCompletion:(void (^)(NSDictionary *))completion;
+- (void)fetchAllUserStocksUpdates: (NSString *)symbols withCompletion:(void (^)(NSDictionary *))completion;
 
 
 @end

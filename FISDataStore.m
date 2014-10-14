@@ -152,7 +152,7 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-
+/////////////////////////////////////////////////////////////////
 - (void)addStockDetailsWithSymbol:(NSString *)symbolName
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Stock"];
@@ -163,7 +163,26 @@
     }
     [YahooAPIClient searchForStockDetails:self.searchSymbol withCompletion:^(NSDictionary *detailDictionaries) {
         NSMutableArray *coreDataStocks = [NSMutableArray new];
-        for (NSDictionary *detailDict in detailDictionaries) {
+        for (NSDictionary *detailDict in detailDictionaries)
+        {
+            [Stock stockWithStockDetailDictionary:detailDict Context:self.managedObjectContext];
+            [coreDataStocks addObject:[Stock stockWithStockDetailDictionary:detailDict Context:self.managedObjectContext]];
+        }
+    }];
+}
+
+- (void)refreshUserStocks:(NSMutableArray *)symbols
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Stock"];
+//    NSMutableArray *allStocks = [[NSMutableArray alloc]initWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:nil]];
+    
+    for (Stock *stock in self.stocks) {
+        [self.managedObjectContext deleteObject:stock];
+    }
+    [YahooAPIClient searchForStockDetails:self.searchSymbol withCompletion:^(NSDictionary *detailDictionaries) {
+        NSMutableArray *coreDataStocks = [NSMutableArray new];
+        for (NSDictionary *detailDict in detailDictionaries)
+        {
             [Stock stockWithStockDetailDictionary:detailDict Context:self.managedObjectContext];
             [coreDataStocks addObject:[Stock stockWithStockDetailDictionary:detailDict Context:self.managedObjectContext]];
         }

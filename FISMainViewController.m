@@ -16,6 +16,7 @@
 #import "YahooAPIClient.h"
 #import "UIColorSheet.h"
 
+
 @interface FISMainViewController ()
 
 @property (nonatomic) NSMutableArray *stocks;
@@ -58,17 +59,38 @@
     [self.stockTableView addSubview:refreshControl];
 }
 
+//////////////Breakpoint not hit during refresh/////////////
 
 - (void)refresh:(UIRefreshControl *)refreshControl {
+    
+    for (NSString *searchSymbol in self.stocks) {
+//        if (self.stocks != nil) {
+            [YahooAPIClient searchForStockDetails:searchSymbol withCompletion:^(NSDictionary *stockDictionary) {
+                [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
+                [self.dataStore saveContext];
+                NSLog(@"Refreshing?");
+            }];
+//        }
+    }
     [self.dataStore.fetchedStockResultsController performFetch:nil];
-    
     [self.stockTableView reloadData];
-    
-    NSLog(@"Refreshing data!");
-    
+    NSLog(@"Refeshing Data!");
     [refreshControl endRefreshing];
 }
 
+
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    NSString *searchSymbol = self.searchResults[indexPath.row][@"symbol"];
+//    
+//    [YahooAPIClient searchForStockDetails:searchSymbol withCompletion:^(NSDictionary *stockDictionary) {
+//        [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
+//        [self.dataStore saveContext];
+//        
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//        
+//    }];
+//}
 
 - (void)initialize
 {
@@ -157,10 +179,10 @@
     [cell.dayChangeLabel setTextColor:[UIColor whiteColor]];
     
     [cell.alertPriceHighLabel setFont:[UIFont fontWithName:@"Arial" size:16]];
-    [cell.alertPriceHighLabel setTextColor:[UIColor whiteColor]];
+    [cell.alertPriceHighLabel setTextColor:[UIColor yellowColor]];
     
     [cell.alertPriceLowLabel setFont:[UIFont fontWithName:@"Arial" size:16]];
-    [cell.alertPriceLowLabel setTextColor:[UIColor whiteColor]];
+    [cell.alertPriceLowLabel setTextColor:[UIColor yellowColor]];
     
     return cell;
 }
