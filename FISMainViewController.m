@@ -63,6 +63,9 @@
 
 - (void)refresh:(UIRefreshControl *)refreshControl {
     
+
+    // The previous loop using self.stocks never appeared to have any stocks in it so the YahooAPIClient method was never getting called
+    /*
     for (NSString *searchSymbol in self.stocks) {
 //        if (self.stocks != nil) {
             [YahooAPIClient searchForStockDetails:searchSymbol withCompletion:^(NSDictionary *stockDictionary) {
@@ -72,10 +75,46 @@
             }];
 //        }
     }
-    [self.dataStore.fetchedStockResultsController performFetch:nil];
-    [self.stockTableView reloadData];
-    NSLog(@"Refeshing Data!");
-    [refreshControl endRefreshing];
+    */
+    
+    
+    
+    // Enumerate (loop) through all the stocks in the datastore
+//    for (Stock *stock in [self.dataStore.fetchedStockResultsController fetchedObjects])
+//    {
+//        NSLog(@"Attempting to refresh %@ with previous bidprice = %@", stock.symbol, stock.bidPrice);
+//        
+//        [YahooAPIClient searchForStockDetails:stock.symbol withCompletion:^(NSDictionary *stockDictionary) {
+//            [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
+//            [self.dataStore saveContext];
+//            NSLog(@"%@ now has bidprice = %@", stock.symbol, stock.bidPrice);
+//            
+//            // Make sure table is refreshed with the new data
+//            [self.stockTableView reloadData];
+//            
+//            
+//        }];
+//        
+//        
+//    }
+
+    
+    [YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
+        
+        if (isSuccessful)
+        {
+            NSLog(@"Was successful");
+            [refreshControl endRefreshing];
+            [self.stockTableView reloadData];
+        }
+
+        else
+        {
+            NSLog(@"Not successful");
+        }
+    }];
+    
+
 }
 
 
