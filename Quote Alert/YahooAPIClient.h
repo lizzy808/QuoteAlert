@@ -19,7 +19,9 @@
 
 + (void)searchForStockDetails:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion;
 
-- (void)fetchAllUserStocksUpdates: (NSString *)symbols withCompletion:(void (^)(NSDictionary *))completion;
+
+// Method to loop through all user stocks from the datastore and update them. Passes a simple boolean YES if complete
++ (void)fetchAllUserStocksUpdatesWithCompletion:(void (^)(BOOL))completed;
 
 
 @end

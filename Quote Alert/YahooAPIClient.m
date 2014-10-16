@@ -77,7 +77,7 @@
         
         NSString *newString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
         
-        NSLog(@"searchForStockDetails %@", newString);
+        //NSLog(@"searchForStockDetails %@", newString);
         
         NSDictionary *stockDetailDictionary = [NSJSONSerialization JSONObjectWithData:[newString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *stockQuoteDictionary = stockDetailDictionary [@"query"][@"results"][@"quote"];
@@ -86,36 +86,58 @@
     }] resume];
 }
 
-//- (void)fetchAllUserStocksUpdates:(NSString *)symbols withCompletion:(void (^)(NSDictionary *))completion
-//{
 
-//    for (NSString *symbol in [_dataStore.stocks]) {
-//    
-//        NSString *yahooDetailURLString = @"http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22";
-//        yahooDetailURLString = [yahooDetailURLString stringByAppendingString:symbol];
-//        yahooDetailURLString = [yahooDetailURLString stringByAppendingString:@"%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback="];
-//    
-//        NSLog(@"SearchForStockDetails URL = %@",yahooDetailURLString );
-//    
-//        NSURLSession *session = [NSURLSession sharedSession];
-//        [[session dataTaskWithURL:[NSURL URLWithString:yahooDetailURLString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//        
-//        NSString *newString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-//        
-//        NSLog(@"searchForStockDetails %@", newString);
-//        
-//        NSDictionary *stockDetailDictionary = [NSJSONSerialization JSONObjectWithData:[newString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
-//        NSDictionary *stockQuoteDictionary = stockDetailDictionary [@"query"][@"results"][@"quote"];
-//        
-//        completion(stockQuoteDictionary);
-//            
-//    }] resume];
-//}
+
+// Method to loop through all user stocks from the datastore and update them. Passes a simple boolean YES if complete
++ (void)fetchAllUserStocksUpdatesWithCompletion:(void (^)(BOOL))completed;
+{
+    
+    //
+    // Since we need to access these vars from within the block we need to add __block to them
+    // For more documentation see https://developer.apple.com/library/ios/documentation/cocoa/Conceptual/Blocks/Articles/bxVariables.html
+    //
+    
+    __block int totalStocks;                        // Show the total number of stocks to get
+    __block int stockResultsReceived = 0;           // Counter for how many results we have received
+    
+    // Get the total number of stocks we are expecting
+    totalStocks = (int)[[FISDataStore sharedDataStore].fetchedStockResultsController fetchedObjects].count;
+    
+    // Enumerate (loop) through all the stocks in the datastore
+    for (Stock *stock in [[FISDataStore sharedDataStore].fetchedStockResultsController fetchedObjects])
+    {
+        NSLog(@"Attempting to refresh %@ with previous bidprice = %@", stock.symbol, stock.bidPrice);
+
+        
+        [YahooAPIClient searchForStockDetails:stock.symbol withCompletion:^(NSDictionary *stockDictionary) {
+            [Stock stockWithStockDetailDictionary:stockDictionary Context:[FISDataStore sharedDataStore].managedObjectContext];
+            [[FISDataStore sharedDataStore] saveContext];
+            
+            NSLog(@"%@ now has bidprice = %@", stock.symbol, stock.bidPrice);
+            
+            // Increment results received
+            stockResultsReceived = stockResultsReceived + 1;
+            
+            if (stockResultsReceived >= totalStocks)
+            {
+                NSLog(@"Finished retrieving data");
+                // Send completion to the caller of this method
+                completed(YES);
+            }
+        }];
+        
+    }
     
     
+}
 
-//-(void)fetchAllUserStocksWithCompletion:(void (^)(NSDictionary *))completion
-//{
+
+    
+    
+    
+    
+    
+    
 //
 //    for (Stock *stock in [_dataStore.fetchedStockResultsController.fetchedObjects])
 //    {
