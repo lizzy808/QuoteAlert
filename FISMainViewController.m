@@ -57,47 +57,34 @@
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     [self.stockTableView addSubview:refreshControl];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+    selector:@selector(reloadData:)
+    name:@"EnteredForeground"
+    object:nil];
+}
+
+- (void)reloadData:(id)object {
+    
+    [YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
+        
+        if (isSuccessful)
+        {
+            NSLog(@"Was successful");
+            [self.stockTableView reloadData];
+        }
+        
+        else
+        {
+            NSLog(@"Not successful");
+        }
+    }];
+    NSLog(@"reloaded Data from foreground");
 }
 
 //////////////Breakpoint not hit during refresh/////////////
 
 - (void)refresh:(UIRefreshControl *)refreshControl {
-    
-
-    // The previous loop using self.stocks never appeared to have any stocks in it so the YahooAPIClient method was never getting called
-    /*
-    for (NSString *searchSymbol in self.stocks) {
-//        if (self.stocks != nil) {
-            [YahooAPIClient searchForStockDetails:searchSymbol withCompletion:^(NSDictionary *stockDictionary) {
-                [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
-                [self.dataStore saveContext];
-                NSLog(@"Refreshing?");
-            }];
-//        }
-    }
-    */
-    
-    
-    
-    // Enumerate (loop) through all the stocks in the datastore
-//    for (Stock *stock in [self.dataStore.fetchedStockResultsController fetchedObjects])
-//    {
-//        NSLog(@"Attempting to refresh %@ with previous bidprice = %@", stock.symbol, stock.bidPrice);
-//        
-//        [YahooAPIClient searchForStockDetails:stock.symbol withCompletion:^(NSDictionary *stockDictionary) {
-//            [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
-//            [self.dataStore saveContext];
-//            NSLog(@"%@ now has bidprice = %@", stock.symbol, stock.bidPrice);
-//            
-//            // Make sure table is refreshed with the new data
-//            [self.stockTableView reloadData];
-//            
-//            
-//        }];
-//        
-//        
-//    }
-
     
     [YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
         
@@ -141,11 +128,25 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
     
-    [self.dataStore.fetchedStockResultsController performFetch:nil];
+//    [self.dataStore.fetchedStockResultsController performFetch:nil];
     
-    [self.stockTableView reloadData];
+    [YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
+        
+        if (isSuccessful)
+        {
+            NSLog(@"Was successful");
+            [self.stockTableView reloadData];
+        }
+        
+        else
+        {
+            NSLog(@"Not successful");
+        }
+    }];
+    
+//    [self.stockTableView reloadData];
 }
 
 

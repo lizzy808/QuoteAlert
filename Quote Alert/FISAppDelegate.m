@@ -123,6 +123,8 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EnteredForeground"
+                                                        object:nil];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
