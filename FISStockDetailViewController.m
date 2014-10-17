@@ -119,8 +119,8 @@
 
 - (IBAction)saveQuotesButtonTapped:(id)sender
 {
-     self.stock.userAlertPriceHigh = self.qaHighTextField.text;
-     self.stock.userAlertPriceLow = self.qaLowTextField.text;
+     self.stock.userAlertPriceHigh = [self.qaHighTextField.text floatValue];
+     self.stock.userAlertPriceLow = [self.qaLowTextField.text floatValue];
     
     [self.dataStore saveContext];
     [self dismissViewControllerAnimated:YES completion:nil];

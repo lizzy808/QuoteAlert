@@ -41,8 +41,8 @@
     self.symbolLabel.text = self.stock.symbol;
     self.bidPriceLabel.text = self.stock.bidPrice;
     self.dayChangeLabel.text = self.stock.change;
-    self.alertPriceHighLabel.text = self.stock.userAlertPriceHigh;
-    self.alertPriceLowLabel.text = self.stock.userAlertPriceLow;
+    self.alertPriceHighLabel.text = [NSString stringWithFormat:@"%.2f", self.stock.userAlertPriceHigh];
+    self.alertPriceLowLabel.text = [NSString stringWithFormat:@"%.2f", self.stock.userAlertPriceLow ];
     
     
     

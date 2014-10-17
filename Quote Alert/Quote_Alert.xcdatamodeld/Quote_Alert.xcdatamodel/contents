@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6244" systemVersion="13E28" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Stock" representedClassName="Stock" syncable="YES">
         <attribute name="averageVolume" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bidPrice" optional="YES" attributeType="String" syncable="YES"/>
@@ -11,8 +11,8 @@
         <attribute name="openPrice" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="peRatio" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="symbol" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userAlertPriceHigh" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userAlertPriceLow" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userAlertPriceHigh" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="userAlertPriceLow" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="volume" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="yearHigh" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="yearLow" optional="YES" attributeType="String" syncable="YES"/>

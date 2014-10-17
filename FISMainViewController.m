@@ -197,8 +197,8 @@
     cell.symbolLabel.text = stock.symbol;
     cell.bidPriceLabel.text = stock.bidPrice;
     cell.dayChangeLabel.text = stock.change;
-    cell.alertPriceHighLabel.text = stock.userAlertPriceHigh;
-    cell.alertPriceLowLabel.text = stock.userAlertPriceLow;
+    cell.alertPriceHighLabel.text = [NSString stringWithFormat:@"%f", stock.userAlertPriceHigh ];
+    cell.alertPriceLowLabel.text = [NSString stringWithFormat:@"%f", stock.userAlertPriceLow];
     
     int stockChangeFloat = [stock.change intValue];
     

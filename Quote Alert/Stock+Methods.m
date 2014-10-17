@@ -12,7 +12,7 @@
 
 - (NSString *)stockDetailDescription
 {
-    return [NSString stringWithFormat:@"Symbol: %@ Bid Price: %@ Change: %@ Volume: %@ Day High: %@ Day Low: %@ P/E Ratio: %@ Open Price: %@ Market Cap: %@ Year High: %@ Year Low: %@ Yield: %@ Average Volume: %@ Company:%@ User Alert Price High:%@ User Alert Price Low:%@",self.symbol,self.bidPrice,self.change,self.volume,self.dayHigh,self.dayLow,self.peRatio,self.openPrice,self.mktCap,self.yearHigh,self.yearLow,self.yield,self.averageVolume,self.companyName,self.userAlertPriceHigh,self.userAlertPriceLow];
+    return [NSString stringWithFormat:@"Symbol: %@ Bid Price: %@ Change: %@ Volume: %@ Day High: %@ Day Low: %@ P/E Ratio: %@ Open Price: %@ Market Cap: %@ Year High: %@ Year Low: %@ Yield: %@ Average Volume: %@ Company:%@ User Alert Price High:%@ User Alert Price Low:%@",self.symbol,self.bidPrice,self.change,self.volume,self.dayHigh,self.dayLow,self.peRatio,self.openPrice,self.mktCap,self.yearHigh,self.yearLow,self.yield,self.averageVolume,self.companyName,[NSString stringWithFormat:@"%.2f", self.userAlertPriceHigh],[NSString stringWithFormat:@"%.2f", self.userAlertPriceLow]];
 }
 
 
