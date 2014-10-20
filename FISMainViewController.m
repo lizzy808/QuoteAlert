@@ -82,7 +82,6 @@
     NSLog(@"reloaded Data from foreground");
 }
 
-//////////////Breakpoint not hit during refresh/////////////
 
 - (void)refresh:(UIRefreshControl *)refreshControl {
     
@@ -130,7 +129,7 @@
 {
     [super viewWillAppear:animated];
     
-//    [self.dataStore.fetchedStockResultsController performFetch:nil];
+    [self.dataStore.fetchedStockResultsController performFetch:nil];
     
     [YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
         
@@ -197,8 +196,8 @@
     cell.symbolLabel.text = stock.symbol;
     cell.bidPriceLabel.text = stock.bidPrice;
     cell.dayChangeLabel.text = stock.change;
-    cell.alertPriceHighLabel.text = [NSString stringWithFormat:@"%f", stock.userAlertPriceHigh ];
-    cell.alertPriceLowLabel.text = [NSString stringWithFormat:@"%f", stock.userAlertPriceLow];
+    cell.alertPriceHighLabel.text = [NSString stringWithFormat:@"%.2f", stock.userAlertPriceHigh ];
+    cell.alertPriceLowLabel.text = [NSString stringWithFormat:@"%.2f", stock.userAlertPriceLow];
     
     int stockChangeFloat = [stock.change intValue];
     
@@ -334,6 +333,8 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
 }
+
+
 
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
