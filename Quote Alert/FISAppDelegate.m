@@ -28,7 +28,13 @@
     
     NSLog(@"Launched in background %d", UIApplicationStateBackground == application.applicationState);
 
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    
+    UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (locationNotification) {
+        // Set icon badge number to zero
+        application.applicationIconBadgeNumber = 0;
+   
+    }
     
 //    UILocalNotification *notification = [UILocalNotification new];
 //    notification.alertBody = @"Your stock price is dropping!";
@@ -36,6 +42,26 @@
     
     return YES;
 }
+
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    UIApplicationState state = [application applicationState];
+    if (state == UIApplicationStateActive) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reminder"
+                                                        message:notification.alertBody
+                                                       delegate:self cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    // Request to reload table view data
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+    
+    // Set icon badge number to zero
+    application.applicationIconBadgeNumber = 0;
+}
+
 
 //////////////UIBackgroundFetch/////////////////
 
@@ -60,46 +86,6 @@
             NSLog(@"Not successful");
         }
     }];
-    
-    
-    
-    
-//    
-//    
-//    
-//    
-//    [YahooAPIClient searchForStockDetails:@"TSLA" withCompletion:^(NSDictionary *stockDictionary)
-//    
-//    {
-////        [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
-////        [self.dataStore saveContext];
-//        
-////        [self dismissViewControllerAnimated:YES completion:nil];
-//        
-//    }];
-//
-    
-    
-//    NSURL *url = [[NSURL alloc] initWithString:@"http://yourserver.com/data.json"];
-//    NSURLSessionDataTask *task = [session dataTaskWithURL:url
-//                                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//                                            
-//                                            if (error) {
-//                                                completionHandler(UIBackgroundFetchResultFailed);
-//                                                return;
-//                                            }
-//                                            
-//                                            // Parse response/data and determine whether new content was available
-//                                            BOOL hasNewData = ...
-//                                            if (hasNewData) {
-//                                                completionHandler(UIBackgroundFetchResultNewData);
-//                                            } else {
-//                                                completionHandler(UIBackgroundFetchResultNoData);
-//                                            };
-//                                        }];
-    
-    // Start the task
-//    [task resume];
 }
 
 
@@ -115,6 +101,7 @@
     completionHandler(UIBackgroundFetchResultNewData);
 }
 */
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
 }
