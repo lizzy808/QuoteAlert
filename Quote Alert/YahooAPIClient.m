@@ -89,6 +89,7 @@
 
 
 // Method to loop through all user stocks from the datastore and update them. Passes a simple boolean YES if complete
+
 + (void)fetchAllUserStocksUpdatesWithCompletion:(void (^)(BOOL))completed;
 {
     
@@ -124,6 +125,45 @@
                 // Send completion to the caller of this method
                 completed(YES);
             }
+            
+//    /////////////////////////////////////////
+//            
+//            if ([stock.bidPrice floatValue] >= [stock.userAlertPriceHigh])
+//            {
+//                UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+//                localNotification.fireDate = [NSDate date];
+//                localNotification.alertBody = @"%@ has reached %@", stock.symbol, stock.bidPrice;
+//                localNotification.soundName = UILocalNotificationDefaultSoundName;
+//                localNotification.alertAction = @"Show me the item";
+//                localNotification.timeZone = [NSTimeZone defaultTimeZone];
+//                localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+//                
+//                [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+//                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+//                
+//                NSLog(@"%@", localNotification);
+//            }
+//    //////////////////////////////////////////
+//            
+//            if ([stock.bidPrice floatValue] <= [stock.userAlertPriceLow])
+//            {
+//                UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+//                localNotification.fireDate = [NSDate date];
+//                localNotification.alertBody = @"%@ has fallen to %@", stock.symbol, stock.bidPrice;
+//                localNotification.soundName = UILocalNotificationDefaultSoundName;
+//                localNotification.alertAction = @"Show me the item";
+//                localNotification.timeZone = [NSTimeZone defaultTimeZone];
+//                localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+//                
+//                [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+//                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+//                
+//                NSLog(@"%@", localNotification);
+//        
+//    /////////////////////////////////////////////
+//                
+//            }
+            
         }];
         
     }
@@ -137,35 +177,35 @@
     
     
     
-    
+
 //
 //    for (Stock *stock in [_dataStore.fetchedStockResultsController.fetchedObjects])
 //    {
 //        NSLog(@"Stock %@", stock.symbol);
 //    }
 
-//    
+//
 //    Stock *stock = [_dataStore.fetchedStockResultsController objectAtIndexPath:]
 //    _dataStore
-//    
+//
 //    NSString *yahooDetailURLString = @"http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22";
 //    yahooDetailURLString = [yahooDetailURLString stringByAppendingString:symbol];
 //    yahooDetailURLString = [yahooDetailURLString stringByAppendingString:@"%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback="];
-//    
+//
 //    NSURLSession *session = [NSURLSession sharedSession];
 //    [[session dataTaskWithURL:[NSURL URLWithString:yahooDetailURLString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//        
+//
 //        NSLog(@"Data = %@", data);
-//        
+//
 //        NSString *newString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-//        
+//
 //        NSDictionary *stockDetailDictionary = [NSJSONSerialization JSONObjectWithData:[newString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
 //        NSDictionary *stockQuoteDictionary = stockDetailDictionary [@"query"][@"results"][@"quote"];
-//        
+//
 //        completion(stockQuoteDictionary);
-//        
+//
 //    }] resume];
-//    
+//
 //}
 
 
