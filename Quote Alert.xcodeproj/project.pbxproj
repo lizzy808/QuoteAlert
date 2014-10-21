@@ -40,6 +40,7 @@
 		55CA536F1901B8C2000E2A1E /* searchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55CA536E1901B8C2000E2A1E /* searchView.xib */; };
 		55CA537619041CD0000E2A1E /* navBar2.png in Resources */ = {isa = PBXBuildFile; fileRef = 55CA537519041CD0000E2A1E /* navBar2.png */; };
 		55CA538019059AA9000E2A1E /* metal_grill_darkened.png in Resources */ = {isa = PBXBuildFile; fileRef = 55CA537F19059AA9000E2A1E /* metal_grill_darkened.png */; };
+		55EAEE4D19F5EE2300186947 /* FISAlertListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55EAEE4C19F5EE2300186947 /* FISAlertListTableViewController.m */; };
 		55F66ED4190710BF000EFD3B /* Stock.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F66ED3190710BF000EFD3B /* Stock.m */; };
 		63DC8204C6874F38BD06C8F4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92968B8F8C494D1EAF8A35DD /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -102,6 +103,8 @@
 		55CA536E1901B8C2000E2A1E /* searchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = searchView.xib; sourceTree = "<group>"; };
 		55CA537519041CD0000E2A1E /* navBar2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navBar2.png; sourceTree = "<group>"; };
 		55CA537F19059AA9000E2A1E /* metal_grill_darkened.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metal_grill_darkened.png; sourceTree = "<group>"; };
+		55EAEE4B19F5EE2300186947 /* FISAlertListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISAlertListTableViewController.h; sourceTree = "<group>"; };
+		55EAEE4C19F5EE2300186947 /* FISAlertListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISAlertListTableViewController.m; sourceTree = "<group>"; };
 		55F66ED2190710BF000EFD3B /* Stock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stock.h; sourceTree = "<group>"; };
 		55F66ED3190710BF000EFD3B /* Stock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stock.m; sourceTree = "<group>"; };
 		92968B8F8C494D1EAF8A35DD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,6 +261,8 @@
 				55912D5418E5C01B0069FEEC /* FISStockDetailViewController.m */,
 				55912DA018E9082B0069FEEC /* FISSearchTableViewController.h */,
 				55912DA118E9082B0069FEEC /* FISSearchTableViewController.m */,
+				55EAEE4B19F5EE2300186947 /* FISAlertListTableViewController.h */,
+				55EAEE4C19F5EE2300186947 /* FISAlertListTableViewController.m */,
 				550D3D4818EE5879009A9406 /* UITableViewController+StyleSheet.h */,
 				550D3D4918EE5879009A9406 /* UITableViewController+StyleSheet.m */,
 			);
@@ -422,6 +427,7 @@
 				550D3D5A18F1E3B6009A9406 /* FISMainViewController.m in Sources */,
 				55F66ED4190710BF000EFD3B /* Stock.m in Sources */,
 				5575C73318E0E6E100ABB124 /* FISAppDelegate.m in Sources */,
+				55EAEE4D19F5EE2300186947 /* FISAlertListTableViewController.m in Sources */,
 				550D3D7618F5A7BF009A9406 /* FISStockSearch.m in Sources */,
 				550D3D5718F1E19F009A9406 /* FISMainTableViewCell.m in Sources */,
 				550D3D4A18EE5879009A9406 /* UITableViewController+StyleSheet.m in Sources */,

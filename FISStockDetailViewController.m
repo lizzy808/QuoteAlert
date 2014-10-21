@@ -123,6 +123,21 @@
      self.stock.userAlertPriceLow = [self.qaLowTextField.text floatValue];
     
     [self.dataStore saveContext];
+    ///////////////////////////////////////
+    
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    localNotification.fireDate = [NSDate date];
+    localNotification.alertBody = @"This stock has reached this price";
+    localNotification.alertAction = @"Show me the item";
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+    
+    NSLog(@"%@", localNotification);
+
+    ////////////////////////////////////////
     [self dismissViewControllerAnimated:YES completion:nil];
 
     NSLog(@"High price limit:%@, Low Price Limit: %@", self.qaHighTextField, self.qaLowTextField);

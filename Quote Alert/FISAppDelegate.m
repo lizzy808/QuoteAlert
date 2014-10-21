@@ -11,6 +11,7 @@
 #import "YahooAPIClient.h"
 #import "Stock+Methods.h"
 #import "FISDataStore.h"
+#import "FISStockDetailViewController.h"
 
 @interface FISAppDelegate ()
 @property (strong, nonatomic) FISDataStore *dataStore;
@@ -27,6 +28,7 @@
     
     NSLog(@"Launched in background %d", UIApplicationStateBackground == application.applicationState);
 
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
 //    UILocalNotification *notification = [UILocalNotification new];
 //    notification.alertBody = @"Your stock price is dropping!";
@@ -133,6 +135,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+//    [[FISStockDetailViewController alertNotification] setHidden:YES];
     [self.dataStore saveContext];
 }
 
