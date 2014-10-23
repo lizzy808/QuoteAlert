@@ -126,26 +126,31 @@
                 completed(YES);
             }
             
-//    /////////////////////////////////////////
-//            
-//            if ([stock.bidPrice floatValue] >= [stock.userAlertPriceHigh])
-//            {
-//                UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-//                localNotification.fireDate = [NSDate date];
-//                localNotification.alertBody = @"%@ has reached %@", stock.symbol, stock.bidPrice;
-//                localNotification.soundName = UILocalNotificationDefaultSoundName;
-//                localNotification.alertAction = @"Show me the item";
-//                localNotification.timeZone = [NSTimeZone defaultTimeZone];
-//                localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-//                
-//                [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-//                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
-//                
-//                NSLog(@"%@", localNotification);
-//            }
+    /////////////////////////////////////////
+            
+            if ([stock.bidPrice floatValue] >= stock.userAlertPriceHigh)
+            {
+                NSLog(@"%@ has a bidprice %@ which is >= to the alert price high set at $%.2f",stock.symbol, stock.bidPrice, stock.userAlertPriceHigh);
+                UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+                localNotification.fireDate = [NSDate date];
+                localNotification.alertBody = @"%@ has reached %@", stock.symbol, stock.bidPrice;
+                localNotification.soundName = UILocalNotificationDefaultSoundName;
+                localNotification.alertAction = @"Show me the item";
+                localNotification.timeZone = [NSTimeZone defaultTimeZone];
+                localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+                
+                [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+                
+                NSLog(@"%@", localNotification);
+            }
+            else
+            {
+                NSLog(@"Not high enough");
+            }
 //    //////////////////////////////////////////
 //            
-//            if ([stock.bidPrice floatValue] <= [stock.userAlertPriceLow])
+//            if ([stock.bidPrice floatValue] <= stock.userAlertPriceLow)
 //            {
 //                UILocalNotification* localNotification = [[UILocalNotification alloc] init];
 //                localNotification.fireDate = [NSDate date];
@@ -160,10 +165,10 @@
 //                
 //                NSLog(@"%@", localNotification);
 //        
-//    /////////////////////////////////////////////
-//                
+//
 //            }
-            
+//    /////////////////////////////////////////////
+
         }];
         
     }
