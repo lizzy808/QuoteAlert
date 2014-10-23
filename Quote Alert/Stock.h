@@ -31,4 +31,7 @@
 
 @property (nonatomic, retain) NSString * companyName;
 
+@property (nonatomic, retain) NSDecimalNumber *dayHighDecimal;          // Hold the day high as a decimal number to make it easy to perform arithmetic operations on it
+@property (nonatomic, retain) NSString *dayHighFormatted;               // Hold the day high as a formatted currency string so that it has the correct comma and decimal format
+
 @end
