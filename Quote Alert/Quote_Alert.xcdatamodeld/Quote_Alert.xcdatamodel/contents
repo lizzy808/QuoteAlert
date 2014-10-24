@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6244" systemVersion="13E28" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14A389" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Stock" representedClassName="Stock" syncable="YES">
         <attribute name="averageVolume" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bidPrice" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="change" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="companyName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dayHigh" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dayHighDecimal" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="dayHighFormatted" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dayLow" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mktCap" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="openPrice" optional="YES" attributeType="String" syncable="YES"/>
@@ -19,6 +21,6 @@
         <attribute name="yield" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Stock" positionX="-63" positionY="-18" width="128" height="285"/>
+        <element name="Stock" positionX="-63" positionY="-18" width="128" height="315"/>
     </elements>
 </model>

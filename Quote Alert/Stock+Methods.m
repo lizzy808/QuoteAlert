@@ -42,6 +42,12 @@
         
         repository.dayHigh = [self nullCheckWithObject:stockDetailDictionary[@"DaysHigh"]];
         
+        
+        repository.dayHighDecimal = [self decimalFromObject:stockDetailDictionary[@"DaysHigh"]];
+        repository.dayHighFormatted = [self formattedCurrencyFromDecimal:repository.dayHighDecimal];
+        
+        
+        
         repository.dayLow = [self nullCheckWithObject:stockDetailDictionary[@"DaysLow"]];
 
         repository.peRatio = [self nullCheckWithObject:stockDetailDictionary[@"PERatio"]];
@@ -89,6 +95,44 @@
     }
 }
 
+
+
++ (NSDecimalNumber *)decimalFromObject: (NSObject *)object
+{
+    
+    if (object != [NSNull null])
+    {
+        NSString *stringFromObject = (NSString *)object;
+        NSDecimalNumber *decimalNum = [NSDecimalNumber decimalNumberWithString:stringFromObject];
+        NSLog(@"Converted '%@' to decimalNum %@", stringFromObject, decimalNum);
+        return decimalNum;
+    }
+    else
+    {
+        return nil;
+    }
+
+}
+
++ (NSString *)formattedCurrencyFromDecimal: (NSDecimalNumber *)number
+{
+    
+    if (number)
+    {
+        // Format the number to dollars and cents. This defaults to the phone locale for currency to use
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+        NSString *formattedString = [formatter stringFromNumber:number];
+        NSLog(@"Converted decimalNum %@ to formattedString %@", number, formattedString);
+        return formattedString;
+    }
+    else
+    {
+        return @"None";
+    }
+    
+}
+
 + (id)nullCheckWithObject:(id)object
 {
     if (object != [NSNull null]) {
@@ -96,5 +140,8 @@
     }
     return nil;
 }
+
+                                     
+
 
 @end
