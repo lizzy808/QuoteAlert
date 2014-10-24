@@ -13,12 +13,14 @@
 #import "FISMainTableViewCell.h"
 #import "FISSearchTableViewController.h"
 #import "YahooAPIClient.h"
+#import "Stock+Methods.h"
 
 @interface FISStockDetailViewController ()
 
 @property (strong,nonatomic) FISDataStore *dataStore;
 @property (nonatomic) NSArray *stocks;
 @property (strong, nonatomic) NSDictionary *stockDict;
+
 
 - (IBAction)backBarButtonTapped:(id)sender;
 - (IBAction)saveQuotesButtonTapped:(id)sender;
@@ -59,6 +61,11 @@
 
     self.dataStore = [FISDataStore sharedDataStore];
     self.dataStore.fetchedStockResultsController.delegate= self;
+    
+
+    [self.qaHighTextField setText:[NSString stringWithFormat:@"%.2f", self.stock.userAlertPriceHigh]];
+    [self.qaLowTextField setText:[NSString stringWithFormat:@"%.2f", self.stock.userAlertPriceLow]];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -132,21 +139,24 @@
      self.stock.userAlertPriceHigh = [self.qaHighTextField.text floatValue];
      self.stock.userAlertPriceLow = [self.qaLowTextField.text floatValue];
     
+    [self.qaHighTextField setText:@"meme"];
+
+    
     [self.dataStore saveContext];
     ///////////////////////////////////////
     
-    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
-    localNotification.alertBody = @"This stock has reached this price";
-    localNotification.soundName = UILocalNotificationDefaultSoundName;
-    localNotification.alertAction = @"Show me the item";
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-    
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
-    
-    NSLog(@"%@", localNotification);
+//    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+//    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
+//    localNotification.alertBody = @"This stock has reached this price";
+//    localNotification.soundName = UILocalNotificationDefaultSoundName;
+//    localNotification.alertAction = @"Show me the item";
+//    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+//    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+//    
+//    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+//    
+//    NSLog(@"%@", localNotification);
 
     ////////////////////////////////////////
     [self dismissViewControllerAnimated:YES completion:nil];

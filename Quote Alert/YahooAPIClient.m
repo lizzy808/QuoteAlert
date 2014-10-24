@@ -90,7 +90,7 @@
 
 // Method to loop through all user stocks from the datastore and update them. Passes a simple boolean YES if complete
 
-+ (void)fetchAllUserStocksUpdatesWithCompletion:(void (^)(BOOL))completed;
++ (void)fetchAllUserStocksUpdatesShouldFireNotification: (BOOL)notification WithCompletion:(void (^)(BOOL))completed; 
 {
     
     //
@@ -127,27 +127,29 @@
             }
             
     /////////////////////////////////////////
+            if (notification) {
+
             
-            if ([stock.bidPrice floatValue] >= stock.userAlertPriceHigh)
-            {
-                NSLog(@"%@ has a bidprice %@ which is >= to the alert price high set at $%.2f",stock.symbol, stock.bidPrice, stock.userAlertPriceHigh);
-                UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-                localNotification.fireDate = [NSDate date];
-                localNotification.alertBody = @"%@ has reached %@", stock.symbol, stock.bidPrice;
-                localNotification.soundName = UILocalNotificationDefaultSoundName;
-                localNotification.alertAction = @"Show me the item";
-                localNotification.timeZone = [NSTimeZone defaultTimeZone];
-                localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-                
-                [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
-                
-                NSLog(@"%@", localNotification);
+                if ([stock.bidPrice floatValue] >= stock.userAlertPriceHigh && stock.userAlertPriceHigh > 0)
+                    {
+                    NSLog(@"%@ has a bidprice %@ which is >= to the alert price high set at $%.2f",stock.symbol, stock.bidPrice, stock.userAlertPriceHigh);
+                    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+                    localNotification.fireDate = [NSDate date];
+                    localNotification.alertBody = [NSString stringWithFormat: @"%@ has reached %@", stock.symbol, stock.bidPrice];
+                    localNotification.soundName = UILocalNotificationDefaultSoundName;
+                    localNotification.alertAction = @"Show me the item";
+                    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+                    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+                    
+                    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+                    
+                    NSLog(@"%@", localNotification);
             }
-            else
-            {
-                NSLog(@"Not high enough");
-            }
+                else
+                {
+                    NSLog(@"Not high enough");
+                }
 //    //////////////////////////////////////////
 //            
 //            if ([stock.bidPrice floatValue] <= stock.userAlertPriceLow)
@@ -168,12 +170,12 @@
 //
 //            }
 //    /////////////////////////////////////////////
-
+            }
         }];
         
     }
     
-    
+         
 }
 
 

@@ -21,7 +21,7 @@
 
 
 // Method to loop through all user stocks from the datastore and update them. Passes a simple boolean YES if complete
-+ (void)fetchAllUserStocksUpdatesWithCompletion:(void (^)(BOOL))completed;
++ (void)fetchAllUserStocksUpdatesShouldFireNotification: (BOOL)notification WithCompletion:(void (^)(BOOL))completed;
 
 
 @end

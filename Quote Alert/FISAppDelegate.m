@@ -87,8 +87,10 @@
     
     NSLog(@"Perfoming fetch");
     
-    [YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
-        
+    //[YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
+    
+    [YahooAPIClient fetchAllUserStocksUpdatesShouldFireNotification:YES WithCompletion:^(BOOL isSuccessful) {
+            
         if (isSuccessful)
         {
             NSLog(@"Was successful");

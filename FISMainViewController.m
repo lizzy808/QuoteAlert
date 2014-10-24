@@ -66,8 +66,8 @@
 
 - (void)reloadData:(id)object {
     
-    [YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
-        
+//    [YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
+    [YahooAPIClient fetchAllUserStocksUpdatesShouldFireNotification:NO WithCompletion:^(BOOL isSuccessful) {
         if (isSuccessful)
         {
             NSLog(@"Was successful");
@@ -85,8 +85,9 @@
 
 - (void)refresh:(UIRefreshControl *)refreshControl {
     
-    [YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
-        
+//    [YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
+    [YahooAPIClient fetchAllUserStocksUpdatesShouldFireNotification:NO WithCompletion:^(BOOL isSuccessful) {
+    
         if (isSuccessful)
         {
             NSLog(@"Was successful");
@@ -131,8 +132,9 @@
     
     [self.dataStore.fetchedStockResultsController performFetch:nil];
     
-    [YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
-        
+//    [YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
+    [YahooAPIClient fetchAllUserStocksUpdatesShouldFireNotification:NO WithCompletion:^(BOOL isSuccessful) {
+    
         if (isSuccessful)
         {
             NSLog(@"Was successful");
@@ -202,7 +204,8 @@
     int stockChangeFloat = [stock.change intValue];
     
     if (stockChangeFloat >= 0.00) {
-        [cell.dayChangeColorButton setBackgroundColor:[UIColor greenColor]];
+//        [cell.dayChangeColorButton setBackgroundColor:[UIColor greenColor]];
+        [cell.dayChangeLabel setBackgroundColor:[UIColor greenColor]];
     }
     else{
         [cell.dayChangeColorButton setBackgroundColor:[UIColor redColor]];
