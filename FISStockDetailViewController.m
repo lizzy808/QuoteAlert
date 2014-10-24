@@ -87,8 +87,18 @@
     [self.priceLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [self.priceLabel setTextColor:[UIColor yellowColor]];
     [self.dayChangeLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
-    [self.dayChangeLabel setTextColor:[UIColor yellowColor]];
-    [self.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:18]];
+//    [self.dayChangeLabel setTextColor:[UIColor yellowColor]];
+    
+    int stockChangeFloat = [self.stock.change intValue];
+    
+    if (stockChangeFloat >= 0.00) {
+        [self.dayChangeLabel setTextColor:[UIColor greenColor]];
+    }
+    else{
+        [self.dayChangeLabel setTextColor:[UIColor redColor]];
+    }
+    
+    [self.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:20]];
     [self.symbolLabel setTextColor:[UIColor yellowColor]];
     [self.openPriceLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [self.openPriceLabel setTextColor:[UIColor yellowColor]];
