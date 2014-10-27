@@ -107,6 +107,8 @@
     // Enumerate (loop) through all the stocks in the datastore
     for (Stock *stock in [[FISDataStore sharedDataStore].fetchedStockResultsController fetchedObjects])
     {
+
+        
         NSLog(@"Attempting to refresh %@ with previous bidprice = %@", stock.symbol, stock.bidPrice);
 
         
