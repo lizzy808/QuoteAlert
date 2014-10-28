@@ -218,8 +218,21 @@
     {
         [cell setBackgroundColor: [UIColorSheet lightRedColor]];
     }
+
+    if (stockBidPriceFloat <= stock.userAlertPriceLow && stock.userAlertPriceLow > 0)
+    {
+        [cell setBackgroundColor: [UIColorSheet lightRedColor]];
+    }
+    
 /////////////////////////////////////////////////////////////////////////////////////////////
     
+    
+    if (stockBidPriceFloat <= stock.userAlertPriceHigh && stock.userAlertPriceHigh > 0 && stockBidPriceFloat >= stock.userAlertPriceLow && stock.userAlertPriceLow > 0)
+    {
+        UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectMake(8,15, 10, 10)];
+        imv.image=[UIImage imageNamed:@"tiny_alarmicon.png"];
+        [cell addSubview:imv];
+    }
     
     
     [cell.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:18]];
