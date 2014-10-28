@@ -25,6 +25,11 @@
     return [UIColor colorWithRed:255/255.0 green:87/255.0 blue:74/255.0 alpha:1];
 }
 
++ (UIColor *)lightRedColor
+{
+    return [UIColor colorWithRed:247/255.0 green:100/255.0 blue:97/255.0 alpha:1];
+}
+
 + (UIColor *)stockGreenColor
 {
     return [UIColor colorWithRed:96/255.0 green:255/255.0 blue:120/255.0 alpha:1];

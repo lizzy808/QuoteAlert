@@ -12,6 +12,7 @@
 #import "Stock+Methods.h"
 #import "FISDataStore.h"
 #import "FISStockDetailViewController.h"
+#import "FISMainViewController.h"
 
 @interface FISAppDelegate ()
 @property (strong, nonatomic) FISDataStore *dataStore;

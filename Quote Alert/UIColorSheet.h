@@ -17,5 +17,7 @@
 + (UIColor *)stockOrangeColor;
 + (UIColor *)stockYellowColor;
 + (UIColor *)stockBlueColor;
++ (UIColor *)lightRedColor;
+
 
 @end

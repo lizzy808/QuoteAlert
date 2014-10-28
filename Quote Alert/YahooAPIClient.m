@@ -10,6 +10,8 @@
 #import <AFNetworking/AFNetworking.h>
 #import "FISDataStore.h"
 #import "Stock.h"
+#import "FISMainViewController.h"
+#import "FISMainTableViewCell.h"
 
 @interface YahooAPIClient()
 
@@ -145,7 +147,7 @@
                     
                     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
-                    
+                                            
                     NSLog(@"%@", localNotification);
             }
                 else

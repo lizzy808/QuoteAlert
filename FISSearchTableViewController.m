@@ -54,7 +54,7 @@
     self.stockSearchTableView.dataSource = self;
     self.stockSearchTableView.delegate = self;
     [self initialize];
-    [self setupNavBar];
+//    [self setupNavBar];
     
     self.dataStore = [FISDataStore sharedDataStore];
     self.dataStore.fetchedStockResultsController.delegate = self;
@@ -68,10 +68,10 @@
 }
 
 
-- (void) setupNavBar
-{
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBar2"] forBarMetrics:UIBarMetricsDefault];
-}
+//- (void) setupNavBar
+//{
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBar2"] forBarMetrics:UIBarMetricsDefault];
+//}
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -93,7 +93,7 @@
 
 - (FISSearchTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.searchDisplayController.searchResultsTableView setTintColor:[UIColor blackColor]];
+    [self.searchDisplayController.searchResultsTableView setTintColor:[UIColor clearColor]];
     
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         

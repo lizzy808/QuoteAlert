@@ -153,8 +153,8 @@
 
 - (void) setupNavBar
 {
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"QAnavBar.png"] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"QAnavBar.png"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
 }
 
 
@@ -204,12 +204,23 @@
     int stockChangeFloat = [stock.change intValue];
     
     if (stockChangeFloat >= 0.00) {
-//        [cell.dayChangeColorButton setBackgroundColor:[UIColor greenColor]];
         [cell.dayChangeLabel setBackgroundColor:[UIColor greenColor]];
     }
     else{
-        [cell.dayChangeColorButton setBackgroundColor:[UIColor redColor]];
+        [cell.dayChangeLabel setBackgroundColor:[UIColor redColor]];
     }
+    
+/////////////////////// if cell sends notification, highlight cell /////////////////////////
+    
+    int stockBidPriceFloat = [stock.bidPrice intValue];
+    
+    if (stockBidPriceFloat >= stock.userAlertPriceHigh && stock.userAlertPriceHigh > 0)
+    {
+        [cell setBackgroundColor: [UIColorSheet lightRedColor]];
+    }
+/////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
     
     [cell.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:18]];
     [cell.symbolLabel setTextColor:[UIColor whiteColor]];

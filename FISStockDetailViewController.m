@@ -66,6 +66,8 @@
     [self.qaHighTextField setText:[NSString stringWithFormat:@"%.2f", self.stock.userAlertPriceHigh]];
     [self.qaLowTextField setText:[NSString stringWithFormat:@"%.2f", self.stock.userAlertPriceLow]];
 
+
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -139,8 +141,6 @@
      self.stock.userAlertPriceHigh = [self.qaHighTextField.text floatValue];
      self.stock.userAlertPriceLow = [self.qaLowTextField.text floatValue];
     
-    [self.qaHighTextField setText:@"meme"];
-
     
     [self.dataStore saveContext];
     ///////////////////////////////////////
