@@ -139,10 +139,10 @@
                 
                 
                 if ([stock.bidPrice floatValue] >= stock.userAlertPriceHigh && stock.userAlertPriceHigh > 0)
-                    {
+                {
                     NSLog(@"%@ has a bidprice %@ which is >= to the alert price high set at $%.2f",stock.symbol, stock.bidPrice, stock.userAlertPriceHigh);
                         
-                        NSLog(@"last notification fired time: %@", stock.lastNotificationFiredTime);
+                    NSLog(@"last notification fired time: %@", stock.lastNotificationFiredTime);
                         
                     UILocalNotification* localNotification = [[UILocalNotification alloc] init];
                     localNotification.fireDate = [NSDate date];
@@ -156,35 +156,38 @@
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
                         
                         
-                        stock.lastNotificationFiredTime = [NSDate date];
-                        [[FISDataStore sharedDataStore] saveContext];
+                    stock.lastNotificationFiredTime = [NSDate date];
+                    [[FISDataStore sharedDataStore] saveContext];
                         
                     NSLog(@"%@", localNotification);
-            }
-                else
-                {
-                    NSLog(@"Not high enough");
                 }
-//    //////////////////////////////////////////
-//            
-//            if ([stock.bidPrice floatValue] <= stock.userAlertPriceLow)
-//            {
-//                UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-//                localNotification.fireDate = [NSDate date];
-//                localNotification.alertBody = @"%@ has fallen to %@", stock.symbol, stock.bidPrice;
-//                localNotification.soundName = UILocalNotificationDefaultSoundName;
-//                localNotification.alertAction = @"Show me the item";
-//                localNotification.timeZone = [NSTimeZone defaultTimeZone];
-//                localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-//                
-//                [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-//                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
-//                
-//                NSLog(@"%@", localNotification);
-//        
-//
-//            }
-//    /////////////////////////////////////////////
+
+                if ([stock.bidPrice floatValue] <= stock.userAlertPriceLow && stock.userAlertPriceLow > 0)
+                {
+                    NSLog(@"%@ has a bidprice %@ which is <= to the alert price low set at $%.2f",stock.symbol, stock.bidPrice, stock.userAlertPriceLow);
+                    
+                    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+                    localNotification.fireDate = [NSDate date];
+                    localNotification.alertBody = [NSString stringWithFormat: @"%@ has dropped to %@, which is lower than your alert of %f", stock.symbol, stock.bidPrice, stock.userAlertPriceLow];
+                    localNotification.soundName = UILocalNotificationDefaultSoundName;
+                    localNotification.alertAction = @"Show me the item";
+                    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+                    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+                    
+                    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+                    
+                    
+                    stock.lastNotificationFiredTime = [NSDate date];
+                    [[FISDataStore sharedDataStore] saveContext];
+                    
+                    NSLog(@"%@", localNotification);
+                }
+                
+                
+
+            
+    /////////////////////////////////////////////
             }
         }];
         
