@@ -66,7 +66,6 @@
     [self.qaHighTextField setText:[NSString stringWithFormat:@"%.2f", self.stock.userAlertPriceHigh]];
     [self.qaLowTextField setText:[NSString stringWithFormat:@"%.2f", self.stock.userAlertPriceLow]];
 
-
     
 }
 
@@ -141,6 +140,9 @@
      self.stock.userAlertPriceHigh = [self.qaHighTextField.text floatValue];
      self.stock.userAlertPriceLow = [self.qaLowTextField.text floatValue];
     
+//    [self.button.layer setShadowOffset:CGSizeMake(5, 5)];
+//    [self.button.layer setShadowColor:[[UIColor blackColor] CGColor]];
+//    [self.button.layer setShadowOpacity:0.5];
     
     [self.dataStore saveContext];
     ///////////////////////////////////////

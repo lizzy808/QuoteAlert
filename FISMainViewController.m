@@ -46,7 +46,7 @@
     [super viewDidLoad];
     
     [self initialize];
-    [self setupNavBar];
+//    [self setupNavBar];
 
     self.dataStore = [FISDataStore sharedDataStore];
     
@@ -151,11 +151,11 @@
 }
 
 
-- (void) setupNavBar
-{
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"QAnavBar.png"] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
-}
+//- (void) setupNavBar
+//{
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"QAnavBar.png"] forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
+//}
 
 
 - (void)didReceiveMemoryWarning
@@ -198,7 +198,7 @@
     cell.symbolLabel.text = stock.symbol;
     cell.bidPriceLabel.text = stock.bidPrice;
     cell.dayChangeLabel.text = stock.change;
-    cell.alertPriceHighLabel.text = [NSString stringWithFormat:@"%.2f", stock.userAlertPriceHigh ];
+    cell.alertPriceHighLabel.text = [NSString stringWithFormat:@"%.2f", stock.userAlertPriceHigh];
     cell.alertPriceLowLabel.text = [NSString stringWithFormat:@"%.2f", stock.userAlertPriceLow];
     
     int stockChangeFloat = [stock.change intValue];
@@ -229,7 +229,7 @@
     
     if (stockBidPriceFloat <= stock.userAlertPriceHigh && stock.userAlertPriceHigh > 0 && stockBidPriceFloat >= stock.userAlertPriceLow && stock.userAlertPriceLow > 0)
     {
-        UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectMake(8,15, 10, 10)];
+        UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectMake(8,20, 10, 10)];
         imv.image=[UIImage imageNamed:@"tiny_alarmicon.png"];
         [cell addSubview:imv];
     }
