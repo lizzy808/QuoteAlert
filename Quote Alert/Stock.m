@@ -31,4 +31,6 @@
 @dynamic dayHighDecimal;
 @dynamic dayHighFormatted;
 
+@dynamic lastNotificationFiredTime;
+
 @end

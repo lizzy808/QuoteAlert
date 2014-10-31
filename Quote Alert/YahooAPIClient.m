@@ -130,13 +130,20 @@
                 completed(YES);
             }
             
-    /////////////////////////////////////////
-            if (notification) {
-
             
+            NSTimeInterval secondsSinceNotification = abs([stock.lastNotificationFiredTime timeIntervalSinceNow]);
+            NSLog(@"Time Interval: %f", secondsSinceNotification);
+            
+    /////////////////////////////////////////
+            if (notification && (secondsSinceNotification > 60*60*24 || !stock.lastNotificationFiredTime)) {
+                
+                
                 if ([stock.bidPrice floatValue] >= stock.userAlertPriceHigh && stock.userAlertPriceHigh > 0)
                     {
                     NSLog(@"%@ has a bidprice %@ which is >= to the alert price high set at $%.2f",stock.symbol, stock.bidPrice, stock.userAlertPriceHigh);
+                        
+                        NSLog(@"last notification fired time: %@", stock.lastNotificationFiredTime);
+                        
                     UILocalNotification* localNotification = [[UILocalNotification alloc] init];
                     localNotification.fireDate = [NSDate date];
                     localNotification.alertBody = [NSString stringWithFormat: @"%@ has reached %@", stock.symbol, stock.bidPrice];
@@ -147,7 +154,11 @@
                     
                     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
-                                            
+                        
+                        
+                        stock.lastNotificationFiredTime = [NSDate date];
+                        [[FISDataStore sharedDataStore] saveContext];
+                        
                     NSLog(@"%@", localNotification);
             }
                 else

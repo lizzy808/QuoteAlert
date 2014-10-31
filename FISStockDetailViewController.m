@@ -137,8 +137,19 @@
 
 - (IBAction)saveQuotesButtonTapped:(id)sender
 {
+    
      self.stock.userAlertPriceHigh = [self.qaHighTextField.text floatValue];
      self.stock.userAlertPriceLow = [self.qaLowTextField.text floatValue];
+
+    
+/*
+ Enables notification if user changes alert prices
+*/
+    
+    self.stock.lastNotificationFiredTime = nil;
+    
+    
+    
     
 //    [self.button.layer setShadowOffset:CGSizeMake(5, 5)];
 //    [self.button.layer setShadowColor:[[UIColor blackColor] CGColor]];
