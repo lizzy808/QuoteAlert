@@ -149,8 +149,6 @@
     self.stock.lastNotificationFiredTime = nil;
     
     
-    
-    
 //    [self.button.layer setShadowOffset:CGSizeMake(5, 5)];
 //    [self.button.layer setShadowColor:[[UIColor blackColor] CGColor]];
 //    [self.button.layer setShadowOpacity:0.5];
