@@ -206,6 +206,7 @@
     if (stockChangeFloat >= 0.00) {
         [cell.dayChangeLabel setBackgroundColor:[UIColor greenColor]];
     }
+    
     else{
         [cell.dayChangeLabel setBackgroundColor:[UIColor redColor]];
     }
@@ -214,20 +215,31 @@
     
     int stockBidPriceFloat = [stock.bidPrice intValue];
     
-    if (stockBidPriceFloat >= stock.userAlertPriceHigh && stock.userAlertPriceHigh > 0)
+    
+    if ((stockBidPriceFloat >= stock.userAlertPriceHigh && stock.userAlertPriceHigh > 0) || (stockBidPriceFloat <= stock.userAlertPriceLow && stock.userAlertPriceLow > 0))
     {
-        [cell setBackgroundColor: [UIColorSheet lightRedColor]];
+        [cell setBackgroundColor:[UIColorSheet lightRedColor]];
+    }
+    else
+    {
+        [cell setBackgroundColor:[UIColor clearColor]];
     }
 
-    if (stockBidPriceFloat <= stock.userAlertPriceLow && stock.userAlertPriceLow > 0)
-    {
-        [cell setBackgroundColor: [UIColorSheet lightRedColor]];
-    }
+    
+//    if (stockBidPriceFloat >= stock.userAlertPriceHigh && stock.userAlertPriceHigh > 0)
+//    {
+//        [cell setBackgroundColor: [UIColorSheet lightRedColor]];
+//    }
+//
+//    if (stockBidPriceFloat <= stock.userAlertPriceLow && stock.userAlertPriceLow > 0)
+//    {
+//        [cell setBackgroundColor: [UIColorSheet lightRedColor]];
+//    }
     
 /////////////////////////////////////////////////////////////////////////////////////////////
     
     
-    if (stockBidPriceFloat <= stock.userAlertPriceHigh && stock.userAlertPriceHigh > 0 && stockBidPriceFloat >= stock.userAlertPriceLow && stock.userAlertPriceLow > 0)
+    if ((stockBidPriceFloat <= stock.userAlertPriceHigh && stock.userAlertPriceHigh > 0) || (stockBidPriceFloat >= stock.userAlertPriceLow && stock.userAlertPriceLow > 0))
     {
         UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectMake(8,20, 10, 10)];
         imv.image=[UIImage imageNamed:@"tiny_alarmicon.png"];

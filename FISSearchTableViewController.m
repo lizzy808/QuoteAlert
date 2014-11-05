@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *stockSearchTableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *stockSearchBar;
 - (IBAction)cancelButtonTapped:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *searchingLabel;
 
 @end
 
@@ -55,6 +56,8 @@
     self.stockSearchTableView.delegate = self;
     [self initialize];
 //    [self setupNavBar];
+    
+    self.stockSearchBar.placeholder = @"Enter Stock Symbol";
     
     self.dataStore = [FISDataStore sharedDataStore];
     self.dataStore.fetchedStockResultsController.delegate = self;
@@ -156,12 +159,14 @@
 
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+        self.searchingLabel.text = @"Searching...";
         [YahooAPIClient searchForStockWithName:searchBar.text withCompletion:^(NSArray *stockDictionaries) {
             NSLog(@"stock dictionaries = %@", stockDictionaries);
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.searchResults = stockDictionaries;
                 [self.stockSearchTableView reloadData];
                 [self.searchDisplayController.searchResultsTableView reloadData];
+                self.searchingLabel.text = @"";
             });
         }];
 }
