@@ -29,6 +29,7 @@
 		5575C74218E0E6E100ABB124 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5575C72618E0E6E100ABB124 /* CoreData.framework */; };
 		5575C74A18E0E6E100ABB124 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5575C74818E0E6E100ABB124 /* InfoPlist.strings */; };
 		5575C74C18E0E6E100ABB124 /* Quote_AlertTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5575C74B18E0E6E100ABB124 /* Quote_AlertTests.m */; };
+		55828F931A0B1FD00054C122 /* tiny_alarmicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 55828F921A0B1FD00054C122 /* tiny_alarmicon.png */; };
 		55912D1918E275180069FEEC /* YahooAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D1818E275180069FEEC /* YahooAPIClient.m */; };
 		55912D2018E3546D0069FEEC /* FISDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D1F18E3546D0069FEEC /* FISDataStore.m */; };
 		55912D2318E356A60069FEEC /* Stock+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D2218E356A60069FEEC /* Stock+Methods.m */; };
@@ -85,6 +86,7 @@
 		5575C74718E0E6E100ABB124 /* Quote AlertTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Quote AlertTests-Info.plist"; sourceTree = "<group>"; };
 		5575C74918E0E6E100ABB124 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5575C74B18E0E6E100ABB124 /* Quote_AlertTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Quote_AlertTests.m; sourceTree = "<group>"; };
+		55828F921A0B1FD00054C122 /* tiny_alarmicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tiny_alarmicon.png; path = ../../../qapics/tiny_alarmicon.png; sourceTree = "<group>"; };
 		55912D1718E275180069FEEC /* YahooAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YahooAPIClient.h; sourceTree = "<group>"; };
 		55912D1818E275180069FEEC /* YahooAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YahooAPIClient.m; sourceTree = "<group>"; };
 		55912D1E18E3546D0069FEEC /* FISDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FISDataStore.h; path = ../FISDataStore.h; sourceTree = "<group>"; };
@@ -146,10 +148,7 @@
 				550D3D5E18F1EB74009A9406 /* UIColorSheet.h */,
 				550D3D5F18F1EB74009A9406 /* UIColorSheet.m */,
 				55912D4B18E4C9660069FEEC /* Storyboard.storyboard */,
-				55CA537F19059AA9000E2A1E /* metal_grill_darkened.png */,
-				55CA537519041CD0000E2A1E /* navBar2.png */,
-				556F70F918FB0FD300430D84 /* QAnavbar.png */,
-				5516ED5A1A004CCC00FC4F60 /* tiny_alarmicon.png */,
+				55828F941A0B20F00054C122 /* images */,
 				55CA536E1901B8C2000E2A1E /* searchView.xib */,
 			);
 			name = Views;
@@ -246,6 +245,18 @@
 				55912D1F18E3546D0069FEEC /* FISDataStore.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		55828F941A0B20F00054C122 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				55CA537F19059AA9000E2A1E /* metal_grill_darkened.png */,
+				55CA537519041CD0000E2A1E /* navBar2.png */,
+				55828F921A0B1FD00054C122 /* tiny_alarmicon.png */,
+				556F70F918FB0FD300430D84 /* QAnavbar.png */,
+				5516ED5A1A004CCC00FC4F60 /* tiny_alarmicon.png */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 		55912D1D18E353F10069FEEC /* Controllers */ = {
@@ -357,6 +368,7 @@
 				5575C72D18E0E6E100ABB124 /* InfoPlist.strings in Resources */,
 				55CA538019059AA9000E2A1E /* metal_grill_darkened.png in Resources */,
 				55CA537619041CD0000E2A1E /* navBar2.png in Resources */,
+				55828F931A0B1FD00054C122 /* tiny_alarmicon.png in Resources */,
 				5575C73818E0E6E100ABB124 /* Images.xcassets in Resources */,
 				55912D4C18E4C9660069FEEC /* Storyboard.storyboard in Resources */,
 				5516ED5B1A004CCC00FC4F60 /* tiny_alarmicon.png in Resources */,
