@@ -271,7 +271,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"stockDetailSegue" sender:self];
+    //[self performSegueWithIdentifier:@"stockDetailSegue" sender:self];
     
 //    Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
 }

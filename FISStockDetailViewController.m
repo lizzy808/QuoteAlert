@@ -176,7 +176,8 @@
 }
 
 
-//////////////////// Attempting to push up UIView with keyboard ///////////////
+
+#pragma mark - UITextField Delegates
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -214,7 +215,7 @@
     return YES;
 }
 
-////////////////////////////////////////////////////////////////
+
 
 
 @end
