@@ -28,6 +28,7 @@
 		5575C74218E0E6E100ABB124 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5575C72618E0E6E100ABB124 /* CoreData.framework */; };
 		5575C74A18E0E6E100ABB124 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5575C74818E0E6E100ABB124 /* InfoPlist.strings */; };
 		5575C74C18E0E6E100ABB124 /* Quote_AlertTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5575C74B18E0E6E100ABB124 /* Quote_AlertTests.m */; };
+		558F84121A1E810E00041A3D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558F84111A1E810E00041A3D /* QuartzCore.framework */; };
 		55912D1918E275180069FEEC /* YahooAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D1818E275180069FEEC /* YahooAPIClient.m */; };
 		55912D2018E3546D0069FEEC /* FISDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D1F18E3546D0069FEEC /* FISDataStore.m */; };
 		55912D2318E356A60069FEEC /* Stock+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D2218E356A60069FEEC /* Stock+Methods.m */; };
@@ -84,6 +85,7 @@
 		5575C74718E0E6E100ABB124 /* Quote AlertTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Quote AlertTests-Info.plist"; sourceTree = "<group>"; };
 		5575C74918E0E6E100ABB124 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5575C74B18E0E6E100ABB124 /* Quote_AlertTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Quote_AlertTests.m; sourceTree = "<group>"; };
+		558F84111A1E810E00041A3D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		55912D1718E275180069FEEC /* YahooAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YahooAPIClient.h; sourceTree = "<group>"; };
 		55912D1818E275180069FEEC /* YahooAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YahooAPIClient.m; sourceTree = "<group>"; };
 		55912D1E18E3546D0069FEEC /* FISDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FISDataStore.h; path = ../FISDataStore.h; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				558F84121A1E810E00041A3D /* QuartzCore.framework in Frameworks */,
 				5575C72318E0E6E100ABB124 /* CoreGraphics.framework in Frameworks */,
 				5575C72718E0E6E100ABB124 /* CoreData.framework in Frameworks */,
 				5575C72518E0E6E100ABB124 /* UIKit.framework in Frameworks */,
@@ -175,6 +178,7 @@
 		5575C71F18E0E6E100ABB124 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				558F84111A1E810E00041A3D /* QuartzCore.framework */,
 				5575C72018E0E6E100ABB124 /* Foundation.framework */,
 				5575C72218E0E6E100ABB124 /* CoreGraphics.framework */,
 				5575C72418E0E6E100ABB124 /* UIKit.framework */,

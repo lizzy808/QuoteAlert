@@ -14,4 +14,5 @@
 @property (strong, nonatomic)Stock *stock;
 @property (strong, nonatomic) NSManagedObject *managedObject;
 
+
 @end

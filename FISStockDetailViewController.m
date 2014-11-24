@@ -14,6 +14,7 @@
 #import "FISSearchTableViewController.h"
 #import "YahooAPIClient.h"
 #import "Stock+Methods.h"
+#import <CoreGraphics/CoreGraphics.h>
 
 @interface FISStockDetailViewController ()
 
@@ -65,7 +66,7 @@
 
     [self.qaHighTextField setText:[NSString stringWithFormat:@"%.2f", self.stock.userAlertPriceHigh]];
     [self.qaLowTextField setText:[NSString stringWithFormat:@"%.2f", self.stock.userAlertPriceLow]];
-
+    
     
 }
 
@@ -106,10 +107,14 @@
         [self.dayChangeLabel setTextColor:[UIColor redColor]];
     }
     
-    [self.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:20]];
-    [self.symbolLabel setTextColor:[UIColor yellowColor]];
+    [self.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:25]];
+    [self.symbolLabel setTextColor:[UIColor whiteColor]];
     [self.openPriceLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [self.openPriceLabel setTextColor:[UIColor yellowColor]];
+    
+//    self.openPriceLabel.layer.borderColor = [UIColor whiteColor].CGColor;
+//    self.openPriceLabel.layer.borderWidth = 1;
+    
     [self.dayHighLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [self.dayHighLabel setTextColor:[UIColor yellowColor]];
     [self.dayLowLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
@@ -128,6 +133,30 @@
     [self.avgVolumeLabel setTextColor:[UIColor yellowColor]];
     [self.yieldLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [self.yieldLabel setTextColor:[UIColor yellowColor]];
+    
+    
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path moveToPoint:CGPointMake(10.0, 160.0)];
+    [path addLineToPoint:CGPointMake(310.0, 160.0)];
+    
+//    [path addLineToPoint:CGPointMake(310.0, 330.0)];
+    
+    [path moveToPoint:CGPointMake(10.0, 330.0)];
+    [path addLineToPoint:CGPointMake(310.0, 330.00)];
+    
+//    [path addLineToPoint:CGPointMake(155.0, 150.0)];
+//    [path addLineToPoint:CGPointMake(155.0, 328.0)];
+    
+    
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    shapeLayer.path = [path CGPath];
+    shapeLayer.strokeColor = [[UIColor whiteColor] CGColor];
+    shapeLayer.lineWidth = 1.0;
+    shapeLayer.fillColor = [[UIColor clearColor] CGColor];
+    
+    [self.view.layer addSublayer:shapeLayer];
+    
+    
 }
 
 
@@ -137,10 +166,20 @@
 
 - (IBAction)saveQuotesButtonTapped:(id)sender
 {
+    UIButton *saveQuotesButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [saveQuotesButton addTarget:self
+               action:@selector(aMethod:)
+     forControlEvents:UIControlEventTouchUpInside];
+    [saveQuotesButton setTitle:@"Show View" forState:UIControlStateNormal];
+    saveQuotesButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
+    [self.view addSubview:saveQuotesButton];
+    
     
      self.stock.userAlertPriceHigh = [self.qaHighTextField.text floatValue];
      self.stock.userAlertPriceLow = [self.qaLowTextField.text floatValue];
-
+    
+//    [[myButton layer] setBorderWidth:2.0f];
+//    [[myButton layer] setBorderColor:[UIColor greenColor].CGColor];
     
 /*
  Enables notification if user changes alert prices
@@ -215,6 +254,19 @@
     return YES;
 }
 
+
+
+//- (void)drawRect:(CGRect)rect
+//{
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    
+//    CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
+//    CGContextSetLineWidth(context, 1.0);
+//    CGContextMoveToPoint(context, 10.0, 10.0);
+//    CGContextAddLineToPoint(context, 100.0, 100.0);
+//    CGContextDrawPath(context, kCGPathStroke);
+//
+//}
 
 
 
