@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SWTableViewCell.h>
 
 @class Stock;
 
-@interface FISMainTableViewCell : UITableViewCell
+@interface FISMainTableViewCell : SWTableViewCell
+
 
 @property (weak, nonatomic) IBOutlet UILabel *symbolLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bidPriceLabel;
@@ -22,6 +24,7 @@
 
 @property (strong,nonatomic) Stock *stock;
 @property (strong,nonatomic) FISMainTableViewCell *cell;
+@property (strong, nonatomic) SWTableViewCell *sWcell;
 
 + (instancetype) cellConfiguredWithStock: (Stock *)stock;
 - (instancetype) configureWithStock: (Stock *)stock;

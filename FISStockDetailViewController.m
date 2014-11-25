@@ -66,8 +66,6 @@
 
     [self.qaHighTextField setText:[NSString stringWithFormat:@"%.2f", self.stock.userAlertPriceHigh]];
     [self.qaLowTextField setText:[NSString stringWithFormat:@"%.2f", self.stock.userAlertPriceLow]];
-    
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -147,7 +145,6 @@
 //    [path addLineToPoint:CGPointMake(155.0, 150.0)];
 //    [path addLineToPoint:CGPointMake(155.0, 328.0)];
     
-    
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.path = [path CGPath];
     shapeLayer.strokeColor = [[UIColor whiteColor] CGColor];
@@ -155,7 +152,6 @@
     shapeLayer.fillColor = [[UIColor clearColor] CGColor];
     
     [self.view.layer addSublayer:shapeLayer];
-    
     
 }
 
@@ -256,17 +252,6 @@
 
 
 
-//- (void)drawRect:(CGRect)rect
-//{
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-//    
-//    CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
-//    CGContextSetLineWidth(context, 1.0);
-//    CGContextMoveToPoint(context, 10.0, 10.0);
-//    CGContextAddLineToPoint(context, 100.0, 100.0);
-//    CGContextDrawPath(context, kCGPathStroke);
-//
-//}
 
 
 

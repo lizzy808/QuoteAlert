@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Stock.h"
 #import "UIColorSheet.h"
+#import <SWTableViewCell.h>
 
-@interface FISMainViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
+@interface FISMainViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, SWTableViewCellDelegate>
 
 @property (strong, nonatomic) NSManagedObject *managedObject;
 @property (weak, nonatomic) IBOutlet UITableView *stockTableView;

@@ -15,14 +15,18 @@
 #import "FISSearchTableViewController.h"
 #import "YahooAPIClient.h"
 #import "UIColorSheet.h"
+#import <SWTableViewCell.h>
 
 
 @interface FISMainViewController ()
+
 
 @property (nonatomic) NSMutableArray *stocks;
 @property (nonatomic) FISDataStore *dataStore;
 @property (strong, nonatomic) Stock *stock;
 @property (strong, nonatomic) NSDictionary *stockDict;
+
+@property (strong, nonatomic) SWTableViewCell *sWcell;
 
 
 @end
@@ -41,17 +45,13 @@
 }
 
 
-/////////////////////xib failing to load in TVC cells//////////////
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     [self initialize];
-//    [self setupNavBar];
 
     self.dataStore = [FISDataStore sharedDataStore];
-    
     self.stockTableView.delegate = self;
     self.stockTableView.dataSource = self;
     self.dataStore.fetchedStockResultsController.delegate= self;
@@ -154,13 +154,6 @@
 }
 
 
-//- (void) setupNavBar
-//{
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"QAnavBar.png"] forBarMetrics:UIBarMetricsDefault];
-//    [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
-//}
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -191,9 +184,26 @@
 }
 
 
+- (NSArray *)rightButtons
+{
+    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:
+     [UIColor colorWithRed:0.78f green:0.78f blue:0.8f alpha:1.0]
+                                                title:@"Remove Alert"];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:
+     [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
+                                                title:@"Delete"];
+    
+    return rightUtilityButtons;
+}
+
 - (FISMainTableViewCell *)configureStockCellAtIndexPath:(NSIndexPath *)indexPath
 {
-    FISMainTableViewCell *cell = [self.stockTableView dequeueReusableCellWithIdentifier:@"basicCell"];
+    
+    FISMainTableViewCell *cell = [self.stockTableView dequeueReusableCellWithIdentifier:@"basicCell"    forIndexPath:indexPath];
+    
+    cell.rightUtilityButtons = [self rightButtons];
+    cell.delegate = self;
     
     Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
     
@@ -227,19 +237,6 @@
     {
         [cell setBackgroundColor:[UIColor clearColor]];
     }
-
-    
-//    if (stockBidPriceFloat >= stock.userAlertPriceHigh && stock.userAlertPriceHigh > 0)
-//    {
-//        [cell setBackgroundColor: [UIColorSheet lightRedColor]];
-//    }
-//
-//    if (stockBidPriceFloat <= stock.userAlertPriceLow && stock.userAlertPriceLow > 0)
-//    {
-//        [cell setBackgroundColor: [UIColorSheet lightRedColor]];
-//    }
-    
-/////////////////////////////////////////////////////////////////////////////////////////////
     
     
     if ((stockBidPriceFloat <= stock.userAlertPriceHigh && stock.userAlertPriceHigh > 0) || (stockBidPriceFloat >= stock.userAlertPriceLow && stock.userAlertPriceLow > 0))
@@ -269,6 +266,36 @@
 }
 
 
+- (void)swipeableTableViewCell:(FISMainTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (index) {
+        case 0:
+            NSLog(@"More button was pressed");
+            break;
+        case 1:
+        {
+            self.indexPath = [self.stockTableView indexPathForCell:cell];
+            
+            if (editingStyle == UITableViewCellEditingStyleDelete)
+                {
+                    [self.dataStore deleteStockAtIndexPay:indexPath];
+                    [self.stocks removeObjectAtIndex:indexPath.row];
+                    [self.stockTableView reloadData];
+            
+                }
+            else if (editingStyle == UITableViewCellEditingStyleInsert)
+                {
+                    // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+                }
+            
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //[self performSegueWithIdentifier:@"stockDetailSegue" sender:self];
@@ -281,6 +308,8 @@
 {
     if ([segue.identifier isEqualToString:@"stockDetailSegue"])
     {
+        NSLog(@"Detail Segue");
+        
         FISStockDetailViewController *stockDetailTVC = segue.destinationViewController;
         FISMainTableViewCell *cell = (FISMainTableViewCell *)[self.stockTableView cellForRowAtIndexPath:[self.stockTableView indexPathForSelectedRow]];
         
@@ -364,20 +393,24 @@
     return UITableViewCellEditingStyleDelete;
 }
 
+/////////////////////////////////////////////////////
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete)
-    {
-        [self.dataStore deleteStockAtIndexPay:indexPath];
-        [self.stocks removeObjectAtIndex:indexPath.row];
-        [tableView reloadData];
-        
-    } else if (editingStyle == UITableViewCellEditingStyleInsert)
-    {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }
-}
+//
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (editingStyle == UITableViewCellEditingStyleDelete)
+//    {
+//        [self.dataStore deleteStockAtIndexPay:indexPath];
+//        [self.stocks removeObjectAtIndex:indexPath.row];
+//        [tableView reloadData];
+//        
+//    } else if (editingStyle == UITableViewCellEditingStyleInsert)
+//    {
+//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//    }
+//}
+
+///////////////////////////////////////////////////
 
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath

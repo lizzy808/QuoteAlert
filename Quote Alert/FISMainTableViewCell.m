@@ -8,6 +8,7 @@
 
 #import "FISMainTableViewCell.h"
 #import "Stock+Methods.h"
+#import <SWTableViewCell.h>
 
 @implementation FISMainTableViewCell
 
@@ -27,9 +28,12 @@
     // Configure the view for the selected state
 }
 
+
 + (instancetype)cellConfiguredWithStock:(Stock *)stock
 {
+    
     FISMainTableViewCell *cell = [FISMainTableViewCell new];
+    
     [cell configureWithStock:stock];
     
     return cell;
@@ -37,6 +41,8 @@
 
 - (instancetype)configureWithStock:(Stock *)stock
 {
+
+    
     self.stock = stock;
     self.symbolLabel.text = self.stock.symbol;
     self.bidPriceLabel.text = self.stock.bidPrice;
