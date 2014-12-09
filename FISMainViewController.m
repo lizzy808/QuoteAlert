@@ -15,7 +15,6 @@
 #import "FISSearchTableViewController.h"
 #import "YahooAPIClient.h"
 #import "UIColorSheet.h"
-#import <SWTableViewCell.h>
 
 
 @interface FISMainViewController ()
@@ -26,7 +25,6 @@
 @property (strong, nonatomic) Stock *stock;
 @property (strong, nonatomic) NSDictionary *stockDict;
 
-@property (strong, nonatomic) SWTableViewCell *sWcell;
 
 
 @end
@@ -65,6 +63,27 @@
     selector:@selector(reloadData:)
     name:@"EnteredForeground"
     object:nil];
+    
+    
+    UIImage* cancelAlerts = [UIImage imageNamed:@"cancel_alerts small.png"];
+    CGRect frameimg = CGRectMake(0, 0, cancelAlerts.size.width, cancelAlerts.size.height);
+    
+    UIButton *cancelAlertsButton = [[UIButton alloc] initWithFrame:frameimg];
+    [cancelAlertsButton setBackgroundImage:cancelAlerts forState:UIControlStateNormal];
+    [cancelAlertsButton addTarget:self action:@selector(sendmail)
+         forControlEvents:UIControlEventTouchUpInside];
+    
+    [cancelAlertsButton setShowsTouchWhenHighlighted:YES];
+    
+    UIBarButtonItem *cancelButton =[[UIBarButtonItem alloc] initWithCustomView:cancelAlertsButton];
+    self.navigationItem.leftBarButtonItem=cancelButton;
+//    [cancelButton release];
+    
+//    UIBarButtonItem *cancelAlerts = [[UIBarButtonItem alloc] initWithImage:<#(UIImage *)#>
+//                                                       landscapeImagePhone:<#(UIImage *)#>
+//                                                                    style:UIBarButtonItemStyleDone target:nil action:nil];
+ 
+//    self.navigationItem.leftBarButtonItem = cancelAlertsButton;
 }
 
 - (void)reloadData:(id)object {
@@ -103,8 +122,6 @@
             NSLog(@"Not successful");
         }
     }];
-    
-
 }
 
 
@@ -184,26 +201,26 @@
 }
 
 
-- (NSArray *)rightButtons
-{
-    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithRed:0.78f green:0.78f blue:0.8f alpha:1.0]
-                                                title:@"Remove Alert"];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
-                                                title:@"Delete"];
-    
-    return rightUtilityButtons;
-}
+//- (NSArray *)rightButtons
+//{
+//    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+//    [rightUtilityButtons sw_addUtilityButtonWithColor:
+//     [UIColor colorWithRed:0.78f green:0.78f blue:0.8f alpha:1.0]
+//                                                title:@"Remove Alert"];
+//    [rightUtilityButtons sw_addUtilityButtonWithColor:
+//     [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
+//                                                title:@"Delete"];
+//    
+//    return rightUtilityButtons;
+//}
 
 - (FISMainTableViewCell *)configureStockCellAtIndexPath:(NSIndexPath *)indexPath
 {
     
     FISMainTableViewCell *cell = [self.stockTableView dequeueReusableCellWithIdentifier:@"basicCell"    forIndexPath:indexPath];
     
-    cell.rightUtilityButtons = [self rightButtons];
-    cell.delegate = self;
+//    cell.rightUtilityButtons = [self rightButtons];
+//    cell.delegate = self;
     
     Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
     
@@ -247,7 +264,7 @@
     }
     
     
-    [cell.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:18]];
+    [cell.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:20]];
     [cell.symbolLabel setTextColor:[UIColor whiteColor]];
 
     [cell.bidPriceLabel setFont:[UIFont fontWithName:@"Arial" size:16]];
@@ -296,12 +313,12 @@
 
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //[self performSegueWithIdentifier:@"stockDetailSegue" sender:self];
-    
-//    Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    //[self performSegueWithIdentifier:@"stockDetailSegue" sender:self];
+//    
+////    Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
+//}
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -396,19 +413,19 @@
 /////////////////////////////////////////////////////
 
 //
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (editingStyle == UITableViewCellEditingStyleDelete)
-//    {
-//        [self.dataStore deleteStockAtIndexPay:indexPath];
-//        [self.stocks removeObjectAtIndex:indexPath.row];
-//        [tableView reloadData];
-//        
-//    } else if (editingStyle == UITableViewCellEditingStyleInsert)
-//    {
-//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//    }
-//}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        [self.dataStore deleteStockAtIndexPay:indexPath];
+        [self.stocks removeObjectAtIndex:indexPath.row];
+        [tableView reloadData];
+        
+    } else if (editingStyle == UITableViewCellEditingStyleInsert)
+    {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
+}
 
 ///////////////////////////////////////////////////
 

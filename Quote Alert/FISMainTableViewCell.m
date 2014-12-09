@@ -8,7 +8,6 @@
 
 #import "FISMainTableViewCell.h"
 #import "Stock+Methods.h"
-#import <SWTableViewCell.h>
 
 @implementation FISMainTableViewCell
 

@@ -12,6 +12,7 @@
 		550D3D5A18F1E3B6009A9406 /* FISMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 550D3D5918F1E3B6009A9406 /* FISMainViewController.m */; };
 		550D3D6018F1EB74009A9406 /* UIColorSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 550D3D5F18F1EB74009A9406 /* UIColorSheet.m */; };
 		550D3D7618F5A7BF009A9406 /* FISStockSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 550D3D7518F5A7BF009A9406 /* FISStockSearch.m */; };
+		55186A9F1A35292000AD80B2 /* cancel_alerts small.png in Resources */ = {isa = PBXBuildFile; fileRef = 55186A9E1A35292000AD80B2 /* cancel_alerts small.png */; };
 		556F70FA18FB0FD300430D84 /* QAnavbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 556F70F918FB0FD300430D84 /* QAnavbar.png */; };
 		5575C72118E0E6E100ABB124 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5575C72018E0E6E100ABB124 /* Foundation.framework */; };
 		5575C72318E0E6E100ABB124 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5575C72218E0E6E100ABB124 /* CoreGraphics.framework */; };
@@ -66,6 +67,7 @@
 		550D3D5F18F1EB74009A9406 /* UIColorSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorSheet.m; sourceTree = "<group>"; };
 		550D3D7418F5A7BF009A9406 /* FISStockSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISStockSearch.h; sourceTree = "<group>"; };
 		550D3D7518F5A7BF009A9406 /* FISStockSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISStockSearch.m; sourceTree = "<group>"; };
+		55186A9E1A35292000AD80B2 /* cancel_alerts small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel_alerts small.png"; sourceTree = "<group>"; };
 		556F70F918FB0FD300430D84 /* QAnavbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QAnavbar.png; sourceTree = "<group>"; };
 		5575C71D18E0E6E100ABB124 /* Quote Alert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quote Alert.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5575C72018E0E6E100ABB124 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -256,6 +258,7 @@
 				55CA537F19059AA9000E2A1E /* metal_grill_darkened.png */,
 				55CA537519041CD0000E2A1E /* navBar2.png */,
 				556F70F918FB0FD300430D84 /* QAnavbar.png */,
+				55186A9E1A35292000AD80B2 /* cancel_alerts small.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				5575C73818E0E6E100ABB124 /* Images.xcassets in Resources */,
 				55912D4C18E4C9660069FEEC /* Storyboard.storyboard in Resources */,
 				79C2AF891A0D4A2200E666E4 /* tiny_alarmicon.png in Resources */,
+				55186A9F1A35292000AD80B2 /* cancel_alerts small.png in Resources */,
 				556F70FA18FB0FD300430D84 /* QAnavbar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
