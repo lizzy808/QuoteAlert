@@ -68,7 +68,43 @@
 
 
     
-    UIImage* cancelAlerts = [UIImage imageNamed:@"cancel_alerts small.png"];
+    // Determine if default for areAlertsMuted is set
+    BOOL shouldFireNotification;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults objectForKey:@"areAlertsMuted"])
+    {
+        
+        if([defaults boolForKey:@"areAlertsMuted"])
+            shouldFireNotification = NO;
+        
+        else
+            shouldFireNotification = YES;
+    }
+    else
+    {
+        // Default hasn't been set yet so it definitely isn't muted
+        shouldFireNotification = YES;
+    }
+    
+    if (shouldFireNotification)
+    {
+        [self updateMuteButtonWithImageNamed:@"un-cancel_alerts small.png"];
+    }
+    else
+    {
+        [self updateMuteButtonWithImageNamed:@"cancel_alerts small.png"];
+    }
+
+}
+
+
+- (void)updateMuteButtonWithImageNamed: (NSString *)imageName
+{
+    
+    
+    UIImage* cancelAlerts = [UIImage imageNamed:imageName];
+    
     CGRect frameimg = CGRectMake(0, 0, cancelAlerts.size.width, cancelAlerts.size.height);
     
     UIButton *cancelAlertsButton = [[UIButton alloc] initWithFrame:frameimg];
@@ -76,13 +112,11 @@
     [cancelAlertsButton addTarget:self action:@selector(muteAlerts)
                  forControlEvents:UIControlEventTouchUpInside];
     
-    [cancelAlertsButton setShowsTouchWhenHighlighted:YES];
+    //[cancelAlertsButton setShowsTouchWhenHighlighted:YES];
     
     UIBarButtonItem *cancelButton =[[UIBarButtonItem alloc] initWithCustomView:cancelAlertsButton];
     self.navigationItem.leftBarButtonItem=cancelButton;
-
 }
-
 
 // Flip the status of the alerts
 - (void)muteAlerts
@@ -106,12 +140,13 @@
                   
     if ([defaults boolForKey:@"areAlertsMuted"])
     {
-        // TODO ADD CODE TO CHANGE IMAGE
+        [self updateMuteButtonWithImageNamed:@"cancel_alerts small.png"];
         NSLog(@"Muting Alerts");
+        
     }
     else
     {
-        // TODO ADD CODE TO CHANGE IMAGE
+        [self updateMuteButtonWithImageNamed:@"un-cancel_alerts small.png"];
         NSLog(@"Un-muting alerts");
     }
 }
