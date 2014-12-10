@@ -382,7 +382,7 @@
         //[self.stocks removeObjectAtIndex:indexPath.row];      //DOESN'T APPEAR TO BE USED ANYMORE
 
         // COMMIT ?
-        [self.dataStore saveContext];
+        [self.dataStore.fetchedStockResultsController performFetch:nil];
         [tableView reloadData];
         
     } else if (editingStyle == UITableViewCellEditingStyleInsert)
