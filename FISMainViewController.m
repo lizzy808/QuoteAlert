@@ -65,7 +65,57 @@
     selector:@selector(reloadData:)
     name:@"EnteredForeground"
     object:nil];
+
+
+    
+    UIImage* cancelAlerts = [UIImage imageNamed:@"cancel_alerts small.png"];
+    CGRect frameimg = CGRectMake(0, 0, cancelAlerts.size.width, cancelAlerts.size.height);
+    
+    UIButton *cancelAlertsButton = [[UIButton alloc] initWithFrame:frameimg];
+    [cancelAlertsButton setBackgroundImage:cancelAlerts forState:UIControlStateNormal];
+    [cancelAlertsButton addTarget:self action:@selector(muteAlerts)
+                 forControlEvents:UIControlEventTouchUpInside];
+    
+    [cancelAlertsButton setShowsTouchWhenHighlighted:YES];
+    
+    UIBarButtonItem *cancelButton =[[UIBarButtonItem alloc] initWithCustomView:cancelAlertsButton];
+    self.navigationItem.leftBarButtonItem=cancelButton;
+
 }
+
+
+// Flip the status of the alerts
+- (void)muteAlerts
+{
+    // Determine if default for areAlertsMuted is set
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults objectForKey:@"areAlertsMuted"])
+    {
+        // Flip the boolean value since it exists
+        [defaults setBool:![defaults boolForKey:@"areAlertsMuted"] forKey:@"areAlertsMuted"];
+    }
+    else
+    {
+        // Default hasn't been set yet so switch to muted
+        [defaults setBool:YES forKey:@"areAlertsMuted"];
+    }
+    
+    // Must commit saving of the default value
+    [defaults synchronize];
+                  
+    if ([defaults boolForKey:@"areAlertsMuted"])
+    {
+        // TODO ADD CODE TO CHANGE IMAGE
+        NSLog(@"Muting Alerts");
+    }
+    else
+    {
+        // TODO ADD CODE TO CHANGE IMAGE
+        NSLog(@"Un-muting alerts");
+    }
+}
+
 
 - (void)reloadData:(id)object {
     
