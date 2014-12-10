@@ -181,6 +181,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSLog(@"Number of fetched objects is %lu", (unsigned long)[[self.dataStore.fetchedStockResultsController fetchedObjects]count]);
+    NSLog(@"Number of items in stock array is %lu", _stocks.count);
     return [[self.dataStore.fetchedStockResultsController fetchedObjects]count];
 }
 
@@ -302,11 +304,13 @@
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
+    NSLog(@"controllerWillChangeContent");
     [self.stockTableView beginUpdates];
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
+    NSLog(@"controllerDidChangeContent");
     [self.stockTableView endUpdates];
 }
 
@@ -314,6 +318,8 @@
            atIndex:(NSUInteger)sectionIndex
      forChangeType:(NSFetchedResultsChangeType)type
 {
+    
+    NSLog(@"controller didChangeSection");
     switch(type) {
             
         case NSFetchedResultsChangeInsert:
@@ -331,6 +337,8 @@
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath
 {
+    
+    NSLog(@"controller didChangeObject");
     UITableView *tableView = self.stockTableView;
     
     switch(type) {
@@ -367,10 +375,14 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"commitEditingStyle");
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         [self.dataStore deleteStockAtIndexPay:indexPath];
-        [self.stocks removeObjectAtIndex:indexPath.row];
+        //[self.stocks removeObjectAtIndex:indexPath.row];      //DOESN'T APPEAR TO BE USED ANYMORE
+
+        // COMMIT ?
+        [self.dataStore saveContext];
         [tableView reloadData];
         
     } else if (editingStyle == UITableViewCellEditingStyleInsert)
