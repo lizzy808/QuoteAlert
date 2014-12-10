@@ -128,6 +128,24 @@
     [self.avgVolumeLabel setTextColor:[UIColor yellowColor]];
     [self.yieldLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [self.yieldLabel setTextColor:[UIColor yellowColor]];
+    
+    
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path moveToPoint:CGPointMake(10.0, 90.0)];
+    [path addLineToPoint:CGPointMake(310.0, 90.0)];
+    
+    
+    [path moveToPoint:CGPointMake(10.0, 320.0)];
+    [path addLineToPoint:CGPointMake(300.0, 320.00)];
+    
+    
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    shapeLayer.path = [path CGPath];
+    shapeLayer.strokeColor = [[UIColor whiteColor] CGColor];
+    shapeLayer.lineWidth = 1.0;
+    shapeLayer.fillColor = [[UIColor clearColor] CGColor];
+    
+    [self.view.layer addSublayer:shapeLayer];
 }
 
 
