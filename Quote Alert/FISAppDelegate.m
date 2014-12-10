@@ -86,11 +86,40 @@
   performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
     
-    NSLog(@"Perfoming fetch");
+    NSLog(@"Perfoming background fetch");
     
     //[YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
     
-    [YahooAPIClient fetchAllUserStocksUpdatesShouldFireNotification:YES WithCompletion:^(BOOL isSuccessful) {
+    
+    
+    
+    // Determine if default for areAlertsMuted is set
+    BOOL shouldFireNotification;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults objectForKey:@"areAlertsMuted"])
+    {
+        
+        if([defaults boolForKey:@"areAlertsMuted"])
+            shouldFireNotification = NO;
+        else
+            shouldFireNotification = YES;
+    }
+    else
+    {
+        // Default hasn't been set yet so it definitely isn't muted
+        shouldFireNotification = YES;
+    }
+    
+    if (shouldFireNotification)
+        NSLog(@"Should Fire Notification");
+    else
+        NSLog(@"Notification shouldn't fire because it is muted");
+    
+    
+    
+    // Fetch the background results
+    [YahooAPIClient fetchAllUserStocksUpdatesShouldFireNotification:shouldFireNotification WithCompletion:^(BOOL isSuccessful) {
             
         if (isSuccessful)
         {
