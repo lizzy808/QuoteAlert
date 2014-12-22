@@ -48,7 +48,6 @@
     [super viewDidLoad];
     
     [self initialize];
-//    [self setupNavBar];
 
     self.dataStore = [FISDataStore sharedDataStore];
     
@@ -56,6 +55,8 @@
     self.stockTableView.dataSource = self;
     self.dataStore.fetchedStockResultsController.delegate= self;
     [self.stockTableView reloadData];
+    
+    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
@@ -65,7 +66,6 @@
     selector:@selector(reloadData:)
     name:@"EnteredForeground"
     object:nil];
-
 
     
     // Determine if default for areAlertsMuted is set
@@ -116,6 +116,7 @@
     
     UIBarButtonItem *cancelButton =[[UIBarButtonItem alloc] initWithCustomView:cancelAlertsButton];
     self.navigationItem.leftBarButtonItem=cancelButton;
+    
 }
 
 // Flip the status of the alerts
@@ -141,13 +142,13 @@
     if ([defaults boolForKey:@"areAlertsMuted"])
     {
         [self updateMuteButtonWithImageNamed:@"cancel_alerts small.png"];
-        NSLog(@"Muting Alerts");
+        NSLog(@"Un-Muting Alerts");
         
     }
     else
     {
         [self updateMuteButtonWithImageNamed:@"un-cancel_alerts small.png"];
-        NSLog(@"Un-muting alerts");
+        NSLog(@"Muting alerts");
     }
 }
 
@@ -239,11 +240,11 @@
 }
 
 
-//- (void) setupNavBar
-//{
+- (void) setupNavBar
+{
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"QAnavBar.png"] forBarMetrics:UIBarMetricsDefault];
-//    [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
-//}
+    [self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
+}
 
 
 - (void)didReceiveMemoryWarning

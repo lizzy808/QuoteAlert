@@ -288,11 +288,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FISMainViewController.m"
-            timestampString = "439795483.501081"
+            timestampString = "440209353.669315"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
+            landmarkName = "-viewWillAppear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FISMainViewController.m"
+            timestampString = "440209353.669315"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "322"
+            endingLineNumber = "322"
             landmarkName = "-configureStockCellAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -304,27 +320,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FISMainViewController.m"
-            timestampString = "439795483.501081"
+            timestampString = "440208117.925972"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
-            landmarkName = "-controller:didChangeSection:atIndex:forChangeType:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FISMainViewController.m"
-            timestampString = "439502471.075939"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -336,13 +336,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FISMainViewController.m"
-            timestampString = "439795483.501081"
+            timestampString = "440209353.669315"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
-            landmarkName = "-configureStockCellAtIndexPath:"
-            landmarkType = "5">
+            startingLineNumber = "199"
+            endingLineNumber = "199"
+            landmarkName = "@implementation FISMainViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -352,12 +352,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FISMainViewController.m"
-            timestampString = "439795483.501081"
+            timestampString = "440209353.669315"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
-            landmarkName = "-configureStockCellAtIndexPath:"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -400,12 +400,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FISMainViewController.m"
-            timestampString = "439795483.501081"
+            timestampString = "440209353.669315"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
-            landmarkName = "-viewWillAppear:"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "-muteAlerts"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -510,12 +510,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FISMainViewController.m"
-            timestampString = "439795483.501081"
+            timestampString = "440209353.669315"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
-            landmarkName = "-viewWillAppear:"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "-muteAlerts"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
