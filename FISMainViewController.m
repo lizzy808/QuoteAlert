@@ -94,10 +94,12 @@
     if (shouldFireNotification)
     {
         [self updateMuteButtonWithImageNamed:@"un-cancel_alerts small.png"];
+
     }
     else
     {
         [self updateMuteButtonWithImageNamed:@"cancel_alerts small.png"];
+
     }
 
 }
@@ -105,8 +107,6 @@
 
 - (void)updateMuteButtonWithImageNamed: (NSString *)imageName
 {
-    
-    
     UIImage* cancelAlerts = [UIImage imageNamed:imageName];
     
     CGRect frameimg = CGRectMake(0, 0, cancelAlerts.size.width, cancelAlerts.size.height);
@@ -145,13 +145,26 @@
                   
     if ([defaults boolForKey:@"areAlertsMuted"])
     {
-        [self updateMuteButtonWithImageNamed:@"cancel_alerts small.png"];
+        [self updateMuteButtonWithImageNamed:@"un-cancel_alerts small.png"];
+        UIAlertView *messageAlert = [[UIAlertView alloc]
+                                     initWithTitle:@"Message" message:@"Quote Alerts Muted" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        // Display Alert Message
+        [messageAlert show];
+
         NSLog(@"Un-Muting Alerts");
         
     }
     else
     {
-        [self updateMuteButtonWithImageNamed:@"un-cancel_alerts small.png"];
+        [self updateMuteButtonWithImageNamed:@"cancel_alerts small.png"];
+        
+        UIAlertView *messageAlert2 = [[UIAlertView alloc]
+                                     initWithTitle:@"Message" message:@"Quote Alerts Active" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        // Display Alert Message
+        [messageAlert2 show];
+        
         NSLog(@"Muting alerts");
     }
 }
@@ -246,7 +259,7 @@
 
 - (void) setupNavBar
 {
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"QAnavBar.png"] forBarMetrics:UIBarMetricsDefault];
+
     [self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
 }
 

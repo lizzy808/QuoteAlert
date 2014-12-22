@@ -107,7 +107,7 @@
         [self.dayChangeLabel setTextColor:[UIColor redColor]];
     }
     
-    [self.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:20]];
+    [self.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:24]];
     [self.symbolLabel setTextColor:[UIColor yellowColor]];
     [self.openPriceLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [self.openPriceLabel setTextColor:[UIColor yellowColor]];
@@ -132,12 +132,12 @@
     
     
     UIBezierPath *path = [UIBezierPath bezierPath];
-    [path moveToPoint:CGPointMake(10.0, 130.0)];
-    [path addLineToPoint:CGPointMake(310.0, 130.0)];
+    [path moveToPoint:CGPointMake(0.0, 130.0)];
+    [path addLineToPoint:CGPointMake(320.0, 130.0)];
     
     
-    [path moveToPoint:CGPointMake(10.0, 360.0)];
-    [path addLineToPoint:CGPointMake(300.0, 360.00)];
+    [path moveToPoint:CGPointMake(0.0, 360.0)];
+    [path addLineToPoint:CGPointMake(320.0, 360.00)];
 //
 //    UIBezierPath *rectangle1 = [UIBezierPath bezierPath];
 //    [rectangle1 moveToPoint:CGPointMake(0.0, 0.0)];
