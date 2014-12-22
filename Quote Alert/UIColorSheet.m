@@ -10,6 +10,12 @@
 
 @implementation UIColorSheet
 
+
++ (UIColor *)stockVeryDarkGreyColor
+{
+    return [UIColor colorWithRed:40/255.0 green:40/255.0 blue:45/255.0 alpha:1];
+}
+
 + (UIColor *)stockDarkGreyColor
 {
     return [UIColor colorWithRed:61/255.0 green:77/255.0 blue:82/255.0 alpha:1];

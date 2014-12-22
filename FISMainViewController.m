@@ -56,7 +56,11 @@
     self.dataStore.fetchedStockResultsController.delegate= self;
     [self.stockTableView reloadData];
     
-    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
+//    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
+    
+    self.navigationController.navigationBar.barTintColor = [UIColorSheet stockVeryDarkGreyColor];
+    self.navigationController.navigationBar.translucent = NO;
+    
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];

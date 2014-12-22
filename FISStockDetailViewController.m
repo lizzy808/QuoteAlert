@@ -14,6 +14,7 @@
 #import "FISSearchTableViewController.h"
 #import "YahooAPIClient.h"
 #import "Stock+Methods.h"
+#import "UIColorSheet.h"
 
 @interface FISStockDetailViewController ()
 
@@ -137,7 +138,13 @@
     
     [path moveToPoint:CGPointMake(10.0, 360.0)];
     [path addLineToPoint:CGPointMake(300.0, 360.00)];
-    
+//
+//    UIBezierPath *rectangle1 = [UIBezierPath bezierPath];
+//    [rectangle1 moveToPoint:CGPointMake(0.0, 0.0)];
+//    [rectangle1 addLineToPoint:CGPointMake(320.0, 0.0)];
+//    [rectangle1 addLineToPoint:CGPointMake(320.0, 129.0)];
+//    [rectangle1 addLineToPoint:CGPointMake(0.0, 129.0)];
+//    [rectangle1 addLineToPoint:CGPointMake(0.0, 0.0)];
     
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.path = [path CGPath];
@@ -145,7 +152,14 @@
     shapeLayer.lineWidth = 1.0;
     shapeLayer.fillColor = [[UIColor clearColor] CGColor];
     
+//    CAShapeLayer *rectLayer = [CAShapeLayer layer];
+//    rectLayer.path = [rectangle1 CGPath];
+//    rectLayer.strokeColor = [[UIColor clearColor] CGColor];
+//    rectLayer.lineWidth = 1.0;
+//    rectLayer.fillColor = [[UIColorSheet stockVeryDarkGreyColor] CGColor];
+    
     [self.view.layer addSublayer:shapeLayer];
+//    [self.view.layer addSublayer:rectLayer];
 }
 
 

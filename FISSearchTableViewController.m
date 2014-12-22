@@ -96,7 +96,7 @@
 
 - (FISSearchTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.searchDisplayController.searchResultsTableView setTintColor:[UIColor clearColor]];
+    [self.searchDisplayController.searchResultsTableView setTintColor:[UIColor darkGrayColor]];
     
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         
