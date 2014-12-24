@@ -34,7 +34,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Symbol" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khQ-n0-Rjy">
-                                                    <rect key="frame" x="25" y="33" width="80" height="21"/>
+                                                    <rect key="frame" x="19" y="33" width="80" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -45,12 +45,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="AlertPriceH" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SYj-lf-XFZ">
-                                                    <rect key="frame" x="210" y="19" width="61" height="21"/>
+                                                    <rect key="frame" x="214" y="19" width="61" height="21"/>
                                                     <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="AlertPriceL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JY1-dP-vhd">
-                                                    <rect key="frame" x="210" y="46" width="61" height="21"/>
+                                                    <rect key="frame" x="214" y="46" width="61" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -91,7 +91,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Stocks" id="1YJ-0v-FrR">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="T3i-iW-dxV">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="T3i-iW-dxV">
                             <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="e9f-KF-rg3" kind="modal" identifier="mainToSearchSegue" id="0Sa-ib-hK7"/>

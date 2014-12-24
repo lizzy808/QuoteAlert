@@ -200,14 +200,19 @@
 - (void)refresh:(UIRefreshControl *)refreshControl {
     
 //    [YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
+//    if (!self.stockTableView) {
+    
     [YahooAPIClient fetchAllUserStocksUpdatesShouldFireNotification:NO WithCompletion:^(BOOL isSuccessful) {
     
+        
         if (isSuccessful)
         {
-            NSLog(@"Was successful");
-            [refreshControl endRefreshing];
-            [self.stockTableView reloadData];
-
+//            if (!self.stockTableView) {
+            
+                NSLog(@"Was successful");
+                [refreshControl endRefreshing];
+                [self.stockTableView reloadData];
+//            }
         }
 
         else
@@ -215,7 +220,7 @@
             NSLog(@"Not successful");
         }
     }];
-    
+//    }
 
 }
 

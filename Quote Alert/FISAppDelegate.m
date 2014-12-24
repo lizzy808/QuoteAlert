@@ -162,6 +162,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    application.applicationIconBadgeNumber = 0;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
