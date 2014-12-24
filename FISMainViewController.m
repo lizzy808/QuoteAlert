@@ -34,7 +34,10 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         [self.stockTableView reloadData];
-
+        
+//        dispatch_async(dispatch_get_main_queue(), ^(void) {
+//            [self.stockTableView reloadData];
+//    });
         // Custom initialization
     }
     return self;
@@ -55,6 +58,10 @@
     self.stockTableView.dataSource = self;
     self.dataStore.fetchedStockResultsController.delegate= self;
     [self.stockTableView reloadData];
+    
+//    dispatch_async(dispatch_get_main_queue(), ^(void) {
+//        [self.stockTableView reloadData];
+//    });
     
 //    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     
@@ -103,6 +110,7 @@
     }
 
 }
+
 
 
 - (void)updateMuteButtonWithImageNamed: (NSString *)imageName
@@ -177,7 +185,7 @@
         if (isSuccessful)
         {
             NSLog(@"Was successful");
-            [self.stockTableView reloadData];
+            
         }
         
         else
@@ -199,6 +207,7 @@
             NSLog(@"Was successful");
             [refreshControl endRefreshing];
             [self.stockTableView reloadData];
+
         }
 
         else
@@ -245,6 +254,9 @@
         {
             NSLog(@"Was successful");
             [self.stockTableView reloadData];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                [self.stockTableView reloadData];
+            });
         }
         
         else
@@ -487,6 +499,7 @@
         // COMMIT ?
         [self.dataStore.fetchedStockResultsController performFetch:nil];
         [tableView reloadData];
+        
         
     } else if (editingStyle == UITableViewCellEditingStyleInsert)
     {

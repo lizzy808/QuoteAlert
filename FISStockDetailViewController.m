@@ -15,6 +15,7 @@
 #import "YahooAPIClient.h"
 #import "Stock+Methods.h"
 #import "UIColorSheet.h"
+#import "FISMainViewController.h"
 
 @interface FISStockDetailViewController ()
 
