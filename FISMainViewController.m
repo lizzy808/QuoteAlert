@@ -59,14 +59,22 @@
     self.dataStore.fetchedStockResultsController.delegate= self;
     [self.stockTableView reloadData];
     
+//    self.na = [UIColor colorWithPatternImage:[UIImage imageNamed:@"nav_gradient_blue_title1.png"]];
+    
+//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_gradient_blue_title1.png"] forBarMetrics:UIBarMetricsDefault];
+    
+
+    
 //    dispatch_async(dispatch_get_main_queue(), ^(void) {
 //        [self.stockTableView reloadData];
 //    });
     
 //    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     
-    self.navigationController.navigationBar.barTintColor = [UIColorSheet stockVeryDarkGreyColor];
+    self.navigationController.navigationBar.barTintColor = [UIColorSheet clearColor];
     self.navigationController.navigationBar.translucent = NO;
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bluenavbarlight_320x64.png"] forBarMetrics:UIBarMetricsDefault];
     
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
@@ -100,12 +108,12 @@
     
     if (shouldFireNotification)
     {
-        [self updateMuteButtonWithImageNamed:@"un-cancel_alerts small.png"];
+        [self updateMuteButtonWithImageNamed:@"tinyalarmbutton_cancel.png"];
 
     }
     else
     {
-        [self updateMuteButtonWithImageNamed:@"cancel_alerts small.png"];
+        [self updateMuteButtonWithImageNamed:@"tinyalarmbutton.png"];
 
     }
 
@@ -153,7 +161,7 @@
                   
     if ([defaults boolForKey:@"areAlertsMuted"])
     {
-        [self updateMuteButtonWithImageNamed:@"un-cancel_alerts small.png"];
+        [self updateMuteButtonWithImageNamed:@"tinyalarmbutton_cancel.png"];
         UIAlertView *messageAlert = [[UIAlertView alloc]
                                      initWithTitle:@"Message" message:@"Quote Alerts Muted" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         
@@ -165,7 +173,7 @@
     }
     else
     {
-        [self updateMuteButtonWithImageNamed:@"cancel_alerts small.png"];
+        [self updateMuteButtonWithImageNamed:@"tinyalarmbutton_cancel.png"];
         
         UIAlertView *messageAlert2 = [[UIAlertView alloc]
                                      initWithTitle:@"Message" message:@"Quote Alerts Active" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

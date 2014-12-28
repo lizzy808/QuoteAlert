@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Stocks-->
+        <!--Main View Controller-->
         <scene sceneID="7fg-he-glg">
             <objects>
                 <viewController id="F3f-fl-ClB" customClass="FISMainViewController" sceneMemberID="viewController">
@@ -90,7 +90,8 @@
                             <constraint firstAttribute="trailingMargin" secondItem="K30-SI-nN3" secondAttribute="trailing" constant="4" id="xTa-YZ-kXh"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Stocks" id="1YJ-0v-FrR">
+                    <navigationItem key="navigationItem" id="1YJ-0v-FrR">
+                        <nil key="title"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="T3i-iW-dxV">
                             <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -104,7 +105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eze-85-6yq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="838" y="7"/>
+            <point key="canvasLocation" x="805" y="7"/>
         </scene>
         <!--Search Table View Controller-->
         <scene sceneID="vIB-nN-PhW">
