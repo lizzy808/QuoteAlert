@@ -27,6 +27,7 @@
 @dynamic userAlertPriceHigh;
 @dynamic userAlertPriceLow;
 @dynamic companyName;
+@dynamic percentChange;
 
 @dynamic dayHighDecimal;
 @dynamic dayHighFormatted;

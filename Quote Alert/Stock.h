@@ -25,6 +25,7 @@
 @property (nonatomic, retain) NSString * yearHigh;
 @property (nonatomic, retain) NSString * yearLow;
 @property (nonatomic, retain) NSString * yield;
+@property (nonatomic, retain) NSString * percentChange;
 
 @property (nonatomic, retain) NSDate *lastNotificationFiredTime;
 

@@ -161,7 +161,7 @@
                   
     if ([defaults boolForKey:@"areAlertsMuted"])
     {
-        [self updateMuteButtonWithImageNamed:@"tinyalarmbutton_cancel.png"];
+        [self updateMuteButtonWithImageNamed:@"tinyalarmbutton.png"];
         UIAlertView *messageAlert = [[UIAlertView alloc]
                                      initWithTitle:@"Message" message:@"Quote Alerts Muted" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         
@@ -330,18 +330,28 @@
     cell.stock = stock;
     cell.symbolLabel.text = stock.symbol;
     cell.bidPriceLabel.text = stock.bidPrice;
+        
     cell.dayChangeLabel.text = stock.change;
+    cell.percentChangeLabel.text = stock.percentChange;
+    
     cell.alertPriceHighLabel.text = [NSString stringWithFormat:@"%.2f", stock.userAlertPriceHigh];
     cell.alertPriceLowLabel.text = [NSString stringWithFormat:@"%.2f", stock.userAlertPriceLow];
     
     int stockChangeFloat = [stock.change intValue];
     
     if (stockChangeFloat >= 0.00) {
-        [cell.dayChangeLabel setBackgroundColor:[UIColor greenColor]];
+//        [cell.dayChangeLabel setBackgroundColor:[UIColor greenColor]];
+//        [cell.percentChangeLabel setBackgroundColor:[UIColor greenColor]];
+        [cell.dayChangeLabel setTextColor:[UIColor greenColor]];
+        [cell.percentChangeLabel setTextColor:[UIColor greenColor]];
+
     }
     
     else{
-        [cell.dayChangeLabel setBackgroundColor:[UIColor redColor]];
+//        [cell.dayChangeLabel setBackgroundColor:[UIColor redColor]];
+//        [cell.percentChangeLabel setBackgroundColor:[UIColor redColor]];
+        [cell.dayChangeLabel setTextColor:[UIColor redColor]];
+        [cell.percentChangeLabel setTextColor:[UIColor redColor]];
     }
     
 /////////////////////// if cell sends notification, highlight cell /////////////////////////
@@ -383,16 +393,19 @@
     [cell.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:18]];
     [cell.symbolLabel setTextColor:[UIColor whiteColor]];
 
-    [cell.bidPriceLabel setFont:[UIFont fontWithName:@"Arial" size:16]];
+    [cell.bidPriceLabel setFont:[UIFont fontWithName:@"Arial" size:18]];
     [cell.bidPriceLabel setTextColor:[UIColor whiteColor]];
     
-    [cell.dayChangeLabel setFont:[UIFont fontWithName:@"Arial" size:16]];
-    [cell.dayChangeLabel setTextColor:[UIColor whiteColor]];
+    [cell.dayChangeLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
+//    [cell.dayChangeLabel setTextColor:[UIColor clearColor]];
     
-    [cell.alertPriceHighLabel setFont:[UIFont fontWithName:@"Arial" size:16]];
+    [cell.percentChangeLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
+//    [cell.percentChangeLabel setTextColor:[UIColor whiteColor]];
+    
+    [cell.alertPriceHighLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [cell.alertPriceHighLabel setTextColor:[UIColor yellowColor]];
     
-    [cell.alertPriceLowLabel setFont:[UIFont fontWithName:@"Arial" size:16]];
+    [cell.alertPriceLowLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [cell.alertPriceLowLabel setTextColor:[UIColor yellowColor]];
     
     return cell;

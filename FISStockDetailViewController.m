@@ -41,6 +41,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *yearLowLabel;
 @property (weak, nonatomic) IBOutlet UILabel *avgVolumeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *yieldLabel;
+@property (weak, nonatomic) IBOutlet UILabel *percentChangeLabel;
 
 @property (weak, nonatomic) IBOutlet UITextField *qaHighTextField;
 @property (weak, nonatomic) IBOutlet UITextField *qaLowTextField;
@@ -68,6 +69,7 @@
     [self.qaHighTextField setText:[NSString stringWithFormat:@"%.2f", self.stock.userAlertPriceHigh]];
     [self.qaLowTextField setText:[NSString stringWithFormat:@"%.2f", self.stock.userAlertPriceLow]];
 
+//    [self addSetQAButton];
     
 }
 
@@ -93,19 +95,23 @@
     self.yearLowLabel.text = self.stock.yearLow;
     self.avgVolumeLabel.text = self.stock.averageVolume;
     self.yieldLabel.text = self.stock.yield;
+    self.percentChangeLabel.text = self.stock.percentChange;
 
     [self.priceLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [self.priceLabel setTextColor:[UIColor yellowColor]];
     [self.dayChangeLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
+    [self.percentChangeLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
 //    [self.dayChangeLabel setTextColor:[UIColor yellowColor]];
     
     int stockChangeFloat = [self.stock.change intValue];
     
     if (stockChangeFloat >= 0.00) {
         [self.dayChangeLabel setTextColor:[UIColor greenColor]];
+        [self.percentChangeLabel setTextColor:[UIColor greenColor]];
     }
     else{
         [self.dayChangeLabel setTextColor:[UIColor redColor]];
+        [self.percentChangeLabel setTextColor:[UIColor redColor]];
     }
     
     [self.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:24]];
@@ -139,13 +145,7 @@
     
     [path moveToPoint:CGPointMake(0.0, 360.0)];
     [path addLineToPoint:CGPointMake(320.0, 360.00)];
-//
-//    UIBezierPath *rectangle1 = [UIBezierPath bezierPath];
-//    [rectangle1 moveToPoint:CGPointMake(0.0, 0.0)];
-//    [rectangle1 addLineToPoint:CGPointMake(320.0, 0.0)];
-//    [rectangle1 addLineToPoint:CGPointMake(320.0, 129.0)];
-//    [rectangle1 addLineToPoint:CGPointMake(0.0, 129.0)];
-//    [rectangle1 addLineToPoint:CGPointMake(0.0, 0.0)];
+
     
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.path = [path CGPath];
@@ -153,14 +153,7 @@
     shapeLayer.lineWidth = 1.0;
     shapeLayer.fillColor = [[UIColor clearColor] CGColor];
     
-//    CAShapeLayer *rectLayer = [CAShapeLayer layer];
-//    rectLayer.path = [rectangle1 CGPath];
-//    rectLayer.strokeColor = [[UIColor clearColor] CGColor];
-//    rectLayer.lineWidth = 1.0;
-//    rectLayer.fillColor = [[UIColorSheet stockVeryDarkGreyColor] CGColor];
-    
     [self.view.layer addSublayer:shapeLayer];
-//    [self.view.layer addSublayer:rectLayer];
 }
 
 
@@ -173,36 +166,12 @@
     
      self.stock.userAlertPriceHigh = [self.qaHighTextField.text floatValue];
      self.stock.userAlertPriceLow = [self.qaLowTextField.text floatValue];
-
-    
 /*
  Enables notification if user changes alert prices
 */
     
     self.stock.lastNotificationFiredTime = nil;
-    
-    
-//    [self.button.layer setShadowOffset:CGSizeMake(5, 5)];
-//    [self.button.layer setShadowColor:[[UIColor blackColor] CGColor]];
-//    [self.button.layer setShadowOpacity:0.5];
-    
     [self.dataStore saveContext];
-    ///////////////////////////////////////
-    
-//    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-//    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
-//    localNotification.alertBody = @"This stock has reached this price";
-//    localNotification.soundName = UILocalNotificationDefaultSoundName;
-//    localNotification.alertAction = @"Show me the item";
-//    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-//    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-//    
-//    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
-//    
-//    NSLog(@"%@", localNotification);
-
-    ////////////////////////////////////////
     [self dismissViewControllerAnimated:YES completion:nil];
 
     NSLog(@"High price limit:%@, Low Price Limit: %@", self.qaHighTextField, self.qaLowTextField);

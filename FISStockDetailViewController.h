@@ -14,4 +14,10 @@
 @property (strong, nonatomic)Stock *stock;
 @property (strong, nonatomic) NSManagedObject *managedObject;
 
+- (UIButton *)buttonWithTitle:(NSString *)title
+                       target:(id)target
+                     selector:(SEL)selector
+                        frame:(CGRect)frame
+                        image:(UIImage *)image;
+
 @end

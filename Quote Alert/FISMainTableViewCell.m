@@ -41,6 +41,8 @@
     self.symbolLabel.text = self.stock.symbol;
     self.bidPriceLabel.text = self.stock.bidPrice;
     self.dayChangeLabel.text = self.stock.change;
+    self.percentChangeLabel.text = self.stock.percentChange;
+    
     self.alertPriceHighLabel.text = [NSString stringWithFormat:@"%.2f", self.stock.userAlertPriceHigh];
     self.alertPriceLowLabel.text = [NSString stringWithFormat:@"%.2f", self.stock.userAlertPriceLow ];
     
@@ -51,7 +53,7 @@
     self.bidPriceLabel.font = [UIFont fontWithName:@"Ubuntu" size:14];
     self.bidPriceLabel.textColor = [UIColor whiteColor];
     self.dayChangeLabel.font = [UIFont fontWithName:@"Ubuntu" size:14];
-    self.dayChangeLabel.textColor = [UIColor whiteColor];
+//    self.dayChangeLabel.textColor = [UIColor clearColor];
     
     
     return self;

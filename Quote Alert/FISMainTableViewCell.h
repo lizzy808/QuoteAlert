@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *alertPriceHighLabel;
 @property (weak, nonatomic) IBOutlet UILabel *alertPriceLowLabel;
 @property (weak, nonatomic) IBOutlet UIButton *dayChangeColorButton;
+@property (weak, nonatomic) IBOutlet UILabel *percentChangeLabel;
 
 
 @property (strong,nonatomic) Stock *stock;

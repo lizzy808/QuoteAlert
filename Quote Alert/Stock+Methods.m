@@ -12,7 +12,7 @@
 
 - (NSString *)stockDetailDescription
 {
-    return [NSString stringWithFormat:@"Symbol: %@ Bid Price: %@ Change: %@ Volume: %@ Day High: %@ Day Low: %@ P/E Ratio: %@ Open Price: %@ Market Cap: %@ Year High: %@ Year Low: %@ Yield: %@ Average Volume: %@ Company:%@ User Alert Price High:%@ User Alert Price Low:%@",self.symbol,self.bidPrice,self.change,self.volume,self.dayHigh,self.dayLow,self.peRatio,self.openPrice,self.mktCap,self.yearHigh,self.yearLow,self.yield,self.averageVolume,self.companyName,[NSString stringWithFormat:@"%.2f", self.userAlertPriceHigh],[NSString stringWithFormat:@"%.2f", self.userAlertPriceLow]];
+    return [NSString stringWithFormat:@"Symbol: %@ Percent Change: %@ Bid Price: %@ Change: %@ Volume: %@ Day High: %@ Day Low: %@ P/E Ratio: %@ Open Price: %@ Market Cap: %@ Year High: %@ Year Low: %@ Yield: %@ Average Volume: %@ Company:%@ User Alert Price High:%@ User Alert Price Low:%@",self.symbol,self.percentChange, self.bidPrice,self.change,self.volume,self.dayHigh,self.dayLow,self.peRatio,self.openPrice,self.mktCap,self.yearHigh,self.yearLow,self.yield,self.averageVolume,self.companyName,[NSString stringWithFormat:@"%.2f", self.userAlertPriceHigh],[NSString stringWithFormat:@"%.2f", self.userAlertPriceLow]];
 }
 
 
@@ -31,6 +31,8 @@
         Stock *repository = [NSEntityDescription insertNewObjectForEntityForName:@"Stock" inManagedObjectContext:context];
         
         repository.symbol = [self nullCheckWithObject:stockDetailDictionary[@"Symbol"]];
+        
+        repository.percentChange = [self nullCheckWithObject:stockDetailDictionary[@"ChangeinPercent"]];
         
 //        repository.bidPrice = [self nullCheckWithObject:stockDetailDictionary [@"Bid"]];
 
@@ -74,6 +76,8 @@
     {
         Stock *selectedRepo = [repos lastObject];
         selectedRepo.bidPrice = [self nullCheckWithObject:stockDetailDictionary[@"LastTradePriceOnly"]];
+        selectedRepo.percentChange = [self nullCheckWithObject:stockDetailDictionary[@"ChangeinPercent"]];
+        
 //        selectedRepo.bidPrice = [self nullCheckWithObject:stockDetailDictionary[@"Bid"]];
         selectedRepo.change = [self nullCheckWithObject:stockDetailDictionary[@"Change"]];
         selectedRepo.volume = [self nullCheckWithObject:stockDetailDictionary[@"Volume"]];
