@@ -81,6 +81,7 @@
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     [self.stockTableView addSubview:refreshControl];
     
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
     selector:@selector(reloadData:)
     name:@"EnteredForeground"
@@ -204,33 +205,67 @@
     NSLog(@"reloaded Data from foreground");
 }
 
-
-- (void)refresh:(UIRefreshControl *)refreshControl {
+- (void)refresh:(id)sender {
+    NSLog(@"Refreshing");
     
-//    [YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
-//    if (!self.stockTableView) {
+    //    [YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
+    //    if (!self.stockTableView) {
     
-    [YahooAPIClient fetchAllUserStocksUpdatesShouldFireNotification:NO WithCompletion:^(BOOL isSuccessful) {
+//        if ([self.stocks count] != 0) {
     
-        
-        if (isSuccessful)
-        {
-//            if (!self.stockTableView) {
+            [YahooAPIClient fetchAllUserStocksUpdatesShouldFireNotification:NO WithCompletion:^(BOOL isSuccessful) {
+    
+    
+                if (isSuccessful)
+                {
+    //            if (!self.stockTableView) {
+    
+                    NSLog(@"Was successful");
+//                    [refreshControl endRefreshing];
+                    [self.stockTableView reloadData];
+    //            }
+                }
+    
+                else
+                {
+                    NSLog(@"Not successful");
+                }
             
-                NSLog(@"Was successful");
-                [refreshControl endRefreshing];
-                [self.stockTableView reloadData];
-//            }
-        }
-
-        else
-        {
-            NSLog(@"Not successful");
-        }
-    }];
-//    }
-
+        }];
+//        }
+    // End Refreshing
+    [(UIRefreshControl *)sender endRefreshing];
 }
+
+//- (void)refresh:(UIRefreshControl *)refreshControl {
+//    
+////    [YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
+////    if (!self.stockTableView) {
+//    
+//    if ([self.stocks count] != 0) {
+//    
+//        [YahooAPIClient fetchAllUserStocksUpdatesShouldFireNotification:NO WithCompletion:^(BOOL isSuccessful) {
+//    
+//        
+//            if (isSuccessful)
+//            {
+////            if (!self.stockTableView) {
+//            
+//                NSLog(@"Was successful");
+//                [refreshControl endRefreshing];
+//                [self.stockTableView reloadData];
+////            }
+//            }
+//
+//            else
+//            {
+//                NSLog(@"Not successful");
+//            }
+//        
+//    }];
+//    }
+//
+//}
 
 
 //- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -551,3 +586,4 @@
 
 
 @end
+
