@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *dayChangeColorButton;
 @property (weak, nonatomic) IBOutlet UILabel *percentChangeLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *alarmClockImageView;
 
 @property (strong,nonatomic) Stock *stock;
 @property (strong,nonatomic) FISMainTableViewCell *cell;

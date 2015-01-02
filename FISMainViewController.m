@@ -384,16 +384,24 @@
     
     if ((stockBidPriceFloat <= stock.userAlertPriceHigh && stock.userAlertPriceHigh > 0) || (stockBidPriceFloat >= stock.userAlertPriceLow && stock.userAlertPriceLow > 0))
     {
-        UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectMake(8,20, 10, 10)];
-        imv.image=[UIImage imageNamed:@"tiny_alarmicon.png"];
-        [cell addSubview:imv];
+//        UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectMake(8,20, 10, 10)];
+//        imv.image=[UIImage imageNamed:@"tiny_alarmicon.png"];
+//        
+//        [cell.contentView addSubview:imv];
+
+        UIImage *alarmClockIcon = [UIImage imageNamed: @"tiny_alarmicon.png"];
+        [cell.alarmClockImageView setImage:alarmClockIcon];
+    }
+    else
+    {
+        [cell.alarmClockImageView setImage:nil];
     }
     
     
-    [cell.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:18]];
+    [cell.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:16]];
     [cell.symbolLabel setTextColor:[UIColor whiteColor]];
 
-    [cell.bidPriceLabel setFont:[UIFont fontWithName:@"Arial" size:18]];
+    [cell.bidPriceLabel setFont:[UIFont fontWithName:@"Arial" size:16]];
     [cell.bidPriceLabel setTextColor:[UIColor whiteColor]];
     
     [cell.dayChangeLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
