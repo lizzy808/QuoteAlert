@@ -15,6 +15,7 @@
 #import "FISSearchTableViewController.h"
 #import "YahooAPIClient.h"
 #import "UIColorSheet.h"
+#import "PageScrollViewController.h"
 
 
 @interface FISMainViewController ()
@@ -34,11 +35,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         [self.stockTableView reloadData];
-        
-//        dispatch_async(dispatch_get_main_queue(), ^(void) {
-//            [self.stockTableView reloadData];
-//    });
-        // Custom initialization
     }
     return self;
 }
@@ -51,6 +47,7 @@
     [super viewDidLoad];
     
     [self initialize];
+//    [self isFirstRun];
 
     self.dataStore = [FISDataStore sharedDataStore];
     
@@ -58,24 +55,50 @@
     self.stockTableView.dataSource = self;
     self.dataStore.fetchedStockResultsController.delegate= self;
     [self.stockTableView reloadData];
-    
-//    self.na = [UIColor colorWithPatternImage:[UIImage imageNamed:@"nav_gradient_blue_title1.png"]];
-    
-//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_gradient_blue_title1.png"] forBarMetrics:UIBarMetricsDefault];
-    
 
-    
-//    dispatch_async(dispatch_get_main_queue(), ^(void) {
-//        [self.stockTableView reloadData];
-//    });
-    
-//    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     
     self.navigationController.navigationBar.barTintColor = [UIColorSheet clearColor];
     self.navigationController.navigationBar.translucent = NO;
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bluenavbarlight_320x64.png"] forBarMetrics:UIBarMetricsDefault];
     
+//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
+//    {
+//        // app already launched
+//        NSLog(@"This is not the first launch");
+//    }
+//    
+//    else
+//    {
+//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//        // This is the first launch ever
+//        NSLog(@"This is the first launch");
+
+//    if (![@"1" isEqualToString:[[NSUserDefaults standardUserDefaults]
+//                                objectForKey:@"aValue"]]) {
+//        [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:@"aValue"];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//        
+//        NSLog(@"First app launch");
+    
+//        double delayInSeconds = 2.0;
+//        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+//        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+   
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+//        UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"View1"];
+//        [vc setModalPresentationStyle:UIModalPresentationFullScreen];
+        
+        
+//        [self presentModalViewController:vc animated:YES];
+        
+        
+//        [self performSegueWithIdentifier:@"tutorialSegue2" sender:self];
+//        });
+        
+//        [self performSegueWithIdentifier:@"tutorialSegue" sender:self];
+//    }
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
@@ -93,31 +116,33 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     if ([defaults objectForKey:@"areAlertsMuted"])
+    
     {
-        
         if([defaults boolForKey:@"areAlertsMuted"])
             shouldFireNotification = NO;
         
         else
             shouldFireNotification = YES;
     }
+    
     else
+    
     {
         // Default hasn't been set yet so it definitely isn't muted
         shouldFireNotification = YES;
     }
     
     if (shouldFireNotification)
+   
     {
         [self updateMuteButtonWithImageNamed:@"tinyalarmbutton_cancel.png"];
-
     }
+    
     else
+  
     {
         [self updateMuteButtonWithImageNamed:@"tinyalarmbutton.png"];
-
     }
-
 }
 
 
@@ -132,8 +157,6 @@
     [cancelAlertsButton setBackgroundImage:cancelAlerts forState:UIControlStateNormal];
     [cancelAlertsButton addTarget:self action:@selector(muteAlerts)
                  forControlEvents:UIControlEventTouchUpInside];
-    
-    //[cancelAlertsButton setShowsTouchWhenHighlighted:YES];
     
     UIBarButtonItem *cancelButton =[[UIBarButtonItem alloc] initWithCustomView:cancelAlertsButton];
     self.navigationItem.leftBarButtonItem=cancelButton;
@@ -292,7 +315,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+        
     [self.dataStore.fetchedStockResultsController performFetch:nil];
     
 //    [YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
@@ -314,6 +337,62 @@
     }];
     
 //    [self.stockTableView reloadData];
+}
+
+//- (BOOL) isFirstRun
+//{
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    if ([defaults objectForKey:@"isFirstRun"])
+//    {
+//        return NO;
+//    }
+//  
+//    else
+//    {
+//        [defaults setObject:[NSDate date] forKey:@"isFirstRun"];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//        
+//        [self performSegueWithIdentifier:@"tutorialSegue2" sender:self];
+//
+//    
+//        return YES;
+//    }
+
+
+//    if (![@"1" isEqualToString:[[NSUserDefaults standardUserDefaults]
+//                                objectForKey:@"isFirstRun"]])
+    
+//    {
+//        [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:@"isFirstRun"];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//        NSLog(@"First app launch");
+//        //        [self performSegueWithIdentifier:@"tutorialSegue2" sender:self];
+//        
+////        [self dismissViewControllerAnimated:YES completion:^() {
+//        [self performSegueWithIdentifier:@"tutorialSegue2" sender:self];
+////        }];
+//    }
+//    
+//    return YES;
+//}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasPerformedFirstLaunch"]) {
+        // On first launch, this block will execute
+        
+        [self performSegueWithIdentifier:@"tutorialSegue3" sender:self];
+        NSLog(@"tutorial segue!");
+        
+        // Set the "hasPerformedFirstLaunch" key so this block won't execute again
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasPerformedFirstLaunch"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    else {
+        // On subsequent launches, this block will execute
+    }
+    
 }
 
 
@@ -419,14 +498,10 @@
     
     if ((stockBidPriceFloat <= stock.userAlertPriceHigh && stock.userAlertPriceHigh > 0) || (stockBidPriceFloat >= stock.userAlertPriceLow && stock.userAlertPriceLow > 0))
     {
-//        UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectMake(8,20, 10, 10)];
-//        imv.image=[UIImage imageNamed:@"tiny_alarmicon.png"];
-//        
-//        [cell.contentView addSubview:imv];
-
         UIImage *alarmClockIcon = [UIImage imageNamed: @"tiny_alarmicon.png"];
         [cell.alarmClockImageView setImage:alarmClockIcon];
     }
+    
     else
     {
         [cell.alarmClockImageView setImage:nil];
@@ -455,12 +530,12 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //[self performSegueWithIdentifier:@"stockDetailSegue" sender:self];
-    
-//    Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    //[self performSegueWithIdentifier:@"stockDetailSegue" sender:self];
+//    
+////    Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
+//}
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -481,6 +556,13 @@
         FISSearchTableViewController *searchTVC = (FISSearchTableViewController *)segue.destinationViewController;
         searchTVC.stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:index];
     }
+    
+//    else if ([segue.identifier isEqualToString:@"tutorialSegue2"])
+//    {
+//        tutorialViewController *tutorialVC = segue.destinationViewController;
+//        
+////      [self performSegueWithIdentifier:@"tutorialSegue2" sender:self];
+//    }
 }
 
 
@@ -490,6 +572,8 @@
 {
     NSLog(@"controllerWillChangeContent");
     [self.stockTableView beginUpdates];
+//    dispatch_async(dispatch_get_main_queue(), ^(void) {
+//        [self.stockTableView reloadData];
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
@@ -563,9 +647,6 @@
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         [self.dataStore deleteStockAtIndexPay:indexPath];
-        //[self.stocks removeObjectAtIndex:indexPath.row];      //DOESN'T APPEAR TO BE USED ANYMORE
-
-        // COMMIT ?
         [self.dataStore.fetchedStockResultsController performFetch:nil];
         [tableView reloadData];
         
