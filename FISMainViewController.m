@@ -51,7 +51,9 @@
     self.stockTableView.dataSource = self;
     self.dataStore.fetchedStockResultsController.delegate= self;
     [self.stockTableView reloadData];
-
+    
+    [self supportedInterfaceOrientations];
+    [self preferredInterfaceOrientationForPresentation];
     
     self.navigationController.navigationBar.barTintColor = [UIColorSheet clearColor];
     self.navigationController.navigationBar.translucent = NO;
@@ -94,13 +96,13 @@
     if (shouldFireNotification)
    
     {
-        [self updateMuteButtonWithImageNamed:@"tinyalarmbutton_cancel.png"];
+        [self updateMuteButtonWithImageNamed:@"alarmclockbutton_off1.png"];
     }
     
     else
   
     {
-        [self updateMuteButtonWithImageNamed:@"tinyalarmbutton.png"];
+        [self updateMuteButtonWithImageNamed:@"alarmclockbutton_on1.png"];
     }
 }
 
@@ -144,7 +146,7 @@
                   
     if ([defaults boolForKey:@"areAlertsMuted"])
     {
-        [self updateMuteButtonWithImageNamed:@"tinyalarmbutton.png"];
+        [self updateMuteButtonWithImageNamed:@"alarmclockbutton_on1.png"];
         UIAlertView *messageAlert = [[UIAlertView alloc]
                                      initWithTitle:@"Message" message:@"Quote Alerts Muted" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         
@@ -156,7 +158,7 @@
     }
     else
     {
-        [self updateMuteButtonWithImageNamed:@"tinyalarmbutton_cancel.png"];
+        [self updateMuteButtonWithImageNamed:@"alarmclockbutton_off1.png"];
         
         UIAlertView *messageAlert2 = [[UIAlertView alloc]
                                      initWithTitle:@"Message" message:@"Quote Alerts Active" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -492,6 +494,18 @@
     {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
+}
+
+
+- (NSUInteger) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+
+- (UIInterfaceOrientation) preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationPortrait;
 }
 
 
