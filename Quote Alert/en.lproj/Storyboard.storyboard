@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Wun-rN-kh8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Wun-rN-kh8">
     <dependencies>
         <deployment version="1536" identifier="iOS"/>
         <development version="6000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--Page View Controller-->
@@ -86,7 +86,7 @@
         <!--TutorialViewController4-->
         <scene sceneID="rkm-wd-Amp">
             <objects>
-                <viewController storyboardIdentifier="TutorialViewController4" title="TutorialViewController4" id="Zuo-IA-ulr" customClass="MSPageViewControllerPage" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TutorialViewController4" title="TutorialViewController4" id="Zuo-IA-ulr" customClass="TutorialViewController4" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Op2-ZM-X4U">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -102,7 +102,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="F3f-fl-ClB" kind="replace" identifier="tutorialToMainSegue" splitViewControllerTargetIndex="1" id="FA4-1p-0uV"/>
+                                    <action selector="doneTapped:" destination="Zuo-IA-ulr" eventType="touchUpInside" id="Jkx-56-yIg"/>
                                 </connections>
                             </button>
                         </subviews>
