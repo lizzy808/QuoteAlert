@@ -15,9 +15,10 @@
 #import "FISSearchTableViewController.h"
 #import "YahooAPIClient.h"
 #import "UIColorSheet.h"
+#import "YahooAPIClient.h"
 
 
-@interface FISMainViewController ()
+@interface FISMainViewController () <NSFetchedResultsControllerDelegate, UISearchDisplayDelegate>
 
 @property (nonatomic) NSMutableArray *stocks;
 @property (nonatomic) FISDataStore *dataStore;
@@ -258,7 +259,16 @@
         // Set the "hasPerformedFirstLaunch" key so this block won't execute again
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasPerformedFirstLaunch"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [YahooAPIClient searchForStockDetails:@"aapl" withCompletion:^(NSDictionary *stockDictionary) {
+            [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
+            [self.dataStore saveContext];
+            
+            NSLog(@"%@", stockDictionary);
+        }];
+        
     }
+         
     else {
         // On subsequent launches, this block will execute
     }
