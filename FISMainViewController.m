@@ -324,14 +324,16 @@
     cell.stock = stock;
     cell.symbolLabel.text = stock.symbol;
     cell.bidPriceLabel.text = stock.bidPrice;
-        
-    cell.dayChangeLabel.text = stock.change;
+    
+    float stockChangeFloat = [stock.change floatValue];
+    
+    cell.dayChangeLabel.text = [NSString stringWithFormat:@"%.2f", stockChangeFloat];
     cell.percentChangeLabel.text = stock.percentChange;
     
     cell.alertPriceHighLabel.text = [NSString stringWithFormat:@"%.2f", stock.userAlertPriceHigh];
     cell.alertPriceLowLabel.text = [NSString stringWithFormat:@"%.2f", stock.userAlertPriceLow];
     
-    float stockChangeFloat = [stock.change floatValue];
+
     
     if (stockChangeFloat >= 0.00)
     {
