@@ -18,8 +18,8 @@
 + (void)initialize {
     if (self == PageViewController.class) {
         UIPageControl *pageControl = UIPageControl.appearance;
-        pageControl.pageIndicatorTintColor = UIColor.blackColor;
-        pageControl.currentPageIndicatorTintColor = UIColor.redColor;
+        pageControl.pageIndicatorTintColor = [UIColor darkGrayColor];
+        pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
     }
 }
 

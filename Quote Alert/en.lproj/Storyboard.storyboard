@@ -9,7 +9,7 @@
         <!--Page View Controller-->
         <scene sceneID="B6F-n2-XqO">
             <objects>
-                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="zRK-uS-vAH" customClass="PageViewController" sceneMemberID="viewController">
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="zRK-uS-vAH" customClass="PageViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="kS8-Df-XWV"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MkT-wB-TZo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -96,12 +96,15 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LRe-DC-vmV">
-                                <rect key="frame" x="135" y="479" width="51" height="30"/>
+                                <rect key="frame" x="135" y="456" width="51" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Done">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="F3f-fl-ClB" kind="push" id="yyi-cX-5mG"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -227,7 +230,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eze-85-6yq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="791" y="-11"/>
+            <point key="canvasLocation" x="899" y="41"/>
         </scene>
         <!--Search Table View Controller-->
         <scene sceneID="vIB-nN-PhW">
@@ -301,7 +304,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1261" y="-11"/>
+            <point key="canvasLocation" x="1337" y="41"/>
         </scene>
         <!--Stock Detail View Controller-->
         <scene sceneID="XfV-LW-K6s">
@@ -569,7 +572,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bxQ-JS-XGA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1261" y="679"/>
+            <point key="canvasLocation" x="1261" y="711"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cZe-lv-yzg">
@@ -587,7 +590,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7IQ-y4-c5a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="363" y="-11"/>
+            <point key="canvasLocation" x="471" y="41"/>
         </scene>
     </scenes>
     <resources>
@@ -602,4 +605,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="yyi-cX-5mG"/>
+    </inferredMetricsTieBreakers>
 </document>
