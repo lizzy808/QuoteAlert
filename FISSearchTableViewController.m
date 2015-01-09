@@ -55,7 +55,6 @@
     self.stockSearchTableView.dataSource = self;
     self.stockSearchTableView.delegate = self;
     [self initialize];
-//    [self setupNavBar];
     
     self.stockSearchBar.placeholder = @"Enter Stock Symbol";
     
@@ -69,12 +68,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-//- (void) setupNavBar
-//{
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBar2"] forBarMetrics:UIBarMetricsDefault];
-//}
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

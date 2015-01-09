@@ -34,8 +34,6 @@
         
         repository.percentChange = [self nullCheckWithObject:stockDetailDictionary[@"ChangeinPercent"]];
         
-//        repository.bidPrice = [self nullCheckWithObject:stockDetailDictionary [@"Bid"]];
-
         repository.bidPrice = [self nullCheckWithObject:stockDetailDictionary [@"LastTradePriceOnly"]];
         
         repository.change = [self nullCheckWithObject:stockDetailDictionary[@"Change"]];
@@ -43,11 +41,8 @@
         repository.volume = [self nullCheckWithObject:stockDetailDictionary[@"Volume"]];
         
         repository.dayHigh = [self nullCheckWithObject:stockDetailDictionary[@"DaysHigh"]];
-        
-        
         repository.dayHighDecimal = [self decimalFromObject:stockDetailDictionary[@"DaysHigh"]];
         repository.dayHighFormatted = [self formattedCurrencyFromDecimal:repository.dayHighDecimal];
-        
         
         
         repository.dayLow = [self nullCheckWithObject:stockDetailDictionary[@"DaysLow"]];
@@ -77,8 +72,6 @@
         Stock *selectedRepo = [repos lastObject];
         selectedRepo.bidPrice = [self nullCheckWithObject:stockDetailDictionary[@"LastTradePriceOnly"]];
         selectedRepo.percentChange = [self nullCheckWithObject:stockDetailDictionary[@"ChangeinPercent"]];
-        
-//        selectedRepo.bidPrice = [self nullCheckWithObject:stockDetailDictionary[@"Bid"]];
         selectedRepo.change = [self nullCheckWithObject:stockDetailDictionary[@"Change"]];
         selectedRepo.volume = [self nullCheckWithObject:stockDetailDictionary[@"Volume"]];
         selectedRepo.dayHigh = [self nullCheckWithObject:stockDetailDictionary[@"DaysHigh"]];

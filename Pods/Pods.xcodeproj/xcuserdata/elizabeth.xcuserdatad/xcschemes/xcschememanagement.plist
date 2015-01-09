@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-MSPageViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>6A5E6917A67348F7BE28BEB3</key>
+		<key>57D88D4379444C1F8993E341</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8322F6EB420343C3AF3CB835</key>
+		<key>66851AF7D8BA4802A570F7DF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A7446D83512549BFAA397827</key>
 		<dict>
 			<key>primary</key>
 			<true/>

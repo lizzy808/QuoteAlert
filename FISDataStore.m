@@ -28,6 +28,8 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 @synthesize fetchedStockResultsController = _fetchedStockResultsController;
 
+
+
 - (NSMutableArray *)stocks
 {
     if (!_stocks) {
@@ -152,7 +154,7 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-/////////////////////////////////////////////////////////////////
+
 - (void)addStockDetailsWithSymbol:(NSString *)symbolName
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Stock"];
@@ -171,9 +173,10 @@
     }];
 }
 
+
 - (void)refreshUserStocks:(NSMutableArray *)symbols
 {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Stock"];
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Stock"];
 //    NSMutableArray *allStocks = [[NSMutableArray alloc]initWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:nil]];
     
     for (Stock *stock in self.stocks) {

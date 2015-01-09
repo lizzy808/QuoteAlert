@@ -13,9 +13,9 @@
 
 + (instancetype)stockWithStockDetailDictionary:(NSDictionary *)stockDetailDictionary Context:(NSManagedObjectContext *)context;
 
-+ (instancetype) stockWithSymbol: (NSString *)symbol
-                             Bid: (NSNumber *)bid
-                     pictureLarge: (NSString *)pictureLarge
-                              Nid: (NSString *)nid
-                        inContext: (NSManagedObjectContext *)context;
+//+ (instancetype) stockWithSymbol: (NSString *)symbol
+//                             Bid: (NSNumber *)bid
+//                     pictureLarge: (NSString *)pictureLarge
+//                              Nid: (NSString *)nid
+//                        inContext: (NSManagedObjectContext *)context;
 @end

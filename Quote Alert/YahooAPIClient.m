@@ -35,6 +35,8 @@
 }
 
 
+// API Call with stock symbol, parse JSON and pass selected symbol to stock detail search
+
 + (void)searchForStockWithName:(NSString *)name withCompletion:(void (^)(NSArray *stockDictionaries))completion{
     
     NSString *yahooURLString = [NSString stringWithFormat:@"http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=%@&callback=YAHOO.Finance.SymbolSuggest.ssCallback", name];
@@ -109,11 +111,8 @@
     // Enumerate (loop) through all the stocks in the datastore
     for (Stock *stock in [[FISDataStore sharedDataStore].fetchedStockResultsController fetchedObjects])
     {
-
-        
         NSLog(@"Attempting to refresh %@ with previous bidprice = %@", stock.symbol, stock.bidPrice);
 
-        
         [YahooAPIClient searchForStockDetails:stock.symbol withCompletion:^(NSDictionary *stockDictionary) {
             [Stock stockWithStockDetailDictionary:stockDictionary Context:[FISDataStore sharedDataStore].managedObjectContext];
             [[FISDataStore sharedDataStore] saveContext];
@@ -134,7 +133,7 @@
             NSTimeInterval secondsSinceNotification = abs([stock.lastNotificationFiredTime timeIntervalSinceNow]);
             NSLog(@"Time Interval: %f", secondsSinceNotification);
             
-    /////////////////////////////////////////
+
             if (notification && (secondsSinceNotification > 60*60*24 || !stock.lastNotificationFiredTime)) {
                 
                 
@@ -183,11 +182,6 @@
                     
                     NSLog(@"%@", localNotification);
                 }
-                
-                
-
-            
-    /////////////////////////////////////////////
             }
         }];
         
@@ -196,42 +190,6 @@
          
 }
 
-
-    
-    
-    
-    
-    
-
-//
-//    for (Stock *stock in [_dataStore.fetchedStockResultsController.fetchedObjects])
-//    {
-//        NSLog(@"Stock %@", stock.symbol);
-//    }
-
-//
-//    Stock *stock = [_dataStore.fetchedStockResultsController objectAtIndexPath:]
-//    _dataStore
-//
-//    NSString *yahooDetailURLString = @"http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22";
-//    yahooDetailURLString = [yahooDetailURLString stringByAppendingString:symbol];
-//    yahooDetailURLString = [yahooDetailURLString stringByAppendingString:@"%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback="];
-//
-//    NSURLSession *session = [NSURLSession sharedSession];
-//    [[session dataTaskWithURL:[NSURL URLWithString:yahooDetailURLString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//
-//        NSLog(@"Data = %@", data);
-//
-//        NSString *newString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-//
-//        NSDictionary *stockDetailDictionary = [NSJSONSerialization JSONObjectWithData:[newString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
-//        NSDictionary *stockQuoteDictionary = stockDetailDictionary [@"query"][@"results"][@"quote"];
-//
-//        completion(stockQuoteDictionary);
-//
-//    }] resume];
-//
-//}
 
 
 @end

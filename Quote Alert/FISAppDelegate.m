@@ -30,23 +30,17 @@
     if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
         [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
     }
-
-
+    
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
-    
-    
     [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
-    
 
     NSLog(@"Launched in background %d", UIApplicationStateBackground == application.applicationState);
-
     
     UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (locationNotification) {
         // Set icon badge number to zero
         application.applicationIconBadgeNumber = 0;
-   
     }
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
@@ -61,14 +55,10 @@
         // This is the first launch ever
     }
     
-//    UILocalNotification *notification = [UILocalNotification new];
-//    notification.alertBody = @"Your stock price is dropping!";
-//    [application presentLocalNotificationNow:notification];
-    
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
-    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
-    pageControl.backgroundColor = [UIColor whiteColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
+    pageControl.backgroundColor = [UIColor blackColor];
     
     return YES;
 }
@@ -93,19 +83,13 @@
 }
 
 
-//////////////UIBackgroundFetch/////////////////
-
+//UIBackgroundFetch
 
 - (void)                application:(UIApplication *)application
   performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
     
     NSLog(@"Perfoming background fetch");
-    
-    //[YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
-    
-    
-    
     
     // Determine if default for areAlertsMuted is set
     BOOL shouldFireNotification;
@@ -184,7 +168,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-//    [[FISStockDetailViewController alertNotification] setHidden:YES];
     [self.dataStore saveContext];
 }
 

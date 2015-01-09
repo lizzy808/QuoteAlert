@@ -29,7 +29,7 @@
     NSArray *repos = [context executeFetchRequest:fetchRequest error:nil];
     
     if ([repos count]==0) {
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Stock" inManagedObjectContext:context];
+//        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Stock" inManagedObjectContext:context];
         FISStockSearch *repository = [FISStockSearch new];
         repository.symbol = stockSearchDictionary[@"symbol"];
         repository.name = stockSearchDictionary[@"name"];

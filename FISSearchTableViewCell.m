@@ -20,10 +20,6 @@
     return self;
 }
 
-//- (void)awakeFromNib
-//{
-//    // Initialization code
-//}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
@@ -40,24 +36,6 @@
 }
 
 
-//- (instancetype)configuredWithSearchedStock:(FISStockSearch *)searchedStock
-//{
-//    NSLog(@"HI!!!"); 
-//    self.searchedStock = searchedStock;
-//  
-//    self.stockNameLabel.text  = @"GOOG";
-//    self.companyNameLabel.text = @"Google";
-//    self.exchangeNameLabel.text = @"GOOG";
-//    
-//    self.stockNameLabel.font = [UIFont fontWithName:@"Arial" size:20];
-//    self.stockNameLabel.textColor = [UIColor whiteColor];
-//    self.companyNameLabel.font = [UIFont fontWithName:@"Arial" size:14];
-//    self.companyNameLabel.textColor = [UIColor whiteColor];
-//    self.exchangeNameLabel.font = [UIFont fontWithName:@"Arial" size:20];
-//    self.exchangeNameLabel.textColor = [UIColor whiteColor];
-//    
-//    return self;
-//    
-//}
+
 
 @end

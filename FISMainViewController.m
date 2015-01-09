@@ -15,7 +15,6 @@
 #import "FISSearchTableViewController.h"
 #import "YahooAPIClient.h"
 #import "UIColorSheet.h"
-#import "PageScrollViewController.h"
 
 
 @interface FISMainViewController ()
@@ -40,17 +39,14 @@
 }
 
 
-/////////////////////xib failing to load in TVC cells//////////////
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     [self initialize];
-//    [self isFirstRun];
 
     self.dataStore = [FISDataStore sharedDataStore];
-    
     self.stockTableView.delegate = self;
     self.stockTableView.dataSource = self;
     self.dataStore.fetchedStockResultsController.delegate= self;
@@ -62,43 +58,6 @@
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bluenavbarlight_320x64.png"] forBarMetrics:UIBarMetricsDefault];
     
-//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
-//    {
-//        // app already launched
-//        NSLog(@"This is not the first launch");
-//    }
-//    
-//    else
-//    {
-//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-//        // This is the first launch ever
-//        NSLog(@"This is the first launch");
-
-//    if (![@"1" isEqualToString:[[NSUserDefaults standardUserDefaults]
-//                                objectForKey:@"aValue"]]) {
-//        [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:@"aValue"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-//        
-//        NSLog(@"First app launch");
-    
-//        double delayInSeconds = 2.0;
-//        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-//        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-   
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-//        UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"View1"];
-//        [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-        
-        
-//        [self presentModalViewController:vc animated:YES];
-        
-        
-//        [self performSegueWithIdentifier:@"tutorialSegue2" sender:self];
-//        });
-        
-//        [self performSegueWithIdentifier:@"tutorialSegue" sender:self];
-//    }
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
@@ -228,81 +187,29 @@
     NSLog(@"reloaded Data from foreground");
 }
 
+
 - (void)refresh:(id)sender {
     NSLog(@"Refreshing");
+    [YahooAPIClient fetchAllUserStocksUpdatesShouldFireNotification:NO WithCompletion:^(BOOL isSuccessful)
+    {
     
-    //    [YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
-    //    if (!self.stockTableView) {
+        if (isSuccessful)
+        {
+            NSLog(@"Was successful");
+            [self.stockTableView reloadData];
+        }
     
-//        if ([self.stocks count] != 0) {
-    
-            [YahooAPIClient fetchAllUserStocksUpdatesShouldFireNotification:NO WithCompletion:^(BOOL isSuccessful) {
-    
-    
-                if (isSuccessful)
-                {
-    //            if (!self.stockTableView) {
-    
-                    NSLog(@"Was successful");
-//                    [refreshControl endRefreshing];
-                    [self.stockTableView reloadData];
-    //            }
-                }
-    
-                else
-                {
-                    NSLog(@"Not successful");
-                }
+        else
+        {
+            NSLog(@"Not successful");
+        }
             
-        }];
-//        }
+    }];
+    
     // End Refreshing
     [(UIRefreshControl *)sender endRefreshing];
 }
 
-//- (void)refresh:(UIRefreshControl *)refreshControl {
-//    
-////    [YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
-////    if (!self.stockTableView) {
-//    
-//    if ([self.stocks count] != 0) {
-//    
-//        [YahooAPIClient fetchAllUserStocksUpdatesShouldFireNotification:NO WithCompletion:^(BOOL isSuccessful) {
-//    
-//        
-//            if (isSuccessful)
-//            {
-////            if (!self.stockTableView) {
-//            
-//                NSLog(@"Was successful");
-//                [refreshControl endRefreshing];
-//                [self.stockTableView reloadData];
-////            }
-//            }
-//
-//            else
-//            {
-//                NSLog(@"Not successful");
-//            }
-//        
-//    }];
-//    }
-//
-//}
-
-
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    NSString *searchSymbol = self.searchResults[indexPath.row][@"symbol"];
-//    
-//    [YahooAPIClient searchForStockDetails:searchSymbol withCompletion:^(NSDictionary *stockDictionary) {
-//        [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
-//        [self.dataStore saveContext];
-//        
-//        [self dismissViewControllerAnimated:YES completion:nil];
-//        
-//    }];
-//}
 
 - (void)initialize
 {
@@ -318,7 +225,6 @@
         
     [self.dataStore.fetchedStockResultsController performFetch:nil];
     
-//    [YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
     [YahooAPIClient fetchAllUserStocksUpdatesShouldFireNotification:NO WithCompletion:^(BOOL isSuccessful) {
     
         if (isSuccessful)
@@ -335,46 +241,8 @@
             NSLog(@"Not successful");
         }
     }];
-    
-//    [self.stockTableView reloadData];
 }
 
-//- (BOOL) isFirstRun
-//{
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    if ([defaults objectForKey:@"isFirstRun"])
-//    {
-//        return NO;
-//    }
-//  
-//    else
-//    {
-//        [defaults setObject:[NSDate date] forKey:@"isFirstRun"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-//        
-//        [self performSegueWithIdentifier:@"tutorialSegue2" sender:self];
-//
-//    
-//        return YES;
-//    }
-
-
-//    if (![@"1" isEqualToString:[[NSUserDefaults standardUserDefaults]
-//                                objectForKey:@"isFirstRun"]])
-    
-//    {
-//        [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:@"isFirstRun"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-//        NSLog(@"First app launch");
-//        //        [self performSegueWithIdentifier:@"tutorialSegue2" sender:self];
-//        
-////        [self dismissViewControllerAnimated:YES completion:^() {
-//        [self performSegueWithIdentifier:@"tutorialSegue2" sender:self];
-////        }];
-//    }
-//    
-//    return YES;
-//}
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -382,7 +250,7 @@
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasPerformedFirstLaunch"]) {
         // On first launch, this block will execute
         
-        [self performSegueWithIdentifier:@"tutorialSegue3" sender:self];
+        [self performSegueWithIdentifier:@"tutorialSegue" sender:self];
         NSLog(@"tutorial segue!");
         
         // Set the "hasPerformedFirstLaunch" key so this block won't execute again
@@ -451,24 +319,22 @@
     cell.alertPriceHighLabel.text = [NSString stringWithFormat:@"%.2f", stock.userAlertPriceHigh];
     cell.alertPriceLowLabel.text = [NSString stringWithFormat:@"%.2f", stock.userAlertPriceLow];
     
-    int stockChangeFloat = [stock.change intValue];
+    float stockChangeFloat = [stock.change floatValue];
     
-    if (stockChangeFloat >= 0.00) {
-//        [cell.dayChangeLabel setBackgroundColor:[UIColor greenColor]];
-//        [cell.percentChangeLabel setBackgroundColor:[UIColor greenColor]];
+    if (stockChangeFloat >= 0.00)
+    {
         [cell.dayChangeLabel setTextColor:[UIColor greenColor]];
         [cell.percentChangeLabel setTextColor:[UIColor greenColor]];
 
     }
     
-    else{
-//        [cell.dayChangeLabel setBackgroundColor:[UIColor redColor]];
-//        [cell.percentChangeLabel setBackgroundColor:[UIColor redColor]];
+    else
+    {
         [cell.dayChangeLabel setTextColor:[UIColor redColor]];
         [cell.percentChangeLabel setTextColor:[UIColor redColor]];
     }
     
-/////////////////////// if cell sends notification, highlight cell /////////////////////////
+// if cell sends notification, highlight cell
     
     int stockBidPriceFloat = [stock.bidPrice intValue];
     
@@ -477,23 +343,11 @@
     {
         [cell setBackgroundColor:[UIColorSheet lightRedColor]];
     }
+    
     else
     {
         [cell setBackgroundColor:[UIColor clearColor]];
     }
-
-    
-//    if (stockBidPriceFloat >= stock.userAlertPriceHigh && stock.userAlertPriceHigh > 0)
-//    {
-//        [cell setBackgroundColor: [UIColorSheet lightRedColor]];
-//    }
-//
-//    if (stockBidPriceFloat <= stock.userAlertPriceLow && stock.userAlertPriceLow > 0)
-//    {
-//        [cell setBackgroundColor: [UIColorSheet lightRedColor]];
-//    }
-    
-/////////////////////////////////////////////////////////////////////////////////////////////
     
     
     if ((stockBidPriceFloat <= stock.userAlertPriceHigh && stock.userAlertPriceHigh > 0) || (stockBidPriceFloat >= stock.userAlertPriceLow && stock.userAlertPriceLow > 0))
@@ -515,10 +369,8 @@
     [cell.bidPriceLabel setTextColor:[UIColor whiteColor]];
     
     [cell.dayChangeLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
-//    [cell.dayChangeLabel setTextColor:[UIColor clearColor]];
     
     [cell.percentChangeLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
-//    [cell.percentChangeLabel setTextColor:[UIColor whiteColor]];
     
     [cell.alertPriceHighLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [cell.alertPriceHighLabel setTextColor:[UIColor yellowColor]];
@@ -528,14 +380,6 @@
     
     return cell;
 }
-
-
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    //[self performSegueWithIdentifier:@"stockDetailSegue" sender:self];
-//    
-////    Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
-//}
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -556,13 +400,6 @@
         FISSearchTableViewController *searchTVC = (FISSearchTableViewController *)segue.destinationViewController;
         searchTVC.stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:index];
     }
-    
-//    else if ([segue.identifier isEqualToString:@"tutorialSegue2"])
-//    {
-//        tutorialViewController *tutorialVC = segue.destinationViewController;
-//        
-////      [self performSegueWithIdentifier:@"tutorialSegue2" sender:self];
-//    }
 }
 
 
@@ -572,8 +409,6 @@
 {
     NSLog(@"controllerWillChangeContent");
     [self.stockTableView beginUpdates];
-//    dispatch_async(dispatch_get_main_queue(), ^(void) {
-//        [self.stockTableView reloadData];
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
