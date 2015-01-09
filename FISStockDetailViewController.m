@@ -103,7 +103,7 @@
     [self.percentChangeLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
 //    [self.dayChangeLabel setTextColor:[UIColor yellowColor]];
     
-    int stockChangeFloat = [self.stock.change intValue];
+    float stockChangeFloat = [self.stock.change floatValue];
     
     if (stockChangeFloat >= 0.00) {
         [self.dayChangeLabel setTextColor:[UIColor greenColor]];

@@ -37,7 +37,6 @@
 		5575C74A18E0E6E100ABB124 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5575C74818E0E6E100ABB124 /* InfoPlist.strings */; };
 		5575C74C18E0E6E100ABB124 /* Quote_AlertTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5575C74B18E0E6E100ABB124 /* Quote_AlertTests.m */; };
 		5581720A1A4E473C00719567 /* bluenavbar_320x64.png in Resources */ = {isa = PBXBuildFile; fileRef = 558172091A4E473C00719567 /* bluenavbar_320x64.png */; };
-		5581720C1A4E47D900719567 /* bluenavbarlight_320x64.png in Resources */ = {isa = PBXBuildFile; fileRef = 5581720B1A4E47D900719567 /* bluenavbarlight_320x64.png */; };
 		5581720F1A4E4B6C00719567 /* tinyalarmbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 5581720D1A4E4B6C00719567 /* tinyalarmbutton.png */; };
 		558172101A4E4B6C00719567 /* tinyalarmbutton_cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5581720E1A4E4B6C00719567 /* tinyalarmbutton_cancel.png */; };
 		55912D1918E275180069FEEC /* YahooAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D1818E275180069FEEC /* YahooAPIClient.m */; };
@@ -46,6 +45,8 @@
 		55912D5518E5C01B0069FEEC /* FISStockDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912D5418E5C01B0069FEEC /* FISStockDetailViewController.m */; };
 		55912DA218E9082B0069FEEC /* FISSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912DA118E9082B0069FEEC /* FISSearchTableViewController.m */; };
 		55912DA818EB63E20069FEEC /* FISSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55912DA718EB63E20069FEEC /* FISSearchTableViewCell.m */; };
+		559F4ABD1A60691A00FBCFCF /* DoneButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 559F4ABC1A60691A00FBCFCF /* DoneButton.png */; };
+		559F4ABF1A606DB500FBCFCF /* bluenavbarlight_320x64.png in Resources */ = {isa = PBXBuildFile; fileRef = 559F4ABE1A606DB500FBCFCF /* bluenavbarlight_320x64.png */; };
 		55C33B861A58E1D90048B917 /* SetQAbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 55C33B851A58E1D90048B917 /* SetQAbutton.png */; };
 		55CA536F1901B8C2000E2A1E /* searchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55CA536E1901B8C2000E2A1E /* searchView.xib */; };
 		55F66ED4190710BF000EFD3B /* Stock.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F66ED3190710BF000EFD3B /* Stock.m */; };
@@ -102,9 +103,7 @@
 		5575C74718E0E6E100ABB124 /* Quote AlertTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Quote AlertTests-Info.plist"; sourceTree = "<group>"; };
 		5575C74918E0E6E100ABB124 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5575C74B18E0E6E100ABB124 /* Quote_AlertTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Quote_AlertTests.m; sourceTree = "<group>"; };
-		558172081A4E471400719567 /* bluenavbar_320x64.pxm */ = {isa = PBXFileReference; lastKnownFileType = file; path = bluenavbar_320x64.pxm; sourceTree = "<group>"; };
 		558172091A4E473C00719567 /* bluenavbar_320x64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluenavbar_320x64.png; sourceTree = "<group>"; };
-		5581720B1A4E47D900719567 /* bluenavbarlight_320x64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluenavbarlight_320x64.png; sourceTree = "<group>"; };
 		5581720D1A4E4B6C00719567 /* tinyalarmbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tinyalarmbutton.png; sourceTree = "<group>"; };
 		5581720E1A4E4B6C00719567 /* tinyalarmbutton_cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tinyalarmbutton_cancel.png; sourceTree = "<group>"; };
 		55912D1718E275180069FEEC /* YahooAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YahooAPIClient.h; sourceTree = "<group>"; };
@@ -119,6 +118,8 @@
 		55912DA118E9082B0069FEEC /* FISSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISSearchTableViewController.m; sourceTree = "<group>"; };
 		55912DA618EB63E10069FEEC /* FISSearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FISSearchTableViewCell.h; path = ../FISSearchTableViewCell.h; sourceTree = "<group>"; };
 		55912DA718EB63E20069FEEC /* FISSearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISSearchTableViewCell.m; path = ../FISSearchTableViewCell.m; sourceTree = "<group>"; };
+		559F4ABC1A60691A00FBCFCF /* DoneButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DoneButton.png; sourceTree = "<group>"; };
+		559F4ABE1A606DB500FBCFCF /* bluenavbarlight_320x64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluenavbarlight_320x64.png; sourceTree = "<group>"; };
 		55C33B851A58E1D90048B917 /* SetQAbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SetQAbutton.png; sourceTree = "<group>"; };
 		55CA536E1901B8C2000E2A1E /* searchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = searchView.xib; sourceTree = "<group>"; };
 		55F66ED2190710BF000EFD3B /* Stock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stock.h; sourceTree = "<group>"; };
@@ -274,13 +275,13 @@
 				55186AA01A37D5E700AD80B2 /* cancel_alerts small.png */,
 				55186AA21A37DCF300AD80B2 /* un-cancel_alerts small.png */,
 				79C2AF881A0D4A2200E666E4 /* tiny_alarmicon.png */,
-				558172081A4E471400719567 /* bluenavbar_320x64.pxm */,
 				5581720D1A4E4B6C00719567 /* tinyalarmbutton.png */,
 				5581720E1A4E4B6C00719567 /* tinyalarmbutton_cancel.png */,
-				5581720B1A4E47D900719567 /* bluenavbarlight_320x64.png */,
 				55C33B851A58E1D90048B917 /* SetQAbutton.png */,
 				552E07791A4E3E92001585A2 /* nav_gradient_blue_title1.png */,
 				558172091A4E473C00719567 /* bluenavbar_320x64.png */,
+				559F4ABE1A606DB500FBCFCF /* bluenavbarlight_320x64.png */,
+				559F4ABC1A60691A00FBCFCF /* DoneButton.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -399,12 +400,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				55186AA31A37DCF300AD80B2 /* un-cancel_alerts small.png in Resources */,
-				5581720C1A4E47D900719567 /* bluenavbarlight_320x64.png in Resources */,
 				55CA536F1901B8C2000E2A1E /* searchView.xib in Resources */,
 				5575C72D18E0E6E100ABB124 /* InfoPlist.strings in Resources */,
 				5581720A1A4E473C00719567 /* bluenavbar_320x64.png in Resources */,
 				554F228F1A5B7AF400D52D0A /* tutorialScreen4.png in Resources */,
 				554F22911A5C584600D52D0A /* tutorialScreen2.png in Resources */,
+				559F4ABD1A60691A00FBCFCF /* DoneButton.png in Resources */,
+				559F4ABF1A606DB500FBCFCF /* bluenavbarlight_320x64.png in Resources */,
 				552E077A1A4E3E92001585A2 /* nav_gradient_blue_title1.png in Resources */,
 				558172101A4E4B6C00719567 /* tinyalarmbutton_cancel.png in Resources */,
 				554F22881A5B570100D52D0A /* tutorialScreen1.png in Resources */,
