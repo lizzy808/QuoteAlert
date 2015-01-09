@@ -51,6 +51,7 @@
 		55CA536F1901B8C2000E2A1E /* searchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55CA536E1901B8C2000E2A1E /* searchView.xib */; };
 		55F66ED4190710BF000EFD3B /* Stock.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F66ED3190710BF000EFD3B /* Stock.m */; };
 		63DC8204C6874F38BD06C8F4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92968B8F8C494D1EAF8A35DD /* libPods.a */; };
+		798B8CBC1A60767300483FF6 /* TutorialViewController4.m in Sources */ = {isa = PBXBuildFile; fileRef = 798B8CBB1A60767300483FF6 /* TutorialViewController4.m */; };
 		79C2AF891A0D4A2200E666E4 /* tiny_alarmicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 79C2AF881A0D4A2200E666E4 /* tiny_alarmicon.png */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +125,8 @@
 		55CA536E1901B8C2000E2A1E /* searchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = searchView.xib; sourceTree = "<group>"; };
 		55F66ED2190710BF000EFD3B /* Stock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stock.h; sourceTree = "<group>"; };
 		55F66ED3190710BF000EFD3B /* Stock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stock.m; sourceTree = "<group>"; };
+		798B8CBA1A60767300483FF6 /* TutorialViewController4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TutorialViewController4.h; path = "Quote Alert/TutorialViewController4.h"; sourceTree = "<group>"; };
+		798B8CBB1A60767300483FF6 /* TutorialViewController4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialViewController4.m; path = "Quote Alert/TutorialViewController4.m"; sourceTree = "<group>"; };
 		79C2AF881A0D4A2200E666E4 /* tiny_alarmicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiny_alarmicon.png; sourceTree = "<group>"; };
 		92968B8F8C494D1EAF8A35DD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF22F24D1847480CA274EE0B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -307,6 +310,8 @@
 		55C33B6E1A5745610048B917 /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
+				798B8CBA1A60767300483FF6 /* TutorialViewController4.h */,
+				798B8CBB1A60767300483FF6 /* TutorialViewController4.m */,
 				553AAF9A1A5F844B00E7F78D /* PageViewController.h */,
 				553AAF9B1A5F844B00E7F78D /* PageViewController.m */,
 			);
@@ -472,6 +477,7 @@
 				55912DA218E9082B0069FEEC /* FISSearchTableViewController.m in Sources */,
 				55912D2018E3546D0069FEEC /* FISDataStore.m in Sources */,
 				55912D5518E5C01B0069FEEC /* FISStockDetailViewController.m in Sources */,
+				798B8CBC1A60767300483FF6 /* TutorialViewController4.m in Sources */,
 				55912D1918E275180069FEEC /* YahooAPIClient.m in Sources */,
 				5575C73618E0E6E100ABB124 /* Quote_Alert.xcdatamodeld in Sources */,
 				55912D2318E356A60069FEEC /* Stock+Methods.m in Sources */,
