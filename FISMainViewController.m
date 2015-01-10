@@ -261,6 +261,9 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         [YahooAPIClient searchForStockDetails:@"aapl" withCompletion:^(NSDictionary *stockDictionary) {
+            self.stock.userAlertPriceHigh = 200.00;
+            self.stock.userAlertPriceLow = 75.00;
+    
             [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
             [self.dataStore saveContext];
             
