@@ -326,6 +326,7 @@
     
     cell.stock = stock;
     cell.symbolLabel.text = stock.symbol;
+    cell.companyNameLabel.text = stock.companyName;
     cell.bidPriceLabel.text = stock.bidPrice;
     
     float stockChangeFloat = [stock.change floatValue];
@@ -366,7 +367,6 @@
         [cell setBackgroundColor:[UIColor clearColor]];
     }
     
-    
     if ((stockBidPriceFloat <= stock.userAlertPriceHigh && stock.userAlertPriceHigh > 0) || (stockBidPriceFloat >= stock.userAlertPriceLow && stock.userAlertPriceLow > 0))
     {
         UIImage *alarmClockIcon = [UIImage imageNamed: @"tiny_alarmicon.png"];
@@ -378,9 +378,11 @@
         [cell.alarmClockImageView setImage:nil];
     }
     
-    
-    [cell.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:16]];
+    [cell.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:20]];
     [cell.symbolLabel setTextColor:[UIColor whiteColor]];
+    
+    [cell.companyNameLabel setFont:[UIFont fontWithName:@"Arial" size:11]];
+    [cell.companyNameLabel setTextColor:[UIColor whiteColor]];
 
     [cell.bidPriceLabel setFont:[UIFont fontWithName:@"Arial" size:16]];
     [cell.bidPriceLabel setTextColor:[UIColor whiteColor]];

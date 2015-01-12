@@ -84,7 +84,8 @@
     [self.symbolLabel setText:self.stock.companyName];
     
     self.priceLabel.text = self.stock.bidPrice;
-    self.dayChangeLabel.text = self.stock.change;
+//    self.dayChangeLabel.text = self.stock.change;
+    
     self.openPriceLabel.text = self.stock.openPrice;
     self.dayHighLabel.text = self.stock.dayHigh;
     self.dayLowLabel.text = self.stock.dayLow;
@@ -104,6 +105,7 @@
 //    [self.dayChangeLabel setTextColor:[UIColor yellowColor]];
     
     float stockChangeFloat = [self.stock.change floatValue];
+    self.dayChangeLabel.text = [NSString stringWithFormat:@"%.2f", stockChangeFloat];
     
     if (stockChangeFloat >= 0.00) {
         [self.dayChangeLabel setTextColor:[UIColor greenColor]];

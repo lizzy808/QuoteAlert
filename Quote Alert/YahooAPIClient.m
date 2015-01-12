@@ -12,8 +12,9 @@
 #import "Stock.h"
 #import "FISMainViewController.h"
 #import "FISMainTableViewCell.h"
+#import "NSString+urlStringCategory.h"
 
-@interface YahooAPIClient()
+@interface YahooAPIClient() <NSSecureCoding>
 
 @property (nonatomic) AFHTTPSessionManager *sessionManager;
 @property (strong, nonatomic) FISDataStore *dataStore;
@@ -67,16 +68,45 @@
 }
 
 
+
+//- (NSString *) URLEncodedString_ch {
+//    NSMutableString * output = [NSMutableString string];
+//    const unsigned char * source = (const unsigned char *)[self UTF8String];
+//    int sourceLen = strlen((const char *)source);
+//    for (int i = 0; i < sourceLen; ++i) {
+//        const unsigned char thisChar = source[i];
+//        if (thisChar == ' '){
+//            [output appendString:@"+"];
+//        } else if (thisChar == '.' || thisChar == '-' || thisChar == '_' || thisChar == '~' ||
+//                   (thisChar >= 'a' && thisChar <= 'z') ||
+//                   (thisChar >= 'A' && thisChar <= 'Z') ||
+//                   (thisChar >= '0' && thisChar <= '9')) {
+//            [output appendFormat:@"%c", thisChar];
+//        } else {
+//            [output appendFormat:@"%%%02X", thisChar];
+//        }
+//    }
+//    return output;
+//}
+
+
 + (void)searchForStockDetails:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion
 {
     
     // Escape special characters in the symbol name i.e. ^NYA in order to sanitize them for placement in the URL
-    NSString *escapedSymbol = [symbol stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
+//    NSString *escapedSymbol = [symbol stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPasswordAllowedCharacterSet]];
 
+    NSString *encodedString = [symbol URLEncodedString_ch];
     
     NSString *yahooDetailURLString = @"http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22";
-    yahooDetailURLString = [yahooDetailURLString stringByAppendingString:escapedSymbol];
+    
+//    yahooDetailURLString = [yahooDetailURLString stringByAppendingString:escapedSymbol];
+    
+    yahooDetailURLString = [yahooDetailURLString stringByAppendingString:encodedString];
+    
     yahooDetailURLString = [yahooDetailURLString stringByAppendingString:@"%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback="];
+    
+//    yahooDetailURLString = [yahooDetailURLString URLEncodedString_ch];
     
     NSLog(@"SearchForStockDetails URL = %@",yahooDetailURLString );
     

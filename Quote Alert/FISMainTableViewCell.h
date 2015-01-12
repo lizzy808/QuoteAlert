@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *alertPriceLowLabel;
 @property (weak, nonatomic) IBOutlet UIButton *dayChangeColorButton;
 @property (weak, nonatomic) IBOutlet UILabel *percentChangeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *companyNameLabel;
 
 @property (weak, nonatomic) IBOutlet UIImageView *alarmClockImageView;
 

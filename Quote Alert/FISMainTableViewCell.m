@@ -38,6 +38,7 @@
 - (instancetype)configureWithStock:(Stock *)stock
 {
     self.stock = stock;
+    self.companyNameLabel.text = self.stock.companyName;
     self.symbolLabel.text = self.stock.symbol;
     self.bidPriceLabel.text = self.stock.bidPrice;
     self.dayChangeLabel.text = self.stock.change;
