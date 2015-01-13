@@ -381,7 +381,7 @@
     [cell.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:20]];
     [cell.symbolLabel setTextColor:[UIColor whiteColor]];
     
-    [cell.companyNameLabel setFont:[UIFont fontWithName:@"Arial" size:11]];
+    [cell.companyNameLabel setFont:[UIFont fontWithName:@"Arial" size:10]];
     [cell.companyNameLabel setTextColor:[UIColor whiteColor]];
 
     [cell.bidPriceLabel setFont:[UIFont fontWithName:@"Arial" size:16]];

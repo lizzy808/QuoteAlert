@@ -94,9 +94,12 @@
 {
     
     // Escape special characters in the symbol name i.e. ^NYA in order to sanitize them for placement in the URL
-//    NSString *escapedSymbol = [symbol stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPasswordAllowedCharacterSet]];
 
-    NSString *encodedString = [symbol URLEncodedString_ch];
+    NSString *escapedSymbol = [symbol stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLUserAllowedCharacterSet]];
+
+//    NSString *encodedString = [symbol URLEncodedString_ch];
+    
+    NSString *encodedString = [escapedSymbol URLEncodedString_ch];
     
     NSString *yahooDetailURLString = @"http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22";
     

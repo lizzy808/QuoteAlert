@@ -702,11 +702,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Quote Alert/YahooAPIClient.m"
-            timestampString = "442797526.692544"
+            timestampString = "442817946.44351"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "+searchForStockDetails:withCompletion:"
             landmarkType = "5">
          </BreakpointContent>

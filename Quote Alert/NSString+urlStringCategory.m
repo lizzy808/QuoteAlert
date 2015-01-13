@@ -14,7 +14,9 @@
 - (NSString *) URLEncodedString_ch {
     NSMutableString * output = [NSMutableString string];
     const unsigned char * source = (const unsigned char *)[self UTF8String];
-    int sourceLen = strlen((const char *)source);
+//    int sourceLen = strlen((const char *)source);
+    NSInteger sourceLen = strlen((const char *)source);
+
     for (int i = 0; i < sourceLen; ++i) {
         const unsigned char thisChar = source[i];
         if (thisChar == ' '){
