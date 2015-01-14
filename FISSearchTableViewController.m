@@ -172,7 +172,6 @@
     self.stockSearchTableView.delegate = self;
     self.stockSearchTableView.dataSource = self;
     self.dataStore.fetchedStockResultsController.delegate = self;
-    NSLog(@"searched stock = %@",self.searchedStock);
 }
 
 
