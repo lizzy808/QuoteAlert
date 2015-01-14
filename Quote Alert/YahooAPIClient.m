@@ -40,9 +40,12 @@
 
 + (void)searchForStockWithName:(NSString *)name withCompletion:(void (^)(NSArray *stockDictionaries))completion{
     
-    NSString *yahooURLString = [NSString stringWithFormat:@"http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=%@&callback=YAHOO.Finance.SymbolSuggest.ssCallback", name];
     
-    NSLog(@"URL = %@", yahooURLString);
+    NSString *escapedName = [name stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLUserAllowedCharacterSet]];
+    
+    NSString *yahooURLString = [NSString stringWithFormat:@"http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=%@&callback=YAHOO.Finance.SymbolSuggest.ssCallback", escapedName];
+    
+    NSLog(@"searchForStockWithName escaped URL = %@", yahooURLString);
     
     NSURLSession *session = [NSURLSession sharedSession];
 
@@ -96,22 +99,14 @@
     // Escape special characters in the symbol name i.e. ^NYA in order to sanitize them for placement in the URL
 
     NSString *escapedSymbol = [symbol stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLUserAllowedCharacterSet]];
-
-//    NSString *encodedString = [symbol URLEncodedString_ch];
-    
-    NSString *encodedString = [escapedSymbol URLEncodedString_ch];
     
     NSString *yahooDetailURLString = @"http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22";
     
-//    yahooDetailURLString = [yahooDetailURLString stringByAppendingString:escapedSymbol];
-    
-    yahooDetailURLString = [yahooDetailURLString stringByAppendingString:encodedString];
+    yahooDetailURLString = [yahooDetailURLString stringByAppendingString:escapedSymbol];
     
     yahooDetailURLString = [yahooDetailURLString stringByAppendingString:@"%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback="];
     
-//    yahooDetailURLString = [yahooDetailURLString URLEncodedString_ch];
-    
-    NSLog(@"SearchForStockDetails URL = %@",yahooDetailURLString );
+    NSLog(@"searchForStockDetails URL = %@",yahooDetailURLString );
     
     NSURLSession *session = [NSURLSession sharedSession];
     [[session dataTaskWithURL:[NSURL URLWithString:yahooDetailURLString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -119,17 +114,42 @@
         if (error)
         {
             NSLog(@"searchForStockDetails ERROR: %@", error.localizedDescription);
+            completion(nil);
         }
         else
         {
             NSString *newString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
             
-            //NSLog(@"searchForStockDetails %@", newString);
+            NSLog(@"searchForStockDetails %@", newString);
             
             NSDictionary *stockDetailDictionary = [NSJSONSerialization JSONObjectWithData:[newString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
-            NSDictionary *stockQuoteDictionary = stockDetailDictionary [@"query"][@"results"][@"quote"];
             
-            completion(stockQuoteDictionary);
+            // Check to make sure the element exists before assigning to a dictionary
+            if (stockDetailDictionary[@"query"][@"count"])
+            {
+                NSNumber *resultCount = stockDetailDictionary[@"query"][@"count"];
+                
+                if (resultCount.integerValue > 0)
+                {
+                    NSDictionary *stockQuoteDictionary = stockDetailDictionary [@"query"][@"results"][@"quote"];
+                    completion(stockQuoteDictionary);
+                }
+                else
+                {
+                    NSLog(@"searchForStockDetails ERROR: No results for quote on %@", escapedSymbol);
+                    //completion(nil);
+                }
+
+            }
+            else
+            {
+                NSLog(@"searchForStockDetails ERROR: Missing value for quote on %@", escapedSymbol);
+                //completion(nil);
+            }
+            
+            
+            
+            
         }
     }] resume];
 }
