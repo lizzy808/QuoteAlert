@@ -114,7 +114,7 @@
         if (error)
         {
             NSLog(@"searchForStockDetails ERROR: %@", error.localizedDescription);
-            completion(nil);
+            //completion(nil);
         }
         else
         {
