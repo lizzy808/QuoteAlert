@@ -178,16 +178,33 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     NSString *searchSymbol = self.searchResults[indexPath.row][@"symbol"];
     
-    [YahooAPIClient searchForStockDetails:searchSymbol withCompletion:^(NSDictionary *stockDictionary) {
+    if ([searchSymbol isEqual: @"^DJI"])
+    {
+//        [YahooAPIClient searchForStockDetails:@"INDU" withCompletion:^(NSDictionary *stockDictionary) {
+//        [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
+//        [self.dataStore saveContext];
+//        NSLog(@"%@", stockDictionary);
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//        }];
+        
+    }
+
+    else
+    {
+    
+        [YahooAPIClient searchForStockDetails:searchSymbol withCompletion:^(NSDictionary *stockDictionary) {
         [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
         [self.dataStore saveContext];
         NSLog(@"%@", stockDictionary);
         [self dismissViewControllerAnimated:YES completion:nil];
 
     }];
+    }
 }
+
 
 
 - (IBAction)cancelButtonTapped:(id)sender {
