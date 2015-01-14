@@ -230,11 +230,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FISSearchTableViewController.m"
-            timestampString = "442897590.47747"
+            timestampString = "442956063.948747"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -608,11 +608,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FISMainViewController.m"
-            timestampString = "442730337.684264"
+            timestampString = "442956580.798662"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "424"
-            endingLineNumber = "424"
+            startingLineNumber = "428"
+            endingLineNumber = "428"
             landmarkName = "@implementation FISMainViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -832,11 +832,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FISMainViewController.m"
-            timestampString = "442730337.684264"
+            timestampString = "442956580.798662"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "515"
-            endingLineNumber = "515"
+            startingLineNumber = "519"
+            endingLineNumber = "519"
             landmarkName = "-supportedInterfaceOrientations"
             landmarkType = "5">
          </BreakpointContent>
@@ -844,15 +844,31 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FISSearchTableViewController.m"
-            timestampString = "442897859.893669"
+            timestampString = "442956063.948747"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FISSearchTableViewController.m"
+            timestampString = "442956035.508293"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>

@@ -182,12 +182,13 @@
     
     if ([searchSymbol isEqual: @"^DJI"])
     {
-//        [YahooAPIClient searchForStockDetails:@"INDU" withCompletion:^(NSDictionary *stockDictionary) {
-//        [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
-//        [self.dataStore saveContext];
-//        NSLog(@"%@", stockDictionary);
-//        [self dismissViewControllerAnimated:YES completion:nil];
-//        }];
+        [searchSymbol isEqualToString: @"INDU"];
+        [YahooAPIClient searchForStockDetails:@"INDU" withCompletion:^(NSDictionary *stockDictionary) {
+        [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
+        [self.dataStore saveContext];
+        NSLog(@"%@", stockDictionary);
+        [self dismissViewControllerAnimated:YES completion:nil];
+        }];
         
     }
 
