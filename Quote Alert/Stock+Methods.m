@@ -44,6 +44,7 @@
         repository.dayHighDecimal = [self decimalFromObject:stockDetailDictionary[@"DaysHigh"]];
         repository.dayHighFormatted = [self formattedCurrencyFromDecimal:repository.dayHighDecimal];
         
+        repository.companyName = [self nullCheckWithObject:stockDetailDictionary[@"Name"]];
         
         repository.dayLow = [self nullCheckWithObject:stockDetailDictionary[@"DaysLow"]];
 
@@ -67,7 +68,8 @@
         
         return repository;
         
-    } else
+    }
+    else
     {
         Stock *selectedRepo = [repos lastObject];
         selectedRepo.bidPrice = [self nullCheckWithObject:stockDetailDictionary[@"LastTradePriceOnly"]];
@@ -90,6 +92,7 @@
         
         return selectedRepo;
     }
+    
 }
 
 

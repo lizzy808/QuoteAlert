@@ -38,8 +38,47 @@
 
 // API Call with stock symbol, parse JSON and pass selected symbol to stock detail search
 
-+ (void)searchForStockWithName:(NSString *)name withCompletion:(void (^)(NSArray *stockDictionaries))completion{
++ (void)searchForStockWithName:(NSString *)name withCompletion:(void (^)(NSArray *stockDictionaries))completion
+{
     
+    if ([name isEqualToString:@"^DJI"])
+    {
+        NSLog(@"%@", name);
+        
+        [name isEqualToString:@"INDU"];
+        
+        NSString *escapedName = [@"INDU" stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLUserAllowedCharacterSet]];
+        
+        NSString *yahooURLString = [NSString stringWithFormat:@"http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=%@&callback=YAHOO.Finance.SymbolSuggest.ssCallback", escapedName];
+        
+        NSLog(@"searchForStockWithName escaped URL = %@", yahooURLString);
+        
+        NSURLSession *session = [NSURLSession sharedSession];
+        
+        [[session dataTaskWithURL:[NSURL URLWithString:yahooURLString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            
+            if (response)
+            {
+                NSString *newString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+                NSString *cleanJSON = [newString substringFromIndex:39];
+                cleanJSON = [cleanJSON substringToIndex:[cleanJSON length]-1];
+                
+                NSData *parsedData = [cleanJSON dataUsingEncoding:NSUTF8StringEncoding];
+                NSDictionary *stockDictionary = [NSJSONSerialization JSONObjectWithData:parsedData options:NSJSONReadingAllowFragments error:nil];
+                NSArray *results = stockDictionary [@"ResultSet"][@"Result"];
+                
+                completion(results);
+            }
+            else
+            {
+                NSLog(@"No response detected");
+            }
+        }] resume];
+    }
+    
+    else
+    
+    {
     
     NSString *escapedName = [name stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLUserAllowedCharacterSet]];
     
@@ -68,6 +107,7 @@
             NSLog(@"No response detected");
         }
     }] resume];
+    }
 }
 
 
@@ -95,6 +135,66 @@
 
 + (void)searchForStockDetails:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion
 {
+    if ([symbol isEqualToString:@"^DJI"])
+    {
+        [symbol isEqualToString:@"INDU"];
+        NSString *escapedSymbol = [@"INDU" stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLUserAllowedCharacterSet]];
+        
+        NSString *yahooDetailURLString = @"http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22";
+        
+        yahooDetailURLString = [yahooDetailURLString stringByAppendingString:escapedSymbol];
+        
+        yahooDetailURLString = [yahooDetailURLString stringByAppendingString:@"%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback="];
+        
+        //    NSLog(@"searchForStockDetails URL = %@",yahooDetailURLString );
+        
+        NSURLSession *session = [NSURLSession sharedSession];
+        [[session dataTaskWithURL:[NSURL URLWithString:yahooDetailURLString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            
+            if (error)
+            {
+                NSLog(@"searchForStockDetails ERROR: %@", error.localizedDescription);
+                //completion(nil);
+            }
+            else
+            {
+                NSString *newString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+                
+                NSLog(@"searchForStockDetails %@", newString);
+                
+                NSDictionary *stockDetailDictionary = [NSJSONSerialization JSONObjectWithData:[newString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+                
+                // Check to make sure the element exists before assigning to a dictionary
+                if (stockDetailDictionary[@"query"][@"count"])
+                {
+                    NSNumber *resultCount = stockDetailDictionary[@"query"][@"count"];
+                    
+                    if (resultCount.integerValue > 0)
+                    {
+                        NSDictionary *stockQuoteDictionary = stockDetailDictionary [@"query"][@"results"][@"quote"];
+                        completion(stockQuoteDictionary);
+                    }
+                    else
+                    {
+                        NSLog(@"searchForStockDetails ERROR: No results for quote on %@", escapedSymbol);
+                        //completion(nil);
+                    }
+                    
+                }
+                else
+                {
+                    NSLog(@"searchForStockDetails ERROR: Missing value for quote on %@", escapedSymbol);
+                    //completion(nil);
+                }
+                
+                
+                
+                
+            }
+        }] resume];
+    }
+    else
+    {
     
     // Escape special characters in the symbol name i.e. ^NYA in order to sanitize them for placement in the URL
 
@@ -106,7 +206,7 @@
     
     yahooDetailURLString = [yahooDetailURLString stringByAppendingString:@"%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback="];
     
-    NSLog(@"searchForStockDetails URL = %@",yahooDetailURLString );
+//    NSLog(@"searchForStockDetails URL = %@",yahooDetailURLString );
     
     NSURLSession *session = [NSURLSession sharedSession];
     [[session dataTaskWithURL:[NSURL URLWithString:yahooDetailURLString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -152,6 +252,7 @@
             
         }
     }] resume];
+    }
 }
 
 

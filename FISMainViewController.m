@@ -338,10 +338,10 @@
     cell.alertPriceLowLabel.text = [NSString stringWithFormat:@"%.2f", stock.userAlertPriceLow];
     
 
-    if ([cell.symbolLabel.text isEqualToString:@"^DJI"])
-    {
-        [cell.companyNameLabel.text isEqualToString:@"Dow Jones Industrial Average"];
-    }
+//    if ([cell.symbolLabel.text isEqualToString:@"^DJI"])
+//    {
+//        [cell.companyNameLabel.text isEqualToString:@"Dow Jones Industrial Average"];
+//    }
     
     if (stockChangeFloat >= 0.00)
     {

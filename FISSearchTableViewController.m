@@ -186,6 +186,12 @@
         [YahooAPIClient searchForStockDetails:@"INDU" withCompletion:^(NSDictionary *stockDictionary) {
         [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
         [self.dataStore saveContext];
+            
+        [self.stockSearchTableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+                [self.stockSearchTableView reloadData];
+            });
+
         NSLog(@"%@", stockDictionary);
         [self dismissViewControllerAnimated:YES completion:nil];
         }];
