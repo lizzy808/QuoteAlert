@@ -300,6 +300,8 @@
     self.stockTableView.frame = self.view.frame;    
     self.stockTableView.autoresizingMask &= ~UIViewAutoresizingFlexibleBottomMargin;
     
+//    [self.stockTableView separatorStyle];
+    
     self.stockTableView.contentInset = UIEdgeInsetsMake(0, 0, 60, 0);
 
 }
@@ -307,7 +309,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 90;
 }
 
 
@@ -337,11 +339,7 @@
     
     Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
     
-    //    if ([cell.symbolLabel.text isEqualToString:@"^DJI"])
-    //    {
-    //        [cell.companyNameLabel.text isEqualToString:@"Dow Jones Industrial Average"];
-    //    }
-    
+
     cell.stock = stock;
     cell.symbolLabel.text = stock.symbol;
     cell.companyNameLabel.text = stock.companyName;
