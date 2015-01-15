@@ -118,25 +118,25 @@
     
     [self.symbolLabel setFont:[UIFont fontWithName:@"Arial" size:24]];
     [self.symbolLabel setTextColor:[UIColor yellowColor]];
-    [self.openPriceLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
+    [self.openPriceLabel setFont:[UIFont fontWithName:@"Arial" size:12]];
     [self.openPriceLabel setTextColor:[UIColor yellowColor]];
-    [self.dayHighLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
+    [self.dayHighLabel setFont:[UIFont fontWithName:@"Arial" size:12]];
     [self.dayHighLabel setTextColor:[UIColor yellowColor]];
-    [self.dayLowLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
+    [self.dayLowLabel setFont:[UIFont fontWithName:@"Arial" size:12]];
     [self.dayLowLabel setTextColor:[UIColor yellowColor]];
-    [self.volumeLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
+    [self.volumeLabel setFont:[UIFont fontWithName:@"Arial" size:12]];
     [self.volumeLabel setTextColor:[UIColor yellowColor]];
-    [self.peRatioLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
+    [self.peRatioLabel setFont:[UIFont fontWithName:@"Arial" size:12]];
     [self.peRatioLabel setTextColor:[UIColor yellowColor]];
-    [self.mktCapLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
+    [self.mktCapLabel setFont:[UIFont fontWithName:@"Arial" size:12]];
     [self.mktCapLabel setTextColor:[UIColor yellowColor]];
-    [self.yearLowLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
+    [self.yearLowLabel setFont:[UIFont fontWithName:@"Arial" size:12]];
     [self.yearLowLabel setTextColor:[UIColor yellowColor]];
-    [self.yearHighLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
+    [self.yearHighLabel setFont:[UIFont fontWithName:@"Arial" size:12]];
     [self.yearHighLabel setTextColor:[UIColor yellowColor]];
-    [self.avgVolumeLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
+    [self.avgVolumeLabel setFont:[UIFont fontWithName:@"Arial" size:12]];
     [self.avgVolumeLabel setTextColor:[UIColor yellowColor]];
-    [self.yieldLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
+    [self.yieldLabel setFont:[UIFont fontWithName:@"Arial" size:12]];
     [self.yieldLabel setTextColor:[UIColor yellowColor]];
     
     

@@ -204,7 +204,7 @@
         [YahooAPIClient searchForStockDetails:searchSymbol withCompletion:^(NSDictionary *stockDictionary) {
         [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
         [self.dataStore saveContext];
-        NSLog(@"%@", stockDictionary);
+//        NSLog(@"%@", stockDictionary);
         [self dismissViewControllerAnimated:YES completion:nil];
 
     }];

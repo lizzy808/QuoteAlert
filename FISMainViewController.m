@@ -20,7 +20,7 @@
 
 @interface FISMainViewController () <NSFetchedResultsControllerDelegate, UISearchDisplayDelegate>
 
-@property (nonatomic) NSMutableArray *stocks;
+//@property (nonatomic) NSMutableArray *stocks;
 @property (nonatomic) FISDataStore *dataStore;
 @property (strong, nonatomic) Stock *stock;
 @property (strong, nonatomic) NSDictionary *stockDict;
@@ -52,6 +52,8 @@
     self.stockTableView.dataSource = self;
     self.dataStore.fetchedStockResultsController.delegate= self;
     [self.stockTableView reloadData];
+    
+    [self configureStockTableView];
     
     [self supportedInterfaceOrientations];
     [self preferredInterfaceOrientationForPresentation];
@@ -267,7 +269,7 @@
             [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
             [self.dataStore saveContext];
             
-            NSLog(@"%@", stockDictionary);
+//            NSLog(@"%@", stockDictionary);
         }];
         
     }
@@ -291,6 +293,17 @@
     [super didReceiveMemoryWarning];
 }
 
+-(void)configureStockTableView
+{
+    
+    self.stockTableView.frame = self.view.bounds;
+    self.stockTableView.frame = self.view.frame;    
+    self.stockTableView.autoresizingMask &= ~UIViewAutoresizingFlexibleBottomMargin;
+    
+    self.stockTableView.contentInset = UIEdgeInsetsMake(0, 0, 60, 0);
+
+}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -307,7 +320,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSLog(@"Number of fetched objects is %lu", (unsigned long)[[self.dataStore.fetchedStockResultsController fetchedObjects]count]);
-    NSLog(@"Number of items in stock array is %lu", _stocks.count);
+//    NSLog(@"Number of items in stock array is %lu", _stocks.count);
     return [[self.dataStore.fetchedStockResultsController fetchedObjects]count];
 }
 
@@ -324,6 +337,11 @@
     
     Stock *stock = [self.dataStore.fetchedStockResultsController objectAtIndexPath:indexPath];
     
+    //    if ([cell.symbolLabel.text isEqualToString:@"^DJI"])
+    //    {
+    //        [cell.companyNameLabel.text isEqualToString:@"Dow Jones Industrial Average"];
+    //    }
+    
     cell.stock = stock;
     cell.symbolLabel.text = stock.symbol;
     cell.companyNameLabel.text = stock.companyName;
@@ -337,11 +355,6 @@
     cell.alertPriceHighLabel.text = [NSString stringWithFormat:@"%.2f", stock.userAlertPriceHigh];
     cell.alertPriceLowLabel.text = [NSString stringWithFormat:@"%.2f", stock.userAlertPriceLow];
     
-
-//    if ([cell.symbolLabel.text isEqualToString:@"^DJI"])
-//    {
-//        [cell.companyNameLabel.text isEqualToString:@"Dow Jones Industrial Average"];
-//    }
     
     if (stockChangeFloat >= 0.00)
     {

@@ -160,7 +160,7 @@
             {
                 NSString *newString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
                 
-                NSLog(@"searchForStockDetails %@", newString);
+//                NSLog(@"searchForStockDetails %@", newString);
                 
                 NSDictionary *stockDetailDictionary = [NSJSONSerialization JSONObjectWithData:[newString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
                 
