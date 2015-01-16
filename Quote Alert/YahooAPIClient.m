@@ -12,7 +12,6 @@
 #import "Stock.h"
 #import "FISMainViewController.h"
 #import "FISMainTableViewCell.h"
-#import "NSString+urlStringCategory.h"
 
 @interface YahooAPIClient() <NSSecureCoding>
 
@@ -111,28 +110,6 @@
 }
 
 
-
-//- (NSString *) URLEncodedString_ch {
-//    NSMutableString * output = [NSMutableString string];
-//    const unsigned char * source = (const unsigned char *)[self UTF8String];
-//    int sourceLen = strlen((const char *)source);
-//    for (int i = 0; i < sourceLen; ++i) {
-//        const unsigned char thisChar = source[i];
-//        if (thisChar == ' '){
-//            [output appendString:@"+"];
-//        } else if (thisChar == '.' || thisChar == '-' || thisChar == '_' || thisChar == '~' ||
-//                   (thisChar >= 'a' && thisChar <= 'z') ||
-//                   (thisChar >= 'A' && thisChar <= 'Z') ||
-//                   (thisChar >= '0' && thisChar <= '9')) {
-//            [output appendFormat:@"%c", thisChar];
-//        } else {
-//            [output appendFormat:@"%%%02X", thisChar];
-//        }
-//    }
-//    return output;
-//}
-
-
 + (void)searchForStockDetails:(NSString *)symbol withCompletion:(void (^)(NSDictionary *))completion
 {
     if ([symbol isEqualToString:@"^DJI"])
@@ -145,8 +122,6 @@
         yahooDetailURLString = [yahooDetailURLString stringByAppendingString:escapedSymbol];
         
         yahooDetailURLString = [yahooDetailURLString stringByAppendingString:@"%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback="];
-        
-        //    NSLog(@"searchForStockDetails URL = %@",yahooDetailURLString );
         
         NSURLSession *session = [NSURLSession sharedSession];
         [[session dataTaskWithURL:[NSURL URLWithString:yahooDetailURLString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -332,7 +307,7 @@
                     
                     UILocalNotification* localNotification = [[UILocalNotification alloc] init];
                     localNotification.fireDate = [NSDate date];
-                    localNotification.alertBody = [NSString stringWithFormat: @"%@ has dropped to %@, which is lower than your alert of %f", stock.symbol, stock.bidPrice, stock.userAlertPriceLow];
+                    localNotification.alertBody = [NSString stringWithFormat: @"%@ has dropped to %@", stock.symbol, stock.bidPrice];
                     localNotification.soundName = UILocalNotificationDefaultSoundName;
                     localNotification.alertAction = @"Show me the item";
                     localNotification.timeZone = [NSTimeZone defaultTimeZone];

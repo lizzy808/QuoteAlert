@@ -90,13 +90,62 @@
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
     if (managedObjectContext != nil) {
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
     }
 }
+
+//NSURLSession *session = [NSURLSession sharedSession];
+//[[session dataTaskWithURL:[NSURL URLWithString:yahooDetailURLString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//    
+//    if (error)
+//    {
+//        NSLog(@"searchForStockDetails ERROR: %@", error.localizedDescription);
+//        //completion(nil);
+//    }
+//    else
+//    {
+//        NSString *newString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+//        
+//        NSLog(@"searchForStockDetails %@", newString);
+//        
+//        NSDictionary *stockDetailDictionary = [NSJSONSerialization JSONObjectWithData:[newString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+//        
+//        // Check to make sure the element exists before assigning to a dictionary
+//        if (stockDetailDictionary[@"query"][@"count"])
+//        {
+//            NSNumber *resultCount = stockDetailDictionary[@"query"][@"count"];
+//            
+//            if (resultCount.integerValue > 0)
+//            {
+//                NSDictionary *stockQuoteDictionary = stockDetailDictionary [@"query"][@"results"][@"quote"];
+//                completion(stockQuoteDictionary);
+//            }
+//            else
+//            {
+//                NSLog(@"searchForStockDetails ERROR: No results for quote on %@", escapedSymbol);
+//                //completion(nil);
+//            }
+//            
+//        }
+//        else
+//        {
+//            NSLog(@"searchForStockDetails ERROR: Missing value for quote on %@", escapedSymbol);
+//            //completion(nil);
+//        }
+//        
+//        
+//        
+//        
+//    }
+//}] resume];
+//}
+
 
 #pragma mark - Core Data stack
 
@@ -176,9 +225,6 @@
 
 - (void)refreshUserStocks:(NSMutableArray *)symbols
 {
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Stock"];
-//    NSMutableArray *allStocks = [[NSMutableArray alloc]initWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:nil]];
-    
     for (Stock *stock in self.stocks) {
         [self.managedObjectContext deleteObject:stock];
     }

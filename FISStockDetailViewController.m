@@ -68,10 +68,8 @@
 
     [self.qaHighTextField setText:[NSString stringWithFormat:@"%.2f", self.stock.userAlertPriceHigh]];
     [self.qaLowTextField setText:[NSString stringWithFormat:@"%.2f", self.stock.userAlertPriceLow]];
-
-//    [self addSetQAButton];
-    
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -84,7 +82,7 @@
     [self.symbolLabel setText:self.stock.companyName];
     
     self.priceLabel.text = self.stock.bidPrice;
-//    self.dayChangeLabel.text = self.stock.change;
+//    self.priceLabel.text
     
     self.openPriceLabel.text = self.stock.openPrice;
     self.dayHighLabel.text = self.stock.dayHigh;
@@ -102,7 +100,6 @@
     [self.priceLabel setTextColor:[UIColor yellowColor]];
     [self.dayChangeLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
     [self.percentChangeLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
-//    [self.dayChangeLabel setTextColor:[UIColor yellowColor]];
     
     float stockChangeFloat = [self.stock.change floatValue];
     self.dayChangeLabel.text = [NSString stringWithFormat:@"%.2f", stockChangeFloat];

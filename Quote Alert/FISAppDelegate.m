@@ -33,8 +33,10 @@
     
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
+    
     [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
 
+    
     NSLog(@"Launched in background %d", UIApplicationStateBackground == application.applicationState);
     
     UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
@@ -93,7 +95,7 @@
   performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
     
-    NSLog(@"Perfoming background fetch");
+    NSLog(@"Perfoming background fetchzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
     
     // Determine if default for areAlertsMuted is set
     BOOL shouldFireNotification;
@@ -125,7 +127,7 @@
             
         if (isSuccessful)
         {
-            NSLog(@"Was successful");
+            NSLog(@"Was successful with BGF");
             // We are supposed to pass a background fetch result back to the OS
             completionHandler(UIBackgroundFetchResultNewData);
         }
@@ -137,19 +139,6 @@
     }];
 }
 
-
-/*
-- (void)           application:(UIApplication *)application
-  didReceiveRemoteNotification:(NSDictionary *)userInfo
-        fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
-{
-    NSLog(@"Remote Notification userInfo is %@", userInfo);
-    
-    NSNumber *contentID = userInfo[@"content-id"];
-    // Do something with the content ID
-    completionHandler(UIBackgroundFetchResultNewData);
-}
-*/
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

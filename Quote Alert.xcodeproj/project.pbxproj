@@ -16,7 +16,6 @@
 		55186AA31A37DCF300AD80B2 /* un-cancel_alerts small.png in Resources */ = {isa = PBXBuildFile; fileRef = 55186AA21A37DCF300AD80B2 /* un-cancel_alerts small.png */; };
 		552E077A1A4E3E92001585A2 /* nav_gradient_blue_title1.png in Resources */ = {isa = PBXBuildFile; fileRef = 552E07791A4E3E92001585A2 /* nav_gradient_blue_title1.png */; };
 		553AAF9C1A5F844B00E7F78D /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553AAF9B1A5F844B00E7F78D /* PageViewController.m */; };
-		553B645E1A648A1500263AFD /* NSString+urlStringCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 553B645D1A648A1500263AFD /* NSString+urlStringCategory.m */; };
 		553B64691A6764AA00263AFD /* QAicon_80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 553B64651A6764AA00263AFD /* QAicon_80x80.png */; };
 		553B646A1A6764AA00263AFD /* QAicon1_58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = 553B64661A6764AA00263AFD /* QAicon1_58x58.png */; };
 		553B646B1A6764AA00263AFD /* QAicon1_120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = 553B64671A6764AA00263AFD /* QAicon1_120x120.png */; };
@@ -92,8 +91,6 @@
 		552E07791A4E3E92001585A2 /* nav_gradient_blue_title1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_gradient_blue_title1.png; sourceTree = "<group>"; };
 		553AAF9A1A5F844B00E7F78D /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
 		553AAF9B1A5F844B00E7F78D /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
-		553B645C1A648A1500263AFD /* NSString+urlStringCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+urlStringCategory.h"; sourceTree = "<group>"; };
-		553B645D1A648A1500263AFD /* NSString+urlStringCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+urlStringCategory.m"; sourceTree = "<group>"; };
 		553B64651A6764AA00263AFD /* QAicon_80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QAicon_80x80.png; sourceTree = "<group>"; };
 		553B64661A6764AA00263AFD /* QAicon1_58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QAicon1_58x58.png; sourceTree = "<group>"; };
 		553B64671A6764AA00263AFD /* QAicon1_120x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QAicon1_120x120.png; sourceTree = "<group>"; };
@@ -287,8 +284,6 @@
 				550D3D7518F5A7BF009A9406 /* FISStockSearch.m */,
 				55912D1E18E3546D0069FEEC /* FISDataStore.h */,
 				55912D1F18E3546D0069FEEC /* FISDataStore.m */,
-				553B645C1A648A1500263AFD /* NSString+urlStringCategory.h */,
-				553B645D1A648A1500263AFD /* NSString+urlStringCategory.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -526,7 +521,6 @@
 				55912D1918E275180069FEEC /* YahooAPIClient.m in Sources */,
 				5575C73618E0E6E100ABB124 /* Quote_Alert.xcdatamodeld in Sources */,
 				55912D2318E356A60069FEEC /* Stock+Methods.m in Sources */,
-				553B645E1A648A1500263AFD /* NSString+urlStringCategory.m in Sources */,
 				5575C72F18E0E6E100ABB124 /* main.m in Sources */,
 				550D3D5A18F1E3B6009A9406 /* FISMainViewController.m in Sources */,
 				55F66ED4190710BF000EFD3B /* Stock.m in Sources */,

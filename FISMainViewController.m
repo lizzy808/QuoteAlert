@@ -20,7 +20,6 @@
 
 @interface FISMainViewController () <NSFetchedResultsControllerDelegate, UISearchDisplayDelegate>
 
-//@property (nonatomic) NSMutableArray *stocks;
 @property (nonatomic) FISDataStore *dataStore;
 @property (strong, nonatomic) Stock *stock;
 @property (strong, nonatomic) NSDictionary *stockDict;
@@ -38,7 +37,6 @@
     }
     return self;
 }
-
 
 
 - (void)viewDidLoad
@@ -176,7 +174,6 @@
 
 - (void)reloadData:(id)object {
     
-//    [YahooAPIClient fetchAllUserStocksUpdatesWithCompletion:^(BOOL isSuccessful) {
     [YahooAPIClient fetchAllUserStocksUpdatesShouldFireNotification:NO WithCompletion:^(BOOL isSuccessful) {
         if (isSuccessful)
         {
@@ -268,16 +265,11 @@
     
             [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
             [self.dataStore saveContext];
-            
-//            NSLog(@"%@", stockDictionary);
         }];
-        
     }
-         
     else {
         // On subsequent launches, this block will execute
     }
-    
 }
 
 
@@ -295,21 +287,15 @@
 
 -(void)configureStockTableView
 {
-    
     self.stockTableView.frame = self.view.bounds;
     self.stockTableView.frame = self.view.frame;    
     self.stockTableView.autoresizingMask &= ~UIViewAutoresizingFlexibleBottomMargin;
-    
-//    [self.stockTableView separatorStyle];
-    
-    self.stockTableView.contentInset = UIEdgeInsetsMake(0, 0, 60, 0);
-
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90;
+    return 80;
 }
 
 
@@ -346,8 +332,8 @@
     cell.bidPriceLabel.text = stock.bidPrice;
     
     float stockChangeFloat = [stock.change floatValue];
-    
     cell.dayChangeLabel.text = [NSString stringWithFormat:@"%.2f", stockChangeFloat];
+    
     cell.percentChangeLabel.text = stock.percentChange;
     
     cell.alertPriceHighLabel.text = [NSString stringWithFormat:@"%.2f", stock.userAlertPriceHigh];
@@ -369,7 +355,7 @@
     
 // if cell sends notification, highlight cell
     
-    int stockBidPriceFloat = [stock.bidPrice intValue];
+    float stockBidPriceFloat = [stock.bidPrice floatValue];
     
     
     if ((stockBidPriceFloat >= stock.userAlertPriceHigh && stock.userAlertPriceHigh > 0) || (stockBidPriceFloat <= stock.userAlertPriceLow && stock.userAlertPriceLow > 0))
@@ -466,6 +452,7 @@
         case NSFetchedResultsChangeDelete:
             [self.stockTableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
             break;
+            
     }
 }
 
@@ -520,10 +507,11 @@
         [tableView reloadData];
         
         
-    } else if (editingStyle == UITableViewCellEditingStyleInsert)
-    {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
+//    else if (editingStyle == UITableViewCellEditingStyleInsert)
+//    {
+//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//    }
 }
 
 
