@@ -12,6 +12,8 @@
 #import "YahooAPIClient.h"
 #import "FISSearchTableViewCell.h"
 #import "FISSearchTableViewCell.h"
+#import <Parse/Parse.h>
+
 
 
 @interface FISSearchTableViewController () <NSFetchedResultsControllerDelegate, UISearchDisplayDelegate>
@@ -82,7 +84,7 @@
         return [self.searchResults count];
     }
     else{
-        return [self.stocks count]; 
+        return [self.stocks count];  
     }
 }
 
@@ -201,9 +203,16 @@
     else
     {
     
-        [YahooAPIClient searchForStockDetails:searchSymbol withCompletion:^(NSDictionary *stockDictionary) {
-        [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
-        [self.dataStore saveContext];
+        [YahooAPIClient searchForStockDetails:searchSymbol withCompletion:^(NSDictionary *stockDictionary)
+        {
+            [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
+            
+//            PFObject *stock = [PFObject objectWithClassName:@"StockAlerts"];
+//            stock[@"symbol"] = @"AAPL";
+//            [stock saveInBackground];
+
+            
+            [self.dataStore saveContext];
 //        NSLog(@"%@", stockDictionary);
         [self dismissViewControllerAnimated:YES completion:nil];
 

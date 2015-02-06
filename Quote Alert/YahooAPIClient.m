@@ -12,6 +12,9 @@
 #import "Stock.h"
 #import "FISMainViewController.h"
 #import "FISMainTableViewCell.h"
+#import <Parse/Parse.h>
+
+
 
 @interface YahooAPIClient() <NSSecureCoding>
 

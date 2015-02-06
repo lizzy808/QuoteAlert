@@ -16,6 +16,7 @@
 #import "YahooAPIClient.h"
 #import "UIColorSheet.h"
 #import "YahooAPIClient.h"
+#import <Parse/Parse.h>
 
 
 @interface FISMainViewController () <NSFetchedResultsControllerDelegate, UISearchDisplayDelegate>
@@ -52,6 +53,22 @@
     [self.stockTableView reloadData];
     
     [self configureStockTableView];
+    
+    
+//    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+//    testObject[@"foo"] = @"bar";
+//    [testObject saveInBackground];
+    
+    
+//    PFObject *stock = [PFObject objectWithClassName:@"StockAlerts"];
+//    stock[@"symbol"] = @"TSLA";
+//    stock[@"userAlertPriceHigh"] = @1;
+//    stock[@"userAlertPriceLow"] = @2;
+//    [stock saveInBackground];
+    
+//    NSLog(@"stock: %@", stock [@"symbol"]);
+    
+    
     
     [self supportedInterfaceOrientations];
     [self preferredInterfaceOrientationForPresentation];

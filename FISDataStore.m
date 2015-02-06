@@ -10,6 +10,7 @@
 #import "YahooAPIClient.h"
 #import "Stock+Methods.h"
 #import <CoreData/CoreData.h>
+#import <Parse/Parse.h>
 
 @interface FISDataStore()
 
@@ -88,6 +89,17 @@
 {
     NSError *error = nil;
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    
+//    PFObject *stockObject = [PFObject objectWithClassName:@"StockAlerts"];
+//    stockObject[@"symbol"] = self.stockDict[@"symbol"];
+//    
+//    //        StockAlerts[@"userAlertPriceHigh"] = repository.userAlertPriceHigh;
+//    //        StockAlerts[@"userAlertPriceLow"] = repository.userAlertPriceLow;
+//    
+//    [stockObject saveInBackground];
+
+    
+    
     if (managedObjectContext != nil) {
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
             

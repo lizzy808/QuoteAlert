@@ -16,6 +16,7 @@
 #import "Stock+Methods.h"
 #import "UIColorSheet.h"
 #import "FISMainViewController.h"
+#import <Parse/Parse.h>
 
 @interface FISStockDetailViewController ()
 
@@ -170,6 +171,19 @@
 */
     
     self.stock.lastNotificationFiredTime = nil;
+    
+    
+//    
+//    PFObject *stockObject = [PFObject objectWithClassName:@"StockAlerts"];
+////    stock[@"symbol"] = stockDetailDictionary[@"symbol"];
+//    
+//    stockObject[@"userAlertPriceHigh"] = self.stock.userAlertPriceHigh;
+//    stockObject[@"userAlertPriceLow"] = self.stock.userAlertPriceLow;
+//    
+//    [stockObject saveInBackground];
+    
+    
+    
     [self.dataStore saveContext];
     [self dismissViewControllerAnimated:YES completion:nil];
 

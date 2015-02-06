@@ -13,6 +13,8 @@
 #import "FISDataStore.h"
 #import "FISStockDetailViewController.h"
 #import "FISMainViewController.h"
+#import <Parse/Parse.h>
+
 
 @interface FISAppDelegate ()
 @property (strong, nonatomic) FISDataStore *dataStore;
@@ -24,26 +26,47 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+    {
+    // [Optional] Power your app with Local Datastore. For more info, go to
+    // https://parse.com/docs/ios_guide#localdatastore/iOS
+//    [Parse enableLocalDatastore];
     
-    // Need to request permissions for notifications
-    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
-        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
-    }
+    // Initialize Parse.
+    [Parse setApplicationId:@"fHfrDrWTcByvGhL9Ns1mJ0bCoeW6WYWK9DyBJtTn"
+                  clientKey:@"EE2PJxX6mT9jfQBFLDI1qgnCwZiaOKyDfpfVw0nB"];
     
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    // [Optional] Track statistics around application opens.
+//    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+        
+        
+        UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                        UIUserNotificationTypeBadge |
+                                                        UIUserNotificationTypeSound);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                                 categories:nil];
+        [application registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
+        
     
-    
-    [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
-
-    
-    NSLog(@"Launched in background %d", UIApplicationStateBackground == application.applicationState);
-    
-    UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-    if (locationNotification) {
-        // Set icon badge number to zero
-        application.applicationIconBadgeNumber = 0;
-    }
+//    // Need to request permissions for notifications
+//    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
+//        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+//    }
+//        
+//    
+//    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+//    
+//    
+//    [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+//
+//    
+//    NSLog(@"Launched in background %d", UIApplicationStateBackground == application.applicationState);
+//    
+//    UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+//    if (locationNotification) {
+//        // Set icon badge number to zero
+//        application.applicationIconBadgeNumber = 0;
+//    }
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
     {
@@ -63,6 +86,27 @@
     pageControl.backgroundColor = [UIColor blackColor];
     
     return YES;
+}
+
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    currentInstallation.channels = @[@"global"];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    if (error.code == 3010) {
+        NSLog(@"Push notifications are not supported in the iOS Simulator.");
+    } else {
+        // show some alert or otherwise handle the failure to register.
+        NSLog(@"application:didFailToRegisterForRemoteNotificationsWithError: %@", error);
+    }
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

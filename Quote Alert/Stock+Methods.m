@@ -7,6 +7,8 @@
 //
 
 #import "Stock+Methods.h"
+#import <Parse/Parse.h>
+
 
 @implementation Stock (Methods)
 
@@ -64,6 +66,18 @@
         
         repository.companyName = [self nullCheckWithObject:stockDetailDictionary[@"Name"]];
         
+        
+        
+        PFObject *stockObject = [PFObject objectWithClassName:@"StockAlerts"];
+        stockObject[@"symbol"] = stockDetailDictionary[@"symbol"];
+        
+//        StockAlerts[@"userAlertPriceHigh"] = repository.userAlertPriceHigh;
+//        StockAlerts[@"userAlertPriceLow"] = repository.userAlertPriceLow;
+        
+        [stockObject saveInBackground];
+        
+        
+        
         [context save:nil];
         
         return repository;
@@ -86,7 +100,6 @@
         selectedRepo.yield = [self nullCheckWithObject:stockDetailDictionary[@"DividendYield"]];
         selectedRepo.averageVolume = [self nullCheckWithObject:stockDetailDictionary[@"AverageDailyVolume"]];
         selectedRepo.companyName = [self nullCheckWithObject:stockDetailDictionary[@"Name"]];
-
         
         [context save:nil];
         
@@ -99,7 +112,6 @@
 
 + (NSDecimalNumber *)decimalFromObject: (NSObject *)object
 {
-    
     if (object != [NSNull null])
     {
         NSString *stringFromObject = (NSString *)object;
@@ -111,7 +123,6 @@
     {
         return nil;
     }
-
 }
 
 + (NSString *)formattedCurrencyFromDecimal: (NSDecimalNumber *)number
