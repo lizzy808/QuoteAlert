@@ -47,7 +47,6 @@
         [application registerUserNotificationSettings:settings];
         [application registerForRemoteNotifications];
         
-    
 //    // Need to request permissions for notifications
 //    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
 //        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
@@ -139,7 +138,7 @@
   performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
     
-    NSLog(@"Perfoming background fetchzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+    NSLog(@"Perfoming background fetch");
     
     // Determine if default for areAlertsMuted is set
     BOOL shouldFireNotification;

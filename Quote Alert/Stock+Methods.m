@@ -70,12 +70,19 @@
         
         PFObject *stockObject = [PFObject objectWithClassName:@"StockAlerts"];
         stockObject[@"symbol"] = stockDetailDictionary[@"symbol"];
-        
-//        StockAlerts[@"userAlertPriceHigh"] = repository.userAlertPriceHigh;
-//        StockAlerts[@"userAlertPriceLow"] = repository.userAlertPriceLow;
+        stockObject[@"userAlertPriceHigh"] = @0;
+        stockObject[@"userAlertPriceLow"] = @0;
         
         [stockObject saveInBackground];
         
+        
+//        NSNumber *userAlertPriceHighNumber = [NSNumber numberWithFloat:repository.userAlertPriceHigh];
+//        NSNumber *userAlertPriceLowNumber = [NSNumber numberWithFloat:repository.userAlertPriceLow];
+//        
+//        stockObject[@"userAlertPriceHigh"] = userAlertPriceHighNumber;
+//        stockObject[@"userAlertPriceLow"] = userAlertPriceLowNumber;
+//
+//        [stockObject fetch];
         
         
         [context save:nil];

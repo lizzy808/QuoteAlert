@@ -172,16 +172,24 @@
     
     self.stock.lastNotificationFiredTime = nil;
     
+
+
+    PFObject *stockObject = [PFObject objectWithClassName:@"StockAlerts"];
     
-//    
-//    PFObject *stockObject = [PFObject objectWithClassName:@"StockAlerts"];
-////    stock[@"symbol"] = stockDetailDictionary[@"symbol"];
-//    
-//    stockObject[@"userAlertPriceHigh"] = self.stock.userAlertPriceHigh;
-//    stockObject[@"userAlertPriceLow"] = self.stock.userAlertPriceLow;
-//    
-//    [stockObject saveInBackground];
+    stockObject[@"symbol"] = self.stock.symbol;
     
+    NSNumber *userAlertPriceHighNumber = [NSNumber numberWithFloat:self.stock.userAlertPriceHigh];
+    NSNumber *userAlertPriceLowNumber = [NSNumber numberWithFloat:self.stock.userAlertPriceLow];
+    
+    stockObject[@"userAlertPriceHigh"] = userAlertPriceHighNumber;
+    stockObject[@"userAlertPriceLow"] = userAlertPriceLowNumber;
+
+    [stockObject saveInBackground];
+//    [stockObject fetch];
+    
+/*
+     Update PFObject with user stock alert numbers
+*/
     
     
     [self.dataStore saveContext];
