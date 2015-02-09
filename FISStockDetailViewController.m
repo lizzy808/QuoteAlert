@@ -47,6 +47,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *qaHighTextField;
 @property (weak, nonatomic) IBOutlet UITextField *qaLowTextField;
 
+@property (weak, nonatomic) IBOutlet UIWebView *graphWebView;
+
 
 @end
 
@@ -66,7 +68,12 @@
     self.dataStore = [FISDataStore sharedDataStore];
     self.dataStore.fetchedStockResultsController.delegate= self;
     
+    
+    
+    [self.graphWebView loadRequest:[NSURLRequest requestWithURL:
+                                    [NSURL URLWithString:@"http://chart.finance.yahoo.com/z?s=GOOG&t=1d&q=l&l=on&z=m"]]];
 
+    
     [self.qaHighTextField setText:[NSString stringWithFormat:@"%.2f", self.stock.userAlertPriceHigh]];
     [self.qaLowTextField setText:[NSString stringWithFormat:@"%.2f", self.stock.userAlertPriceLow]];
 }
