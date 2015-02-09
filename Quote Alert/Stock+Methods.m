@@ -68,10 +68,17 @@
         
         
         
+        // Determine the installationId of the the current device in order to tie the alerts to this phone
+        NSString *currentInstallationId;
+        PFInstallation *installation = [PFInstallation currentInstallation];
+        currentInstallationId = installation[@"installationId"];
+
+        
         PFObject *stockObject = [PFObject objectWithClassName:@"StockAlerts"];
         stockObject[@"symbol"] = stockDetailDictionary[@"symbol"];
         stockObject[@"userAlertPriceHigh"] = @0;
         stockObject[@"userAlertPriceLow"] = @0;
+        stockObject[@"installationId"] = currentInstallationId;
         
         [stockObject saveInBackground];
         
