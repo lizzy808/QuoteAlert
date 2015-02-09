@@ -67,6 +67,26 @@
         repository.companyName = [self nullCheckWithObject:stockDetailDictionary[@"Name"]];
         
         
+        BOOL shouldFireNotification;
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        if ([defaults objectForKey:@"areAlertsMuted"])
+        {
+            
+            if([defaults boolForKey:@"areAlertsMuted"])
+                shouldFireNotification = NO;
+            else
+                shouldFireNotification = YES;
+        }
+        else
+        {
+            // Default hasn't been set yet so it definitely isn't muted
+            shouldFireNotification = YES;
+        }
+        
+        if (shouldFireNotification)
+            NSLog(@"Should Fire Notification");
+      
         
         // Determine the installationId of the the current device in order to tie the alerts to this phone
         NSString *currentInstallationId;
@@ -79,6 +99,15 @@
         stockObject[@"userAlertPriceHigh"] = @0;
         stockObject[@"userAlertPriceLow"] = @0;
         stockObject[@"installationId"] = currentInstallationId;
+        
+        
+        if (shouldFireNotification) {
+            stockObject[@"alertNotificationEnabled"] = [NSNumber numberWithBool:YES];
+        }
+        else
+        {
+            stockObject[@"alertNotificationEnabled"] = [NSNumber numberWithBool:NO];
+        }
         
         [stockObject saveInBackground];
         

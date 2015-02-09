@@ -173,6 +173,8 @@
 
         NSLog(@"Un-Muting Alerts");
         
+        [FISDataStore changeParseNotifcationEnabledTo:YES];
+        
     }
     else
     {
@@ -185,6 +187,9 @@
         [messageAlert2 show];
         
         NSLog(@"Muting alerts");
+        
+        [FISDataStore changeParseNotifcationEnabledTo:NO];
+
     }
 }
 
@@ -522,6 +527,7 @@
         [self.dataStore deleteStockAtIndexPay:indexPath];
         [self.dataStore.fetchedStockResultsController performFetch:nil];
         [tableView reloadData];
+        
         
         
     }

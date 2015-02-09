@@ -182,6 +182,10 @@
 
     PFQuery *query = [PFQuery queryWithClassName:@"StockAlerts"];
     
+    NSString *currentInstallationId;
+    PFInstallation *installation = [PFInstallation currentInstallation];
+    currentInstallationId = installation[@"installationId"];
+    
     [query whereKey:@"symbol" equalTo:self.stock.symbol];
     [query findObjectsInBackgroundWithBlock:^(NSArray *stockAlerts, NSError *error) {
         if (!error) {
