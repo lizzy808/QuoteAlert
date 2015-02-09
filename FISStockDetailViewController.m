@@ -173,18 +173,71 @@
     self.stock.lastNotificationFiredTime = nil;
     
 
+    PFQuery *query = [PFQuery queryWithClassName:@"StockAlerts"];
+    
+    [query whereKey:@"symbol" equalTo:self.stock.symbol];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *stockAlerts, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)stockAlerts.count);
+            // Do something with the found objects
+            for (PFObject *stockAlert in stockAlerts)
+            {
+                NSLog(@"%@", stockAlert.objectId);
+                
+                NSNumber *userAlertPriceHighNumber = [NSNumber numberWithFloat:self.stock.userAlertPriceHigh];
+                NSNumber *userAlertPriceLowNumber = [NSNumber numberWithFloat:self.stock.userAlertPriceLow];
+                
+                stockAlert[@"userAlertPriceHigh"] = userAlertPriceHighNumber;
+                stockAlert[@"userAlertPriceLow"] = userAlertPriceLowNumber;
+                
+                NSLog(@"%@", stockAlert[@"userAlertPriceHigh"]);
+                
+                [stockAlert saveInBackground];
+                [stockAlert fetch];
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 
-    PFObject *stockObject = [PFObject objectWithClassName:@"StockAlerts"];
-    
-    stockObject[@"symbol"] = self.stock.symbol;
-    
-    NSNumber *userAlertPriceHighNumber = [NSNumber numberWithFloat:self.stock.userAlertPriceHigh];
-    NSNumber *userAlertPriceLowNumber = [NSNumber numberWithFloat:self.stock.userAlertPriceLow];
-    
-    stockObject[@"userAlertPriceHigh"] = userAlertPriceHighNumber;
-    stockObject[@"userAlertPriceLow"] = userAlertPriceLowNumber;
+/*
+     Update PFObject alert price properties
+*/
 
-    [stockObject saveInBackground];
+    
+//    PFObject *stockObject = [PFObject objectWithClassName:@"StockAlerts"];
+//    
+////    NSNumber *userAlertPriceHighNumber = [NSNumber numberWithFloat:self.stock.userAlertPriceHigh];
+////    NSNumber *userAlertPriceLowNumber = [NSNumber numberWithFloat:self.stock.userAlertPriceLow];
+////    
+////    if ([stockObject[@"symbol"] isEqualToString:self.stock.symbol])
+////    {
+////        PFQuery *query = [PFQuery queryWithClassName:@"StockAlerts"];
+////        
+////        [query getFirstObjectInBackgroundWithTarget:self selector:(SEL)
+////        
+////        {
+////            stockObject[@"userAlertPriceHigh"] = userAlertPriceHighNumber;
+////            stockObject[@"userAlertPriceLow"] = userAlertPriceLowNumber;
+////        
+////            [stockObject saveInBackground];
+////        }];
+////    }
+//    
+//    
+//    
+//    
+//    stockObject[@"symbol"] = self.stock.symbol;
+//    
+//    NSNumber *userAlertPriceHighNumber = [NSNumber numberWithFloat:self.stock.userAlertPriceHigh];
+//    NSNumber *userAlertPriceLowNumber = [NSNumber numberWithFloat:self.stock.userAlertPriceLow];
+//    
+//    stockObject[@"userAlertPriceHigh"] = userAlertPriceHighNumber;
+//    stockObject[@"userAlertPriceLow"] = userAlertPriceLowNumber;
+//
+//    [stockObject saveInBackground];
 //    [stockObject fetch];
     
 /*
