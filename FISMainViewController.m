@@ -173,7 +173,7 @@
 
         NSLog(@"Un-Muting Alerts");
         
-        [FISDataStore changeParseNotifcationEnabledTo:YES];
+        [FISDataStore changeParseNotifcationEnabledTo:NO];
         
     }
     else
@@ -188,7 +188,7 @@
         
         NSLog(@"Muting alerts");
         
-        [FISDataStore changeParseNotifcationEnabledTo:NO];
+        [FISDataStore changeParseNotifcationEnabledTo:YES];
 
     }
 }

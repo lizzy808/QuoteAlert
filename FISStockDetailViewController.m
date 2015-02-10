@@ -187,6 +187,8 @@
     currentInstallationId = installation[@"installationId"];
     
     [query whereKey:@"symbol" equalTo:self.stock.symbol];
+    [query whereKey:@"installationId" equalTo:currentInstallationId];
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *stockAlerts, NSError *error) {
         if (!error) {
             // The find succeeded.
