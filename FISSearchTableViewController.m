@@ -13,6 +13,7 @@
 #import "FISSearchTableViewCell.h"
 #import "FISSearchTableViewCell.h"
 #import <Parse/Parse.h>
+#import "Reachability.h"
 
 
 
@@ -33,6 +34,13 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *stockSearchBar;
 - (IBAction)cancelButtonTapped:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *searchingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *networkConnectionLabel;
+
+//-(void)reachabilityChanged:(NSNotification*)note;
+
+@property(strong) Reachability * yahooReach;
+@property(strong) Reachability * localWiFiReach;
+@property(strong) Reachability * internetConnectionReach;
 
 @end
 
@@ -62,8 +70,57 @@
     
     self.dataStore = [FISDataStore sharedDataStore];
     self.dataStore.fetchedStockResultsController.delegate = self;
+    
+    self.networkConnectionLabel.text = @"";
+
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reachabilityChanged:)
+                                                 name:kReachabilityChangedNotification
+                                               object:nil];
+
+    __weak __block typeof(self) weakself = self;
+
+    self.yahooReach = [Reachability reachabilityWithHostname:@"www.yahoo.com"];
+    
+    self.yahooReach.unreachableBlock = ^(Reachability * reachability)
+    {
+        NSString * temp = [NSString stringWithFormat:@"%@", reachability.currentReachabilityString];
+        NSLog(@"%@", temp);
+        
+        // to update UI components from a block callback
+        // you need to dipatch this to the main thread
+        // this uses NSOperationQueue mainQueue
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            weakself.networkConnectionLabel.text = temp;
+            weakself.networkConnectionLabel.textColor = [UIColor whiteColor];
+        }];
+    };
+    
+    self.yahooReach.unreachableBlock = ^(Reachability * reachability)
+    {
+        NSString * temp = [NSString stringWithFormat:@"(%@)", reachability.currentReachabilityString];
+        NSLog(@"%@", temp);
+        
+        // to update UI components from a block callback
+        // you need to dipatch this to the main thread
+        // this one uses dispatch_async they do the same thing (as above)
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakself.networkConnectionLabel.text = temp;
+            weakself.networkConnectionLabel.textColor = [UIColor redColor];
+        });
+    };
+    
+    [self.yahooReach startNotifier];
+
 }
 
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -153,9 +210,18 @@
 }
 
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+//    Reachability* reach = [Reachability reachabilityWithHostname:@"www.yahoo.com"];
+//
+//    if(reach == self.yahooReach)
+//    {
+    
+//    if ([Reachability isReachable])
+//    {
         self.searchingLabel.text = @"Searching...";
-        [YahooAPIClient searchForStockWithName:searchBar.text withCompletion:^(NSArray *stockDictionaries) {
+        [YahooAPIClient searchForStockWithName:searchBar.text withCompletion:^(NSArray *stockDictionaries)
+        {
             //NSLog(@"stock dictionaries = %@", stockDictionaries);
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.searchResults = stockDictionaries;
@@ -165,6 +231,13 @@
             });
         }];
 }
+//    }
+//    else
+//    {
+//        self.searchingLabel.text = @"No Network Connection";
+//
+//    }
+
 
 
 - (void)initialize
@@ -226,6 +299,26 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(void)reachabilityChanged:(NSNotification*)note
+{
+    Reachability * reach = [note object];
+    
+    if(reach == self.yahooReach)
+    {
+        if([reach isReachable])
+        {
+            self.networkConnectionLabel.text = @"";
+            self.networkConnectionLabel.textColor = [UIColor blackColor];
+        }
+        else
+        {
+            sleep(1);
+            self.networkConnectionLabel.text = @"No Network Connection";
+            self.networkConnectionLabel.textColor = [UIColor whiteColor];
+            self.networkConnectionLabel.backgroundColor = [UIColor blackColor];
 
+        }
+    }
+}
 
 @end

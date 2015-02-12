@@ -12,6 +12,7 @@
 		550D3D5A18F1E3B6009A9406 /* FISMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 550D3D5918F1E3B6009A9406 /* FISMainViewController.m */; };
 		550D3D6018F1EB74009A9406 /* UIColorSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 550D3D5F18F1EB74009A9406 /* UIColorSheet.m */; };
 		550D3D7618F5A7BF009A9406 /* FISStockSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 550D3D7518F5A7BF009A9406 /* FISStockSearch.m */; };
+		550E6F941A8C114F00028270 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 550E6F931A8C114F00028270 /* Reachability.m */; };
 		55186AA11A37D5E700AD80B2 /* cancel_alerts small.png in Resources */ = {isa = PBXBuildFile; fileRef = 55186AA01A37D5E700AD80B2 /* cancel_alerts small.png */; };
 		55186AA31A37DCF300AD80B2 /* un-cancel_alerts small.png in Resources */ = {isa = PBXBuildFile; fileRef = 55186AA21A37DCF300AD80B2 /* un-cancel_alerts small.png */; };
 		552E077A1A4E3E92001585A2 /* nav_gradient_blue_title1.png in Resources */ = {isa = PBXBuildFile; fileRef = 552E07791A4E3E92001585A2 /* nav_gradient_blue_title1.png */; };
@@ -32,6 +33,7 @@
 		553B64801A68D8CC00263AFD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553B647F1A68D8CC00263AFD /* SystemConfiguration.framework */; };
 		553B64821A68D8D900263AFD /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 553B64811A68D8D900263AFD /* libz.dylib */; };
 		553B64841A68D8E500263AFD /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 553B64831A68D8E500263AFD /* libsqlite3.dylib */; };
+		554CB97A1A8B12D1003ADDEE /* tutorialScreen4.png in Resources */ = {isa = PBXBuildFile; fileRef = 554CB9791A8B12D1003ADDEE /* tutorialScreen4.png */; };
 		554F22981A5C74C500D52D0A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 554F229A1A5C74C500D52D0A /* Storyboard.storyboard */; };
 		5575C72118E0E6E100ABB124 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5575C72018E0E6E100ABB124 /* Foundation.framework */; };
 		5575C72318E0E6E100ABB124 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5575C72218E0E6E100ABB124 /* CoreGraphics.framework */; };
@@ -69,7 +71,6 @@
 		559F4ADF1A60B10800FBCFCF /* tutorialScreen1.png in Resources */ = {isa = PBXBuildFile; fileRef = 559F4ADB1A60B10800FBCFCF /* tutorialScreen1.png */; };
 		559F4AE01A60B10800FBCFCF /* tutorialScreen2.png in Resources */ = {isa = PBXBuildFile; fileRef = 559F4ADC1A60B10800FBCFCF /* tutorialScreen2.png */; };
 		559F4AE11A60B10800FBCFCF /* tutorialScreen3.png in Resources */ = {isa = PBXBuildFile; fileRef = 559F4ADD1A60B10800FBCFCF /* tutorialScreen3.png */; };
-		559F4AE61A60B1DF00FBCFCF /* tutorialScreen4.png in Resources */ = {isa = PBXBuildFile; fileRef = 559F4AE51A60B1DF00FBCFCF /* tutorialScreen4.png */; };
 		55CA536F1901B8C2000E2A1E /* searchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55CA536E1901B8C2000E2A1E /* searchView.xib */; };
 		55F66ED4190710BF000EFD3B /* Stock.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F66ED3190710BF000EFD3B /* Stock.m */; };
 		63DC8204C6874F38BD06C8F4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92968B8F8C494D1EAF8A35DD /* libPods.a */; };
@@ -98,6 +99,8 @@
 		550D3D5F18F1EB74009A9406 /* UIColorSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorSheet.m; sourceTree = "<group>"; };
 		550D3D7418F5A7BF009A9406 /* FISStockSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISStockSearch.h; sourceTree = "<group>"; };
 		550D3D7518F5A7BF009A9406 /* FISStockSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISStockSearch.m; sourceTree = "<group>"; };
+		550E6F921A8C114F00028270 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		550E6F931A8C114F00028270 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		55186AA01A37D5E700AD80B2 /* cancel_alerts small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel_alerts small.png"; sourceTree = "<group>"; };
 		55186AA21A37DCF300AD80B2 /* un-cancel_alerts small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "un-cancel_alerts small.png"; sourceTree = "<group>"; };
 		552E07791A4E3E92001585A2 /* nav_gradient_blue_title1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_gradient_blue_title1.png; sourceTree = "<group>"; };
@@ -119,6 +122,7 @@
 		553B647F1A68D8CC00263AFD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		553B64811A68D8D900263AFD /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		553B64831A68D8E500263AFD /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		554CB9791A8B12D1003ADDEE /* tutorialScreen4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tutorialScreen4.png; path = ../../../qapics/tutorialScreen4.png; sourceTree = "<group>"; };
 		554F22991A5C74C500D52D0A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Storyboard.storyboard; sourceTree = "<group>"; };
 		5575C71D18E0E6E100ABB124 /* Quote Alert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quote Alert.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5575C72018E0E6E100ABB124 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -165,7 +169,6 @@
 		559F4ADB1A60B10800FBCFCF /* tutorialScreen1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialScreen1.png; sourceTree = "<group>"; };
 		559F4ADC1A60B10800FBCFCF /* tutorialScreen2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialScreen2.png; sourceTree = "<group>"; };
 		559F4ADD1A60B10800FBCFCF /* tutorialScreen3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialScreen3.png; sourceTree = "<group>"; };
-		559F4AE51A60B1DF00FBCFCF /* tutorialScreen4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialScreen4.png; sourceTree = "<group>"; };
 		55CA536E1901B8C2000E2A1E /* searchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = searchView.xib; sourceTree = "<group>"; };
 		55F66ED2190710BF000EFD3B /* Stock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stock.h; sourceTree = "<group>"; };
 		55F66ED3190710BF000EFD3B /* Stock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stock.m; sourceTree = "<group>"; };
@@ -332,6 +335,8 @@
 				550D3D7518F5A7BF009A9406 /* FISStockSearch.m */,
 				55912D1E18E3546D0069FEEC /* FISDataStore.h */,
 				55912D1F18E3546D0069FEEC /* FISDataStore.m */,
+				550E6F921A8C114F00028270 /* Reachability.h */,
+				550E6F931A8C114F00028270 /* Reachability.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -341,8 +346,8 @@
 			children = (
 				559F4ADB1A60B10800FBCFCF /* tutorialScreen1.png */,
 				559F4ADC1A60B10800FBCFCF /* tutorialScreen2.png */,
-				559F4AE51A60B1DF00FBCFCF /* tutorialScreen4.png */,
 				559F4ADD1A60B10800FBCFCF /* tutorialScreen3.png */,
+				554CB9791A8B12D1003ADDEE /* tutorialScreen4.png */,
 				55186AA01A37D5E700AD80B2 /* cancel_alerts small.png */,
 				55186AA21A37DCF300AD80B2 /* un-cancel_alerts small.png */,
 				79C2AF881A0D4A2200E666E4 /* tiny_alarmicon.png */,
@@ -499,8 +504,8 @@
 				554F22981A5C74C500D52D0A /* Storyboard.storyboard in Resources */,
 				559F4ACF1A608EF600FBCFCF /* alarmclockbutton_on1.png in Resources */,
 				79C2AF891A0D4A2200E666E4 /* tiny_alarmicon.png in Resources */,
-				559F4AE61A60B1DF00FBCFCF /* tutorialScreen4.png in Resources */,
 				559F4ADA1A60ABFE00FBCFCF /* SetQAbuttonlarge@2x.png in Resources */,
+				554CB97A1A8B12D1003ADDEE /* tutorialScreen4.png in Resources */,
 				559F4AD61A60ABFE00FBCFCF /*  tiny_alarmicon@2x.png in Resources */,
 				553B646A1A6764AA00263AFD /* QAicon1_58x58.png in Resources */,
 				559F4AE11A60B10800FBCFCF /* tutorialScreen3.png in Resources */,
@@ -577,6 +582,7 @@
 				550D3D7618F5A7BF009A9406 /* FISStockSearch.m in Sources */,
 				550D3D5718F1E19F009A9406 /* FISMainTableViewCell.m in Sources */,
 				550D3D4A18EE5879009A9406 /* UITableViewController+StyleSheet.m in Sources */,
+				550E6F941A8C114F00028270 /* Reachability.m in Sources */,
 				550D3D6018F1EB74009A9406 /* UIColorSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

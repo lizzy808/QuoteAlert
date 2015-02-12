@@ -16,6 +16,7 @@
 @property (strong, nonatomic) FISStockSearch *searchedStock;
 @property (strong, nonatomic) NSDictionary *searchResult;
 
+-(void)reachabilityChanged:(NSNotification*)note;
 
 
 @end

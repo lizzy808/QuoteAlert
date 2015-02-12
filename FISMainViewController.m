@@ -309,9 +309,13 @@
 
 -(void)configureStockTableView
 {
-    self.stockTableView.frame = self.view.bounds;
-    self.stockTableView.frame = self.view.frame;    
-    self.stockTableView.autoresizingMask &= ~UIViewAutoresizingFlexibleBottomMargin;
+    CGRect frameRect = self.view.bounds;
+    frameRect.size.height = frameRect.size.height - 70;
+    
+    self.stockTableView.frame = frameRect;
+    
+//    self.stockTableView.frame = self.view.frame;
+//    self.stockTableView.autoresizingMask &= ~UIViewAutoresizingFlexibleBottomMargin;
 }
 
 
@@ -407,7 +411,7 @@
     [cell.companyNameLabel setFont:[UIFont fontWithName:@"Arial" size:10]];
     [cell.companyNameLabel setTextColor:[UIColor whiteColor]];
 
-    [cell.bidPriceLabel setFont:[UIFont fontWithName:@"Arial" size:16]];
+    [cell.bidPriceLabel setFont:[UIFont fontWithName:@"Arial" size:18]];
     [cell.bidPriceLabel setTextColor:[UIColor whiteColor]];
     
     [cell.dayChangeLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
