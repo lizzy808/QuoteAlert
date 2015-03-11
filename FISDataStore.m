@@ -271,6 +271,8 @@
 {
     Stock *stock = [self.fetchedStockResultsController objectAtIndexPath:indexPath];
     
+    
+    // Remove stock entry from parse.com
     PFQuery *query = [PFQuery queryWithClassName:@"StockAlerts"];
     
     NSString *currentInstallationId;
@@ -283,7 +285,7 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *stockAlerts, NSError *error) {
         if (!error) {
             // The find succeeded.
-            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)stockAlerts.count);
+            NSLog(@"Successfully retrieved %lu parse objects.", (unsigned long)stockAlerts.count);
             // Do something with the found objects
             for (PFObject *stockAlert in stockAlerts)
             {
@@ -299,6 +301,7 @@
         }
     }];
     
+    NSLog(@"Now delete stock from managed obj context");
     [self.managedObjectContext deleteObject:stock];
 
 }
