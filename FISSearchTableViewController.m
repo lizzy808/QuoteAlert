@@ -105,6 +105,7 @@
         // to update UI components from a block callback
         // you need to dipatch this to the main thread
         // this one uses dispatch_async they do the same thing (as above)
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             weakself.networkConnectionLabel.text = temp;
             weakself.networkConnectionLabel.textColor = [UIColor redColor];

@@ -291,7 +291,7 @@
                 
                 [stockAlert deleteInBackground];
                 
-                //                [stockAlert delete];
+//                [stockAlert delete];
             }
         } else {
             // Log details of the failure
