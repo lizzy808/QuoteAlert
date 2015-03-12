@@ -303,6 +303,9 @@
     
     NSLog(@"Now delete stock from managed obj context");
     [self.managedObjectContext deleteObject:stock];
+    [self.managedObjectContext save:nil];                   // Commit stock delete
+    NSLog(@"Deleted stock from managed obj context");
+
 
 }
 
