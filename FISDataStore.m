@@ -270,9 +270,73 @@
 - (void)deleteStockAtIndexPay:(NSIndexPath *)indexPath
 {
     Stock *stock = [self.fetchedStockResultsController objectAtIndexPath:indexPath];
+    
+    
+    // Remove stock entry from parse.com
+    PFQuery *query = [PFQuery queryWithClassName:@"StockAlerts"];
+    
+    NSString *currentInstallationId;
+    PFInstallation *installation = [PFInstallation currentInstallation];
+    currentInstallationId = installation[@"installationId"];
+    
+    [query whereKey:@"installationId" equalTo:currentInstallationId];
+    [query whereKey:@"symbol" equalTo:stock.symbol];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *stockAlerts, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu parse objects.", (unsigned long)stockAlerts.count);
+            // Do something with the found objects
+            for (PFObject *stockAlert in stockAlerts)
+            {
+                NSLog(@"%@", stockAlert.objectId);
+                
+                [stockAlert deleteInBackground];
+                
+//                [stockAlert delete];
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    
+    NSLog(@"Now delete stock from managed obj context");
     [self.managedObjectContext deleteObject:stock];
+
 }
 
++ (void)changeParseNotifcationEnabledTo:(BOOL)enabled
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"StockAlerts"];
+    
+    NSString *currentInstallationId;
+    PFInstallation *installation = [PFInstallation currentInstallation];
+    currentInstallationId = installation[@"installationId"];
+    
+    [query whereKey:@"installationId" equalTo:currentInstallationId];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *stockAlerts, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)stockAlerts.count);
+            // Do something with the found objects
+            for (PFObject *stockAlert in stockAlerts)
+            {
+                NSLog(@"%@", stockAlert.objectId);
+                
+                stockAlert[@"alertNotificationEnabled"] = [NSNumber numberWithBool:enabled];
+                
+                [stockAlert saveInBackground];
+//                [stockAlert fetch];
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+
+}
 
 
 

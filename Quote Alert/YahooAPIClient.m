@@ -233,6 +233,18 @@
     }
 }
 
++ (void)searchForStockChart:(NSString *)symbol
+{
+
+    NSString *escapedSymbol = [symbol stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLUserAllowedCharacterSet]];
+    
+    NSString *yahooDetailURLString = @"http://chart.finance.yahoo.com/z?s=";
+    
+    yahooDetailURLString = [yahooDetailURLString stringByAppendingString:escapedSymbol];
+    
+    yahooDetailURLString = [yahooDetailURLString stringByAppendingString:@"&t=6m&q=l&l=on&z=l"];
+    
+}
 
 
 // Method to loop through all user stocks from the datastore and update them. Passes a simple boolean YES if complete

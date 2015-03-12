@@ -35,6 +35,8 @@
 
 - (void)deleteStockAtIndexPay:(NSIndexPath *)indexPath;
 
++ (void)changeParseNotifcationEnabledTo:(BOOL)enabled;
+
 
 
 @end

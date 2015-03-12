@@ -173,6 +173,8 @@
 
         NSLog(@"Un-Muting Alerts");
         
+        [FISDataStore changeParseNotifcationEnabledTo:NO];
+        
     }
     else
     {
@@ -185,6 +187,9 @@
         [messageAlert2 show];
         
         NSLog(@"Muting alerts");
+        
+        [FISDataStore changeParseNotifcationEnabledTo:YES];
+
     }
 }
 
@@ -275,13 +280,17 @@
         // Set the "hasPerformedFirstLaunch" key so this block won't execute again
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasPerformedFirstLaunch"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        [YahooAPIClient searchForStockDetails:@"aapl" withCompletion:^(NSDictionary *stockDictionary) {
-            self.stock.userAlertPriceHigh = 200.00;
-            self.stock.userAlertPriceLow = 75.00;
+                
+        [YahooAPIClient searchForStockDetails:@"AAPL" withCompletion:^(NSDictionary *stockDictionary) {
+            
+//            dispatch_async(dispatch_get_main_queue(), ^{
+            
+//                self.stock.userAlertPriceHigh = 200.00;
+//                self.stock.userAlertPriceLow = 75.00;
     
-            [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
-            [self.dataStore saveContext];
+                [Stock stockWithStockDetailDictionary:stockDictionary Context:self.dataStore.managedObjectContext];
+                [self.dataStore saveContext];
+//            }
         }];
     }
     else {
@@ -304,9 +313,13 @@
 
 -(void)configureStockTableView
 {
-    self.stockTableView.frame = self.view.bounds;
-    self.stockTableView.frame = self.view.frame;    
-    self.stockTableView.autoresizingMask &= ~UIViewAutoresizingFlexibleBottomMargin;
+    CGRect frameRect = self.view.bounds;
+    frameRect.size.height = frameRect.size.height - 70;
+    
+    self.stockTableView.frame = frameRect;
+    
+//    self.stockTableView.frame = self.view.frame;
+//    self.stockTableView.autoresizingMask &= ~UIViewAutoresizingFlexibleBottomMargin;
 }
 
 
@@ -402,7 +415,7 @@
     [cell.companyNameLabel setFont:[UIFont fontWithName:@"Arial" size:10]];
     [cell.companyNameLabel setTextColor:[UIColor whiteColor]];
 
-    [cell.bidPriceLabel setFont:[UIFont fontWithName:@"Arial" size:16]];
+    [cell.bidPriceLabel setFont:[UIFont fontWithName:@"Arial" size:18]];
     [cell.bidPriceLabel setTextColor:[UIColor whiteColor]];
     
     [cell.dayChangeLabel setFont:[UIFont fontWithName:@"Arial" size:14]];
@@ -522,6 +535,7 @@
         [self.dataStore deleteStockAtIndexPay:indexPath];
         [self.dataStore.fetchedStockResultsController performFetch:nil];
         [tableView reloadData];
+        
         
         
     }
