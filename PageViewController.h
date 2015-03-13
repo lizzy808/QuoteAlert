@@ -6,7 +6,8 @@
 //  Copyright (c) 2015 Elizabeth Choy. All rights reserved.
 //
 
-#import "MSPageViewController.h"
+//#import "MSPageViewController.h"
+#import <MSPageViewController/MSPageViewController.h>
 
 @interface PageViewController : MSPageViewController
 

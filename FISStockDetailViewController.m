@@ -177,7 +177,7 @@
  Enables notification if user changes alert prices
 */
     
-    self.stock.lastNotificationFiredTime = nil;
+//    self.stock.lastNotificationFiredTime = nil;
     
 
     PFQuery *query = [PFQuery queryWithClassName:@"StockAlerts"];
@@ -203,6 +203,8 @@
                 
                 stockAlert[@"userAlertPriceHigh"] = userAlertPriceHighNumber;
                 stockAlert[@"userAlertPriceLow"] = userAlertPriceLowNumber;
+                
+                [stockAlert removeObjectForKey:@"lastNotificationFiredTime"];
                 
                 NSLog(@"%@", stockAlert[@"userAlertPriceHigh"]);
                 

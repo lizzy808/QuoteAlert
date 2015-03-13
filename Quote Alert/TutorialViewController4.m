@@ -7,6 +7,7 @@
 //
 
 #import "TutorialViewController4.h"
+#import "PageViewController.h"
 
 @interface TutorialViewController4 ()
 
