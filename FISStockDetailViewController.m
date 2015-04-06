@@ -90,7 +90,8 @@
     [self.symbolLabel setText:self.stock.companyName];
     
     self.priceLabel.text = self.stock.bidPrice;
-//    self.priceLabel.text
+//    [self.priceLabel setText:[NSString stringWithFormat:@"%.2f", self.stock.bidPrice]];
+
     
     self.openPriceLabel.text = self.stock.openPrice;
     self.dayHighLabel.text = self.stock.dayHigh;
