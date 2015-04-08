@@ -114,13 +114,13 @@
     if (shouldFireNotification)
    
     {
-        [self updateMuteButtonWithImageNamed:@"alarmclockbutton_off1.png"];
+        [self updateMuteButtonWithImageNamed:@"alarmclockbutton_on1.png"];
     }
     
     else
   
     {
-        [self updateMuteButtonWithImageNamed:@"alarmclockbutton_on1.png"];
+        [self updateMuteButtonWithImageNamed:@"alarmclockbutton_off1.png"];
     }
 }
 
@@ -164,7 +164,7 @@
                   
     if ([defaults boolForKey:@"areAlertsMuted"])
     {
-        [self updateMuteButtonWithImageNamed:@"alarmclockbutton_on1.png"];
+        [self updateMuteButtonWithImageNamed:@"alarmclockbutton_off1.png"];
         UIAlertView *messageAlert = [[UIAlertView alloc]
                                      initWithTitle:@"Message" message:@"Quote Alerts Muted" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         
@@ -178,7 +178,7 @@
     }
     else
     {
-        [self updateMuteButtonWithImageNamed:@"alarmclockbutton_off1.png"];
+        [self updateMuteButtonWithImageNamed:@"alarmclockbutton_on1.png"];
         
         UIAlertView *messageAlert2 = [[UIAlertView alloc]
                                      initWithTitle:@"Message" message:@"Quote Alerts Active" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
